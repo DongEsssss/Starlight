@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="container_title">
+        <div class="title_icon"></div>
+        <span class="title_text"> Company Configuration</span>
+    </div>
+    <div class="config_tabs">
+        <clr-tabs>
+            <clr-tab>
+                <button clrTabLink>Company</button>
+                <clr-tab-content *clrIfActive>
+                    <app-cp-form></app-cp-form>
+                </clr-tab-content>
+            </clr-tab>
+            <clr-tab>
+                <button clrTabLink>User</button>
+                <clr-tab-content *clrIfActive>
+                    <app-ur-form></app-ur-form>
+                </clr-tab-content>
+            </clr-tab>
+        </clr-tabs>
+    </div>
+</div>

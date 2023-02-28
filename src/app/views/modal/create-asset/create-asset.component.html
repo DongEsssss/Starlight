@@ -1,0 +1,37 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
+    <div class="modal-title">
+        Create New Assets
+    </div>
+    <div class="modal-body body-format">
+        <form clrForm clrLayout="horizontal" class="clr-form">
+            <clr-input-container>
+                <label>ID*</label>
+                <input clrInput [(ngModel)]="Assetname" name="id" type="text" class="id" required
+                    placeholder="Input Assets ID" />
+                <clr-control-error>Input Assets ID</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>type*</label>
+                <input clrInput [(ngModel)]="type" name="type" type="text" class="type" required
+                    placeholder="Input Assets Type" />
+                <clr-control-error>Input Assets Type</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Path*</label>
+                <input clrInput [(ngModel)]="path" name="path" type="text" class="path" required
+                    placeholder="Input Assets path" />
+                <clr-control-error>Input Assets Path</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Filename*</label>
+                <input clrInput [(ngModel)]="filename" name="filename" type="text" class="filename" required
+                    placeholder="Input Assets filename" />
+                <clr-control-error>Input Assets filename</clr-control-error>
+            </clr-input-container>
+        </form>
+        <div class="setbtn">
+            <button class="btn btn-outline">Create</button>
+            <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</clr-modal>

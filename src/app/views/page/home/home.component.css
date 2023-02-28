@@ -1,0 +1,41 @@
+.header, header-actions{
+    position: flex;
+    align-items: center;
+}
+.logo{
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    background: url('src/static/images/EDClogo.png') no-repeat 50% 50%;
+    background-size: contain;
+}
+.logo-title{
+    font-size: 30px;
+}
+.welcome-text{
+    position: relative;
+    margin-right: 20px;
+    line-height: 60px;
+}
+.dropbtn{
+    width: 128px;
+    margin-top: 10px;
+    margin-right: 10px;
+    outline: none;
+}
+.dropdown .dropdown-toggle {
+    padding-left: 20px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+}
+.content-area{
+    background-color: #131313;
+}
+.icon{
+    width: 10px;
+    height: 10px;
+    background: url('src/static/images/icon_arrow_down_white.svg')no-repeat 50% 50%;
+    background-size: contain;
+    margin-left: 5px;
+}

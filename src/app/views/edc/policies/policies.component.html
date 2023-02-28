@@ -1,0 +1,181 @@
+<app-delete #delete></app-delete>
+<clr-wizard #wizard [(clrWizardOpen)]="open" [clrWizardSize]="'lg'">
+  <clr-wizard-title>STEP</clr-wizard-title>
+  <clr-wizard-button [type]="'cancel'">Close</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Previous</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'">Create</clr-wizard-button>
+  <clr-wizard-page
+    [clrWizardPageNextDisabled]="(name.pristine && quest.pristine && velocity.pristine) || !formPage.valid">
+    <ng-template clrPageTitle>Create New Policy</ng-template>
+    <form clrForm #formPage="ngForm">
+      <clr-input-container>
+        <label>ID*</label>
+        <input clrInput name="name" required [(ngModel)]="wizards.poID" #name="ngModel" />
+        <clr-control-error>This field is required!</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Create_at*</label>
+        <input clrInput name="quest" required [(ngModel)]="wizards.create_at" #quest="ngModel" />
+        <clr-control-error>This field is required!</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Policy_Type*</label>
+        <input clrInput name="velocity" required [(ngModel)]="wizards.policy_type" #velocity="ngModel" />
+        <clr-control-error>This field is required!</clr-control-error>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Assginee</label>
+        <input clrInput type="text" id="target" [(ngModel)]="assginee" name="name" #name="ngModel">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Assginer</label>
+        <input clrInput type="text" id="target" [(ngModel)]="assginer" name="name" #name="ngModel">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Inherits_from</label>
+        <input clrInput type="text" id="target" [(ngModel)]="inherits" name="name" #name="ngModel">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Target</label>
+        <input clrInput type="text" id="target" [(ngModel)]="target" name="name" #name="ngModel">
+      </clr-input-container>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Permission</ng-template> <!-- mandatory -->
+    <ng-template clrPageNavTitle>
+      Permission
+    </ng-template> <!-- optional -->
+    <form #formPageTwo="ngForm">
+      <section class="form-block">
+        <div class="form-group">
+          <form clrForm>
+            <clr-textarea-container>
+              <textarea clrTextarea [(ngModel)]="permission" name="description"></textarea>
+            </clr-textarea-container>
+          </form>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Prohibitions</ng-template> <!-- mandatory -->
+    <ng-template clrPageNavTitle>
+      Prohibitions
+    </ng-template> <!-- optional -->
+    <form #formPageTwo="ngForm">
+      <section class="form-block">
+        <div class="form-group">
+          <form clrForm>
+            <clr-textarea-container>
+              <textarea clrTextarea [(ngModel)]="Prohibitions" name="description"></textarea>
+            </clr-textarea-container>
+          </form>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Extensible Properties</ng-template> <!-- mandatory -->
+    <ng-template clrPageNavTitle>
+      extensible_properties
+    </ng-template> <!-- optional -->
+    <form #formPageTwo="ngForm">
+      <section class="form-block">
+        <div class="form-group">
+          <form clrForm>
+            <clr-textarea-container>
+              <textarea clrTextarea [(ngModel)]="extensible_properties" name="description"></textarea>
+            </clr-textarea-container>
+          </form>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Duties</ng-template> <!-- mandatory -->
+    <ng-template clrPageNavTitle>
+      Duties
+    </ng-template> <!-- optional -->
+    <form #formPageTwo="ngForm">
+      <section class="form-block">
+        <div class="form-group">
+          <form clrForm>
+            <clr-textarea-container>
+              <textarea clrTextarea [(ngModel)]="duties" name="description"></textarea>
+            </clr-textarea-container>
+          </form>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+</clr-wizard>
+<div class="container">
+  <div class="container_title">
+    <div class="title_icon"></div>
+    <span class="title_text"> Policies </span>
+  </div>
+  <div class="search-tool">
+    <input class="search_input" type="search" placeholder="Search Policies" [(ngModel)]="searchText" rel="search" />
+    <button type="button" class="createbtn btn-primary" (click)="wizard.open()"> ⊕ Create Policies</button>
+  </div>
+  <div class="data-area">
+    <div class="clr-row card">
+      <div class="card-block">
+        <h3 class="card-title">Policy ID</h3>
+        <div class="card-text">
+          <div class="clr-col-12 type">
+            <span>Policy Type : Type</span>
+          </div>
+          <div class="clr-row policy-info">
+            <h3 class="clr-col-12">Policy Content</h3>
+              <span class="clr-col-6">Assginee : N/A</span>
+              <span class="clr-col-6">Assginer : N/A</span>
+              <span class="clr-col-6">Inherits_from : N/A</span>
+              <span class="clr-col-6">validty : N/A</span>
+          </div>
+          <h4>Selector Expression</h4>
+          <div class="expression">
+            <clr-accordion>
+              <clr-accordion-panel>
+                <clr-accordion-title>Persmission</clr-accordion-title>
+                <clr-accordion-content *clrIfExpanded>
+                  Persmission
+                  Content Details
+                </clr-accordion-content>
+              </clr-accordion-panel>
+              <clr-accordion-panel>
+                <clr-accordion-title>Prohibitions</clr-accordion-title>
+                <clr-accordion-content *clrIfExpanded>
+                  Prohibitions
+                  Content Details
+                </clr-accordion-content>
+              </clr-accordion-panel>
+              <clr-accordion-panel>
+                <clr-accordion-title>Duties</clr-accordion-title>
+                <clr-accordion-content *clrIfExpanded>
+                  Duties
+                  Content Details
+                </clr-accordion-content>
+              </clr-accordion-panel>
+              <clr-accordion-panel>
+                <clr-accordion-title>Extensible_Properties</clr-accordion-title>
+                <clr-accordion-content *clrIfExpanded>
+                  Extensible_Properties
+                  Content Details
+                </clr-accordion-content>
+              </clr-accordion-panel>
+            </clr-accordion>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <label>Create Date</label>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

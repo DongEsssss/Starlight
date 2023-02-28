@@ -1,1 +1,152 @@
 /* You can add global styles to this file, and also import other style files */
+span,
+p,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+th,
+td,
+textarea,
+label {
+    color: #eee;
+}
+
+hr {
+    width: 100%;
+}
+
+/* content-area css */
+.container_title {
+    display: flex;
+    align-items: center;
+}
+
+.title_text {
+    color: #eee;
+    font-size: 30px;
+}
+
+.title_icon, .dataset_icon {
+    min-width: 50px;
+    min-height: 50px;
+    background: url("src/static/images/EDClogo.png") 50% 50% no-repeat;
+    background-size: contain;
+}
+
+/* search-tool */
+.search_input {
+    background: url('src/static/images/icon_search_white.svg') #eee no-repeat 5% 50%;
+    padding: 5px 20px;
+    outline: none;
+    text-indent: 40px;
+    width: 400px;
+    border-radius: 10px;
+    height: 50px;
+}
+
+.search-tool {
+    margin-top: 10px;
+}
+
+/* button */
+.createbtn {
+    color: #eee;
+    background-color: #333544;
+    height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 1px 13px;
+    padding: 0px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.createbtn:hover {
+    opacity: 0.7;
+}
+
+.setbtn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    color: #eee;
+}
+
+button {
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: #eee;
+}
+button :hover {
+    color: #eee;
+    opacity: 0.7;
+}
+
+.option-btn button {
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    background-color: #333544;
+}
+
+.option-btn button clr-icon {
+    width: 30px;
+    height: 30px;
+    padding-right: -10px;
+}
+
+/* data-area */
+.data-area {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.data_title {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.dataset .data_title .dataset_text {
+    color: #eee;
+}
+
+.dataset {
+    color: #eee;
+    background-color: #333544;
+    padding: 10px 15px;
+    box-shadow: 3px 3px 3px rgb(108, 108, 108);
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+clr-input-container input {
+    width: 200px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.expression {
+    margin-top: 10px;
+}
+
+h3 {
+    padding-top: 10px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

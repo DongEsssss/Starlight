@@ -1,0 +1,55 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
+    <div class="modal-title">
+        <div class="container_title">
+            <clr-icon shape="user"></clr-icon>
+            <span class="title_text">Create New User</span>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form clrForm clrLayout="horizontal" class="clr-form">
+            <clr-input-container>
+                <label>User_Name*</label>
+                <input clrInput name="name" type="text" class="id" required
+                    placeholder="Input User_Name" />
+                <clr-control-error>Input User_Name</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Position*</label>
+                <input clrInput name="position" type="text" class="type" required
+                    placeholder="Input Position" />
+                <clr-control-error>Input Position</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>User ID*</label>
+                <input clrInput name="id" type="text" class="path" required
+                    placeholder="Input User ID*" />
+                <clr-control-error>Input User ID*</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Email*</label>
+                <input clrInput name="email" type="text" class="filename" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}" required
+                    placeholder="Input Email" />
+                <clr-control-error>Input Email</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                <label>Phone*</label>
+                <input clrInput name="phone" type="text" class="filename" pattern="01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})" required
+                    placeholder="Input Phone" />
+                <clr-control-error>Input phone</clr-control-error>
+            </clr-input-container>
+            <clr-select-container>
+                <label>Administrator*</label>
+                <select clrSelect name="administrator" class="type-select" id="scanner-authorization"
+                    required>
+                    <option value="time">User</option>
+                    <option value="usage">Admin</option>
+                </select>
+                <clr-control-error>You must select Administrator</clr-control-error>
+            </clr-select-container>
+        </form>
+        <div class="setbtn">
+            <button class="btn btn-outline">Create</button>
+            <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</clr-modal>

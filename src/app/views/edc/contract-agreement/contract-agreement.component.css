@@ -1,0 +1,36 @@
+.setbtn{
+    justify-content: center;
+}
+.dataset{
+    width: 570px;
+}
+.fromto{
+    display: flex;
+    margin-bottom: 20px;
+}
+.switch{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.switch clr-icon{
+    width: 30px;
+    height: 30px;
+}
+.asd{
+    text-align: center;
+}
+.assi{
+    display: flex;
+    justify-content: center;
+}
+h4, details{
+    margin-left: 10px;
+}
+details{
+    padding: 10px 0px;
+}
+summary{
+    font-size: 20px;
+    background: url('src/static/images/icon_arrow_down_white.svg') 15% 50% no-repeat;
+}

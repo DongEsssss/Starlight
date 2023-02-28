@@ -1,0 +1,62 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false"  [clrModalClosable]="false">
+    <div class="modal-title">
+        <span>Company Intro Edit</span>
+    </div>
+    <div class="modal-body body-format">
+        <clr-tabs>
+            <clr-tab>
+                <button clrTabLink id="link1">Description</button>
+                <clr-tab-content *clrIfActive>
+                    <form class="clr-form">
+                        <div class="clr-form-control">
+                          <label for="vertical-textarea-basic" class="clr-control-label">Description</label>
+                          <div class="clr-control-container">
+                            <div class="clr-textarea-wrapper">
+                              <textarea id="vertical-textarea-basic" placeholder="Enter value here" class="clr-textarea"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </clr-tab-content>
+            </clr-tab>
+            <clr-tab>
+                <button clrTabLink>Company Introduce</button>
+                <clr-tab-content *clrIfActive>
+                <form clrForm>
+                    <clr-input-container>
+                        <label>Name*</label>
+                        <input clrInput name="name" required type="text" id="id" placeholder="Input Definition Name"/>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label>Position*</label>
+                        <input clrInput name="position" required type="text" id="id" placeholder="Input Definition Position"/>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label>Phone*</label>
+                        <input clrInput name="phone" required type="text" id="id" placeholder="Input Definition Phone"/>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label>Email*</label>
+                        <input clrInput name="email" required type="text" id="id" placeholder="Input Definition Email"/>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label>Busniess Number*</label>
+                        <input clrInput name="cnumber" required type="text" id="id" placeholder="Input Definition Busniess Number"/>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-input-container>
+                </form>
+                </clr-tab-content>
+            </clr-tab>
+        </clr-tabs>
+    </div>
+    <div class="modal-footer">
+        <div class="setbtn">
+            <button class="btn btn-outline">Ok</button>
+            <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</clr-modal>

@@ -1,0 +1,10 @@
+.card{
+    min-width:280px;
+}
+.id-list{
+    display: flex;
+}
+span{
+    margin-left: 10px;
+    margin-right: 10px;
+}

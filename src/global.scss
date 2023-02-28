@@ -1,0 +1,148 @@
+// datagrid
+.datagrid,.datagrid .datagrid-header .datagrid-column, .datagrid-table .datagrid-cell
+, .datagrid-footer, .datagrid-table .datagrid-column{
+    font-size: 15px;
+    background-color: #333543;
+    border: 1px solid #333543;
+    color: #eee;
+}
+.datagrid-table .datagrid-placeholder.datagrid-empty
+,.datagrid-table .datagrid-placeholder-container,.datagrid-header .datagrid-row
+,.datagrid-row-sticky .datagrid-cell:last-child:after{
+    background-color: #333543;
+    border: 1px solid #333543;
+}
+.datagrid-table .datagrid-cell.datagrid-fixed-column{
+    outline: none;
+}
+.datagrid-table .datagrid-placeholder {
+    background: #333543;
+}
+.datagrid-footer{
+    border-top: 1px solid #eee;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 20px;
+}
+.datagrid{ 
+    margin-top: 0px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;    
+    height: 30rem;
+}
+.datagrid-table .datagrid-placeholder .datagrid-placeholder-image
+,.datagrid-table .datagrid-placeholder.datagrid-empty{
+    justify-content: center;
+    align-items: center;
+}
+// verical nav
+.clr-vertical-nav , .clr-vertical-nav .nav-trigger {
+    background: #333543;
+}
+.clr-vertical-nav .is-collapsed .has-nav-groups .has-icons {
+    background: #333543;
+}
+.clr-vertical-nav .nav-trigger+.nav-content {
+    background-color: #333543;
+    border-top-color: #333543;
+}
+.clr-vertical-nav.is-collapsed .nav-trigger {
+    background: #333543;
+}
+// button
+.btn.btn-danger, .btn-danger .btn {
+    color: #eee;
+}
+.btn.btn-primary, .btn-primary .btn {
+    color: #eee;
+}
+/** modal */
+.main-container header, .main-container .header  {
+    position: flex;
+    background: #333543;
+    align-items: center;
+}
+.modal-body-wrapper {
+    padding-bottom: 20px;
+}
+.modal-dialog .modal-content {
+    background-color: #131313;
+}
+//wizard
+.clr-wizard.wizard-lg .modal-dialog {
+    width: 700px;
+    min-height: 26rem;
+    max-height: 26rem;
+}
+.clr-wizard .clr-wizard-page:not([aria-hidden=true]){
+    width: 600px;
+    padding: 10px 30px;
+}
+// combobox
+.clr-combobox-wrapper, .clr-combobox-option.clr-focus, .clr-combobox-option{
+    width: 400px;
+    color: #eee;
+    background-color: #eee;
+}
+.clr-wizard .clr-wizard-stepnav-wrapper {
+    background-color: #131313;
+    border-right: #eee 1px solid;
+}
+.clr-wizard .clr-wizard-stepnav-item.active .clr-wizard-stepnav-link {
+    background-color: #333543;
+    border-right-color: #333543;
+}
+.clr-combobox-option{
+    background-color: #eee;
+}
+.modal-footer{
+    padding: 0px 0px;
+}
+.dropdown-menu {
+    margin-right: 10px;
+    background: #131313;
+    border-color: #eee;
+    color: #eee;
+}
+//login
+.login-wrapper{
+    background-color: #333543;
+    background: none;
+}
+.login-wrapper .login {
+    background: #131313;
+}
+clr-icon.is-highlight{
+    fill: #333543
+}
+.card{
+    width: 22%;
+    min-width: 250px;
+    margin-top: 0px;
+    margin-right: 20px;
+    border: none;
+    background-color: #333543;
+    box-shadow: 3px 3px 3px rgb(108, 108, 108);
+}
+clr-accordion{
+    background-color: #333543;
+    border: #eee;
+}
+.clr-accordion-header-button,.clr-accordion-inner-content {
+    background-color: #333543;
+    color: #fff;
+}
+.table.table-vertical th:first-child{
+    font-size: 15px;
+}
+.table.table-vertical th:first-child, .table.table-vertical td:first-child{
+    background-color: #333543;
+}
+
+.nav .nav-link {
+    color: #acbac3;
+    outline: none;
+}
+.clr-textarea {
+    min-width: 100%;
+}

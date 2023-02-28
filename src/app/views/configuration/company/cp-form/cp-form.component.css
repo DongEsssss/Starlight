@@ -1,0 +1,48 @@
+.container{
+    margin: 10px 0px;
+}
+.title{
+    display: flex;
+    align-items: center;
+}
+.container_title, .option_btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.notice{
+    margin-top: 5px;
+}
+.company_intro{
+    width: 100%;
+    height: 12rem;
+    margin-bottom: 10px;
+    background: #333543;
+}
+.description{
+    overflow-y: auto;
+    width: 100%;
+    height: 12rem;
+    padding: 10px 0px;
+}
+.description label{
+    font-size: 20px;
+    font-weight: bold;
+    color: #eeeeee;
+}
+button{
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+}
+button:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+.modify{
+    background: url('src/static/images/icon_modify_white.svg') no-repeat 50% 50% #333543;
+}
+.delete{
+    background: url('src/static/images/icon_delete_white.svg') no-repeat 50% 50% #333543;
+}
