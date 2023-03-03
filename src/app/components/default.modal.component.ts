@@ -11,6 +11,7 @@ import { AngularEditorConfig } from "@kolkov/angular-editor";
 })
 
 export class DefaultModalComponent<T> implements OnInit, OnDestroy {
+    
 
     @ViewChild("modalFrom", { static: true })
     modalForm!: NgForm;
