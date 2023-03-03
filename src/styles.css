@@ -150,3 +150,13 @@ h3 {
     justify-content: space-between;
     align-items: center;
 }
+
+.modal-title{
+    display: flex;
+    align-items: center;
+}
+.modal-title span{ font-size: 30px;}
+.modal-title clr-icon{
+    width: 40px;
+    height: 40px;
+}
