@@ -3,7 +3,7 @@ export class Noticeboard{
     noContent?:string;
     noFile?:File;
     noWriter?:string;
-    createDte?:string;
+    createDte?:Date;
 }
 
 export const notices = [
@@ -19,6 +19,6 @@ export const notices = [
         content : "content2",
         file : "O",
         writer : "test2",
-        create : Date
+        create : "2022-12-13"
    }
 ]
