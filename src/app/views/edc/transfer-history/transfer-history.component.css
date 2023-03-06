@@ -1,13 +1,15 @@
 clr-icon {
   width: 40px;
 }
-
+.container_title{
+  width: 100%;
+}
 .refresh {
   display: flex;
-  justify-content: end;
-  margin-bottom: 10px;
+  justify-content:space-between;
+  margin-bottom: 5px;
+  align-items: center;
 }
-
 .onrefresh {
   margin-top: 5px;
   border-radius: 10px;

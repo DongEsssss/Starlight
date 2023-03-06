@@ -17,5 +17,11 @@ export const assets = [
     assets_title: "search",
     assets_sub: "sub title Lorem Ipsum/",
     assets_content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+  },
+  {
+    assets_id: "543-456-3451-1-456",
+    assets_title: "search",
+    assets_sub: "sub title Lorem Ipsum/",
+    assets_content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
   }
 ]

@@ -4,23 +4,55 @@
     <div class="title_icon"></div>
     <span class="title_text"> Assets </span>
   </div>
-  <div class="search-tool">
-    <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Assets" rel="search"/>
-    <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Asset</button>
+  <div class="tool">
+    <div class="search-tool">
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
+             rel="search"/>
+             <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Asset</button>
+    </div>
+    <div class="cardgrid">
+            <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+                  (mouseleave)="mouseLeave('list')">
+                <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+            </span>
+      <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
+            (mouseleave)="mouseLeave('card')">
+                <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
+            </span>
+      <span class="filter-divider"></span>
+      <span class="refresh-btn" (click)="onrefresh()"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
+    </div>
   </div>
-  <div class="data-area">
-    <div class="dataset" *ngFor="let assets of assets | filter:searchText">
-      <div class="dataset_title">
-        <div class="dataset_icon"></div>
-        <div class="text">
-          <span class="dataset_id">{{assets.assets_id}}</span> <br>
-          <span class="dataset_text">{{assets.assets_title}}</span>
-        </div>
-      </div>
-      <div class="dataset_content">
-        <span>{{assets.assets_sub}}</span>
-        <span>{{assets.assets_content}}</span>
+</div>
+<div class="data-area" *ngIf="isCardView">
+  <div class="dataset" *ngFor="let assets of assets | filter:searchText">
+    <div class="dataset_title">
+      <div class="dataset_icon"></div>
+      <div class="text">
+        <span class="dataset_text">{{assets.assets_title}}</span><br>
+        <span class="dataset-sub">{{assets.assets_sub}}</span>
       </div>
     </div>
+    <div class="dataset_content">
+      {{assets.assets_content}}
+    </div>
+  </div>
+</div>
+<div class="data-area" *ngIf="!isCardView">
+  <div class="data_table">
+    <clr-datagrid #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="onRefresh()">
+      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+      <clr-dg-row *ngFor="let assets of AssetList | filter:searchText" [clrDgItem]="AssetList">
+        <clr-dg-cell *ngFor="let header of columnDefs">{{getField(assets, header.field)}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-placeholder>We couldn't load any Detail</clr-dg-placeholder>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [(clrDgPage)]="page" [clrDgPageSize]="pagenationSize"
+          [clrDgTotalItems]="totalCount">
+          {{((page - 1) * pagenationSize) + 1}} - {{(page - 1) * pagenationSize + 1 + pagenationSize}}
+          of more [total {{totalCount}}]
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
   </div>
 </div>

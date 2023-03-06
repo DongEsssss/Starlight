@@ -4,12 +4,12 @@
       <div class="title_icon"></div>
       <span class="title_text"> Transfer History </span>
     </div>
-  </div>
-  <div class="refresh">
-    <button (click)="refresh()" class="onrefresh">
-      <clr-icon shape="refresh"></clr-icon>
-      Reload
-    </button>
+    <div class="refresh">
+      <button (click)="refresh()" class="onrefresh">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </button>
+    </div>
   </div>
   <div class="datatable">
     <clr-datagrid #cDataGrid [(clrDgSingleSelected)]="cSelection" [clrDgRowSelection]="true"

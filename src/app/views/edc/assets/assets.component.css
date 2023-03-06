@@ -1,17 +1,6 @@
-.dataset_title {
-  display: flex;
-  align-items: center;
-}
-
-.dataset_text {
-  font-size: 20px;
-}
-
-.dataset_content {
-  margin-top: 15px;
-}
-
-.dataset_content span {
-  padding-left: 10px;
-  display: block;
-}
+clr-icon {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    margin-right: 10px;
+  }

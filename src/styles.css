@@ -112,7 +112,7 @@ button :hover {
   width: 100%;
 }
 
-.data_title {
+.data_title, .dataset_title {
   display: flex;
   align-items: center;
   margin-left: 5px;
@@ -124,6 +124,9 @@ button :hover {
 }
 
 .dataset {
+  min-width: 32%;
+  max-width: 32%;
+  min-height: 200px;
   color: #eee;
   background-color: #333544;
   padding: 10px 15px;
@@ -164,4 +167,13 @@ h3 {
 .modal-title clr-icon {
   width: 40px;
   height: 40px;
+}
+
+.tool {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.data_table {
+  width: 100%;
 }
