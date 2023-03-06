@@ -11,17 +11,17 @@
     <form clrForm #formPage="ngForm">
       <clr-input-container>
         <label>ID*</label>
-        <input clrInput name="name" required [(ngModel)]="wizards.poID" #name="ngModel" />
+        <input clrInput name="name" required [(ngModel)]="wizards.poID" #name="ngModel"/>
         <clr-control-error>This field is required!</clr-control-error>
       </clr-input-container>
       <clr-input-container>
         <label>Create_at*</label>
-        <input clrInput name="quest" required [(ngModel)]="wizards.create_at" #quest="ngModel" />
+        <input clrInput name="quest" required [(ngModel)]="wizards.create_at" #quest="ngModel"/>
         <clr-control-error>This field is required!</clr-control-error>
       </clr-input-container>
       <clr-input-container>
         <label>Policy_Type*</label>
-        <input clrInput name="velocity" required [(ngModel)]="wizards.policy_type" #velocity="ngModel" />
+        <input clrInput name="velocity" required [(ngModel)]="wizards.policy_type" #velocity="ngModel"/>
         <clr-control-error>This field is required!</clr-control-error>
       </clr-input-container>
 
@@ -119,7 +119,7 @@
     <span class="title_text"> Policies </span>
   </div>
   <div class="search-tool">
-    <input class="search_input" type="search" placeholder="Search Policies" [(ngModel)]="searchText" rel="search" />
+    <input class="search_input" type="search" placeholder="Search Policies" [(ngModel)]="searchText" rel="search"/>
     <button type="button" class="createbtn btn-primary" (click)="wizard.open()"> ⊕ Create Policies</button>
   </div>
   <div class="data-area">
@@ -132,10 +132,10 @@
           </div>
           <div class="clr-row policy-info">
             <h3 class="clr-col-12">Policy Content</h3>
-              <span class="clr-col-6">Assginee : N/A</span>
-              <span class="clr-col-6">Assginer : N/A</span>
-              <span class="clr-col-6">Inherits_from : N/A</span>
-              <span class="clr-col-6">validty : N/A</span>
+            <span class="clr-col-6">Assginee : N/A</span>
+            <span class="clr-col-6">Assginer : N/A</span>
+            <span class="clr-col-6">Inherits_from : N/A</span>
+            <span class="clr-col-6">validty : N/A</span>
           </div>
           <h4>Selector Expression</h4>
           <div class="expression">

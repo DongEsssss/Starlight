@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { assets } from 'src/app/models/assets';
-import { CreateAssetComponent } from '../../modal/create-asset/create-asset.component';
+import {Component, ViewChild} from '@angular/core';
+import {assets} from 'src/app/models/assets';
+import {CreateAssetComponent} from '../../modal/create-asset/create-asset.component';
 
 @Component({
   selector: 'app-assets',
@@ -8,11 +8,12 @@ import { CreateAssetComponent } from '../../modal/create-asset/create-asset.comp
   styleUrls: ['./assets.component.css']
 })
 export class AssetsComponent {
-  assets=assets
+  assets = assets
   searchText !: string;
-  
-  @ViewChild('createasset', { static:false}) CreateAsset !: CreateAssetComponent
-  createbtn(){
+
+  @ViewChild('createasset', {static: false}) CreateAsset !: CreateAssetComponent
+
+  createbtn() {
     this.CreateAsset.open();
   }
 }

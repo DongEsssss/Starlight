@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { DialogService } from './dialog.service';
-import { Observable } from 'rxjs';
-import { AcceptType, ConfirmOptions } from './dialog.types';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {DialogService} from './dialog.service';
+import {Observable} from 'rxjs';
+import {AcceptType, ConfirmOptions} from './dialog.types';
 
 @Component({
   selector: 'app-dialog',

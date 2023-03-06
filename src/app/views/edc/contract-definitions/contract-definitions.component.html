@@ -1,54 +1,55 @@
 <app-create-definitions #definitions></app-create-definitions>
 <app-delete #delete></app-delete>
 <div class="container">
-    <div class="container_title">
-        <div class="title_icon"></div>
-        <span class="title_text">Contract Definitions</span>
-    </div>
-    <div class="search-tool">
-        <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Contract Definition"
-            rel="search" />
-        <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Contract
-            Definitions</button>
-    </div>
-    <div class="data-area">
-        <div class="card">
-            <div class="card-block">
-                <h3 class="card-title">Contract Definition ID</h3>
-                <div class="card-text">
-                    <h4>Definitions ID</h4>
-                    <div class="id-list">
-                        <div class="clr-row">
-                            <div class="clr-col-6">
-                                <span>access_policy_id</span>
-                            </div>
-                            <div class="clr-col-6">
-                                <span>contract_policy_id</span>
-                            </div>
-                        </div>
-                    </div>
-                    <h4>Validity</h4>
-                    <div class="validity">
-                        <span>Validity</span>
-                    </div>
-                    <h4>Selector Expression</h4>
-                    <div class="expression">
-                        <clr-accordion>
-                            <clr-accordion-panel>
-                              <clr-accordion-title>Details</clr-accordion-title>
-                              <clr-accordion-content *clrIfExpanded>
-                                    Selector Expression
-                                    Content Details
-                              </clr-accordion-content>
-                            </clr-accordion-panel>
-                        </clr-accordion>
-                    </div>
-                </div>
+  <div class="container_title">
+    <div class="title_icon"></div>
+    <span class="title_text">Contract Definitions</span>
+  </div>
+  <div class="search-tool">
+    <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Contract Definition"
+           rel="search"/>
+    <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Contract
+      Definitions
+    </button>
+  </div>
+  <div class="data-area">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Contract Definition ID</h3>
+        <div class="card-text">
+          <h4>Definitions ID</h4>
+          <div class="id-list">
+            <div class="clr-row">
+              <div class="clr-col-6">
+                <span>access_policy_id</span>
+              </div>
+              <div class="clr-col-6">
+                <span>contract_policy_id</span>
+              </div>
             </div>
-            <div class="card-footer">
-                <label>Create Date</label> 
-                <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-            </div>
+          </div>
+          <h4>Validity</h4>
+          <div class="validity">
+            <span>Validity</span>
+          </div>
+          <h4>Selector Expression</h4>
+          <div class="expression">
+            <clr-accordion>
+              <clr-accordion-panel>
+                <clr-accordion-title>Details</clr-accordion-title>
+                <clr-accordion-content *clrIfExpanded>
+                  Selector Expression
+                  Content Details
+                </clr-accordion-content>
+              </clr-accordion-panel>
+            </clr-accordion>
+          </div>
         </div>
+      </div>
+      <div class="card-footer">
+        <label>Create Date</label>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+      </div>
     </div>
+  </div>
 </div>

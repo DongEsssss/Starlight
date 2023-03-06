@@ -1,12 +1,14 @@
-form{
-    margin-left: 40px;
+form {
+  margin-left: 40px;
 }
-input, select, clr-combobox, textarea{
-    margin-left: 50px;
-    width: 300px;
-    background-color: #eee;
+
+input, select, clr-combobox, textarea {
+  margin-left: 50px;
+  width: 300px;
+  background-color: #eee;
 }
-clr-icon{
-    width: 50px;
-    height: 50px;
+
+clr-icon {
+  width: 50px;
+  height: 50px;
 }

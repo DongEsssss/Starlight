@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { ConfirmOptions, ConfirmType } from './dialog.types';
+import {Injectable} from '@angular/core';
+import {Subject, Observable} from 'rxjs';
+import {ConfirmOptions, ConfirmType} from './dialog.types';
 
 
 @Injectable({
@@ -19,7 +19,8 @@ export class DialogService {
 
   private resultChange$: Subject<boolean> | undefined;
 
-  constructor() { }
+  constructor() {
+  }
 
   confirm(options: ConfirmOptions = {}): Observable<boolean> {
     if (!('iconShape' in options)) {
@@ -56,7 +57,7 @@ export class DialogService {
       warning: 'warning-standard',
       confirm: '',
     };
-    
+
 
     const classMap = {
       info: 'is-info is-solid',
@@ -90,8 +91,8 @@ export class DialogService {
 
   close(accepted: boolean) {
     this.optionsSubject$.next({open: false});
-    
-    if(this.resultChange$ != undefined){
+
+    if (this.resultChange$ != undefined) {
       this.resultChange$.next(accepted);
       this.resultChange$.complete();
     }

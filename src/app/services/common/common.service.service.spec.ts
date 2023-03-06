@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CommonServiceService } from './common.service.service';
+import {CommonServiceService} from './common.service.service';
 
 describe('CommonServiceService', () => {
   let service: CommonServiceService;

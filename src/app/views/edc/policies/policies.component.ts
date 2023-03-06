@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { ClrWizard } from '@clr/angular/wizard';
-import { policy } from 'src/app/models/policies';
-import { DeleteComponent } from '../../modal/delete/delete.component';
+import {Component, ViewChild} from '@angular/core';
+import {ClrWizard} from '@clr/angular/wizard';
+import {policy} from 'src/app/models/policies';
+import {DeleteComponent} from '../../modal/delete/delete.component';
 
 @Component({
   selector: 'app-policies',
@@ -18,16 +18,17 @@ export class PoliciesComponent {
   assginer!: string;
   inherits !: string;
   open !: boolean;
-  policy=policy;
+  policy = policy;
   policies: any;
   searchText!: string;
   permission !: JSON;
   Prohibitions!: JSON;
   extensible_properties !: JSON;
   duties !: JSON;
-  
-  @ViewChild('delete', { static: false }) Delete !: DeleteComponent
+
+  @ViewChild('delete', {static: false}) Delete !: DeleteComponent
   @ViewChild("number") numberFi !: any;
+
   deletemodal() {
     this.Delete.open();
   }
@@ -38,36 +39,39 @@ export class PoliciesComponent {
     number: ""
   };
 
-    @ViewChild("wizard")
-    wizard!: ClrWizard;
+  @ViewChild("wizard")
+  wizard!: ClrWizard;
 
-    untouched: boolean = true;
-    loading: boolean = false;
-    errorFlag: boolean = false;
-    progress: number = 0;
+  untouched: boolean = true;
+  loading: boolean = false;
+  errorFlag: boolean = false;
+  progress: number = 0;
 
-    get readyToFinish(): boolean {
-        return !this.untouched && !this.loading;
-    }
+  get readyToFinish(): boolean {
+    return !this.untouched && !this.loading;
+  }
 
-    wizards = {
-        poID: "",
-        create_at: "",
-        policy_type: ""
-    };
-    doCancel(): void {
-        this.wizard.close();
-        this.resetWizard();
-    }
-    onDelete(){
-      this.Delete.open();
-    }
-    resetWizard(): void {
-        this.wizard.reset();
-        this.wizards.poID = "";
-        this.wizards.create_at = "";
-        this.wizards.policy_type = "";
-        this.progress = 0;
-    }
+  wizards = {
+    poID: "",
+    create_at: "",
+    policy_type: ""
+  };
+
+  doCancel(): void {
+    this.wizard.close();
+    this.resetWizard();
+  }
+
+  onDelete() {
+    this.Delete.open();
+  }
+
+  resetWizard(): void {
+    this.wizard.reset();
+    this.wizards.poID = "";
+    this.wizards.create_at = "";
+    this.wizards.policy_type = "";
+    this.progress = 0;
+  }
 }
 

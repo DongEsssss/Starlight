@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { NoticeBoardComponent } from '../../modal/notice-board/notice-board.component';
-import { PasswordChangeComponent } from '../../modal/password-change/password-change.component';
-import { UserInfoComponent } from '../../modal/user-info/user-info.component';
+import {Component, ViewChild} from '@angular/core';
+import {NoticeBoardComponent} from '../../modal/notice-board/notice-board.component';
+import {PasswordChangeComponent} from '../../modal/password-change/password-change.component';
+import {UserInfoComponent} from '../../modal/user-info/user-info.component';
 
 @Component({
   selector: 'app-home',
@@ -9,22 +9,24 @@ import { UserInfoComponent } from '../../modal/user-info/user-info.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  collapsed:boolean= true;
-  @ViewChild('userprofilemodal', {static:false}) UserProfile !: UserInfoComponent
-  @ViewChild('noticeboardmodal', {static:false}) NoticeBoard !: NoticeBoardComponent
-  @ViewChild('passwordmodal', {static:false}) PasswordSetting !: PasswordChangeComponent
-  
+  collapsed: boolean = true;
+  @ViewChild('userprofilemodal', {static: false}) UserProfile !: UserInfoComponent
+  @ViewChild('noticeboardmodal', {static: false}) NoticeBoard !: NoticeBoardComponent
+  @ViewChild('passwordmodal', {static: false}) PasswordSetting !: PasswordChangeComponent
+
   userinfo() {
     this.UserProfile.open();
   }
-  noticeboard(){
+
+  noticeboard() {
     this.NoticeBoard.open();
   }
-  password(){
+
+  password() {
     this.PasswordSetting.open();
   }
 
-  constructor(
-) {}
+  constructor() {
+  }
 
 }

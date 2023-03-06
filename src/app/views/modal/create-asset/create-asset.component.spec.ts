@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateAssetComponent } from './create-asset.component';
+import {CreateAssetComponent} from './create-asset.component';
 
 describe('CreateAssetComponent', () => {
   let component: CreateAssetComponent;
@@ -8,9 +8,9 @@ describe('CreateAssetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateAssetComponent ]
+      declarations: [CreateAssetComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CreateAssetComponent);
     component = fixture.componentInstance;

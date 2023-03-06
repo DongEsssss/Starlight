@@ -1,17 +1,22 @@
-clr-icon{width: 40px;}
-.refresh{
-    display: flex;
-    justify-content: end;
-    margin-bottom: 10px;
+clr-icon {
+  width: 40px;
 }
-.onrefresh{
-    margin-top: 5px;
-    border-radius: 10px;
-    width: 120px;
-    height: 40px;
-    background-color: #333543;
-    color: #eee;
+
+.refresh {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
 }
-.refresh:hover{
-    opacity: 0.7;
+
+.onrefresh {
+  margin-top: 5px;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
+  background-color: #333543;
+  color: #eee;
+}
+
+.refresh:hover {
+  opacity: 0.7;
 }

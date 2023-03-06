@@ -2,100 +2,100 @@
 <app-delete #deletemodal></app-delete>
 <app-company-info #companyinfo></app-company-info>
 <div class="container">
-    <div class="container_title">
-        <div class="title">
-            <div class="title_icon"></div>
-            <span class="title_text"> Quantumsurf Introduce</span>
-        </div>
-        <nav class="option_btn">
-            <button class="modify" (click)="onCompanyEdit()"></button>
-        </nav>
+  <div class="container_title">
+    <div class="title">
+      <div class="title_icon"></div>
+      <span class="title_text"> Quantumsurf Introduce</span>
     </div>
-    <div class="company_intro">
-        <clr-tabs class="content" clrLayout="vertical">
-            <clr-tab>
-                <button clrTabLink id="link1">Description</button>
-                <clr-tab-content class="content1" *clrIfActive>
-                    <div class="description">
-                        <label>Company Description</label>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.            
-                        </p>
-                    </div>
-                </clr-tab-content>
-            </clr-tab>
-            <clr-tab>
-                <button clrTabLink id="link2">company Introduce</button>
-                <clr-tab-content id="content2" *clrIfActive>
-                    <table class="table table-vertical table-noborder">
-                        <tbody>
-                            <tr>
-                                <th>Name</th>
-                                <td>Quantumsurf</td>
-                            </tr>
-                            <tr>
-                                <th>Position</th>
-                                <td>.1601, 16F Daerung Bldg. , 327, Gangnam-daero, Seocho-gu, Seoul Korea</td>
-                            </tr>
-                            <tr>
-                                <th>Phone</th>
-                                <td>T : +82 0 0000 0000 <br>F : +82 0 0000 0000 </td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td>Quantumsurf@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <th>Business Number</th>
-                                <td>1123581321</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </clr-tab-content>
-            </clr-tab>
-        </clr-tabs>
+    <nav class="option_btn">
+      <button class="modify" (click)="onCompanyEdit()"></button>
+    </nav>
+  </div>
+  <div class="company_intro">
+    <clr-tabs class="content" clrLayout="vertical">
+      <clr-tab>
+        <button clrTabLink id="link1">Description</button>
+        <clr-tab-content class="content1" *clrIfActive>
+          <div class="description">
+            <label>Company Description</label>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+              been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book. It has survived not only five
+              centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+              been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book. It has survived not only five
+              centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>
+          </div>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink id="link2">company Introduce</button>
+        <clr-tab-content id="content2" *clrIfActive>
+          <table class="table table-vertical table-noborder">
+            <tbody>
+            <tr>
+              <th>Name</th>
+              <td>Quantumsurf</td>
+            </tr>
+            <tr>
+              <th>Position</th>
+              <td>.1601, 16F Daerung Bldg. , 327, Gangnam-daero, Seocho-gu, Seoul Korea</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>T : +82 0 0000 0000 <br>F : +82 0 0000 0000</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>Quantumsurf@gmail.com</td>
+            </tr>
+            <tr>
+              <th>Business Number</th>
+              <td>1123581321</td>
+            </tr>
+            </tbody>
+          </table>
+        </clr-tab-content>
+      </clr-tab>
+    </clr-tabs>
+  </div>
+  <div class="container_title">
+    <div class="title">
+      <div class="title_icon"></div>
+      <span class="title_text">Notice</span>
     </div>
-    <div class="container_title">
-        <div class="title">
-            <div class="title_icon"></div>
-            <span class="title_text">Notice</span>
-        </div>
-        <nav class="option_btn">
-            <button class="modify" (click)="notice()"></button>
-            <button class="delete" (click)="onDelete()"></button>
-        </nav>
-    </div>
-    <div class="notice">
-        <clr-datagrid [(clrDgSelected)]="selected">
-            <clr-dg-column>Number</clr-dg-column>
-            <clr-dg-column>title</clr-dg-column>
-            <clr-dg-column>content </clr-dg-column>
-            <clr-dg-column>writer</clr-dg-column>
-            <clr-dg-column>file</clr-dg-column>
-            <clr-dg-column>create</clr-dg-column>
-            <clr-dg-row *ngFor="let notice of notices; index as i" [clrDgItem]="notice">
-                <clr-dg-cell>{{i+1}}</clr-dg-cell>
-                <clr-dg-cell>{{notice.title}}</clr-dg-cell>
-                <clr-dg-cell>{{notice.content}}</clr-dg-cell>
-                <clr-dg-cell>{{notice.writer}}</clr-dg-cell>
-                <clr-dg-cell>{{notice.file}}</clr-dg-cell>
-                <clr-dg-cell>{{notice.create}}</clr-dg-cell>
-            </clr-dg-row>
-            <clr-dg-footer>
-                <clr-dg-pagination #pagination [clrDgPageSize]="10">
-                    <clr-dg-page-size #clrDgPageSize [clrPageSizeOptions]="[10,20,50,100]">
-                        <label [for]="clrDgPageSize.pageSizeOptionsId">Users per page</label>
-                    </clr-dg-page-size>
-                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
-                </clr-dg-pagination>
-            </clr-dg-footer>
-        </clr-datagrid>
-    </div>
+    <nav class="option_btn">
+      <button class="modify" (click)="notice()"></button>
+      <button class="delete" (click)="onDelete()"></button>
+    </nav>
+  </div>
+  <div class="notice">
+    <clr-datagrid [(clrDgSelected)]="selected">
+      <clr-dg-column>Number</clr-dg-column>
+      <clr-dg-column>title</clr-dg-column>
+      <clr-dg-column>content</clr-dg-column>
+      <clr-dg-column>writer</clr-dg-column>
+      <clr-dg-column>file</clr-dg-column>
+      <clr-dg-column>create</clr-dg-column>
+      <clr-dg-row *ngFor="let notice of notices; index as i" [clrDgItem]="notice">
+        <clr-dg-cell>{{i + 1}}</clr-dg-cell>
+        <clr-dg-cell>{{notice.title}}</clr-dg-cell>
+        <clr-dg-cell>{{notice.content}}</clr-dg-cell>
+        <clr-dg-cell>{{notice.writer}}</clr-dg-cell>
+        <clr-dg-cell>{{notice.file}}</clr-dg-cell>
+        <clr-dg-cell>{{notice.create}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          <clr-dg-page-size #clrDgPageSize [clrPageSizeOptions]="[10,20,50,100]">
+            <label [for]="clrDgPageSize.pageSizeOptionsId">Users per page</label>
+          </clr-dg-page-size>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  </div>
 </div>

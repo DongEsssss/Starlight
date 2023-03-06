@@ -1,3 +1,21 @@
-clr-input-container input,clr-control-error{
-    width: 400px;
+form {
+  position: relative;
+  margin: auto;
+}
+
+clr-input-container input, clr-control-error {
+  width: 400px;
+}
+
+.option-select {
+  width: 400px;
+}
+
+.type-select {
+  width: 150px;
+}
+
+.selector {
+  position: relative;
+  display: flex;
 }

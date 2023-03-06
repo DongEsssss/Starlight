@@ -2,87 +2,88 @@
 <app-password-change #passwordmodal></app-password-change>
 <app-notice-board #noticeboardmodal></app-notice-board>
 <clr-main-container>
-    <clr-header class="header">
-        <div class="logo"></div>
-        <span class="logo-title">VCP-X</span>
-        <div class="header-actions header-actions-overflow">
-            <span class="welcome-text">환영합니다! (admin)님</span>
-            <clr-dropdown>
-                <button class="dropbtn" clrDropdownTrigger>
-                    Admin
-                    <div class="icon"></div>
-                </button>
-                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                    <div clrDropdownItem (click)="userinfo()">User Profile</div>
-                    <div clrDropdownItem (click)="noticeboard()">Notice</div>
-                    <div clrDropdownItem (click)="password()">Password</div>
-                    <hr>
-                    <div clrDropdownItem>Logout</div>
-                </clr-dropdown-menu>
-            </clr-dropdown>
-        </div>
-    </clr-header>
-    <div class="content-container">
-        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
-            <a clrVerticalNavLink routerLinkActive="active" routerLink="mainhome">
-                <clr-icon shape="home" clrVerticalNavIcon></clr-icon>
-                Home
-            </a>
-            <a clrVerticalNavLink routerLinkActive="active" routerLink="monitoring">
-                <clr-icon shape="video-camera" clrVerticalNavIcon></clr-icon>
-                Monitoring
-            </a>
-            <clr-vertical-nav-group routerLinkActive="active">
-                <clr-icon shape="cloud" size="16" clrVerticalNavIcon></clr-icon>
-                <span>EDC</span> 
-                <clr-vertical-nav-group-children>
-                    <a clrVerticalNavLink routerLink="assets" routerLinkActive="active">
-                        <clr-icon shape="folder" clrVerticalNavIcon></clr-icon>
-                        Assets
-                    </a>
-                    <a clrVerticalNavLink routerLink="policies" routerLinkActive="active">
-                        <clr-icon shape="scroll" clrVerticalNavIcon></clr-icon>
-                        Policies
-                    </a>
-                    <a clrVerticalNavLink routerLink="contractdefinitions" routerLinkActive="active">
-                        <clr-icon shape="view-list" clrVerticalNavIcon></clr-icon>
-                        Contract Definitions
-                    </a>
-                    <a clrVerticalNavLink routerLink="contracts-agreement" routerLinkActive="active">
-                        <clr-icon shape="paperclip" clrVerticalNavIcon></clr-icon>
-                        Contracts Agreement
-                    </a>
-                    <a clrVerticalNavLink routerLink="catalogbrowser" routerLinkActive="active">
-                        <clr-icon shape="file" clrVerticalNavIcon></clr-icon>
-                        Catalog Browser
-                    </a>
-                    <a clrVerticalNavLink routerLink="transferhistory" routerLinkActive="active">
-                        <clr-icon shape="file-group" clrVerticalNavIcon></clr-icon>
-                        Transfer History
-                    </a>
-                </clr-vertical-nav-group-children>
-            </clr-vertical-nav-group>
-            <clr-vertical-nav-group routerLinkActive="active">
-                <clr-icon shape="cog" clrVerticalNavIcon></clr-icon>
-                <span>Configuration</span> 
-                <clr-vertical-nav-group-children>
-                    <a clrVerticalNavLink routerLink="company" routerLinkActive="active">
-                        <clr-icon shape="host" clrVerticalNavIcon></clr-icon>
-                        Company
-                    </a>
-                    <a clrVerticalNavLink routerLink="user" routerLinkActive="active">
-                        <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
-                        User
-                    </a>
-                    <a clrVerticalNavLink routerLink="setting" routerLinkActive="active">
-                        <clr-icon shape="help-info" clrVerticalNavIcon></clr-icon>
-                        Settings
-                    </a>
-                </clr-vertical-nav-group-children>
-            </clr-vertical-nav-group>            
-        </clr-vertical-nav>
-        <main class="content-area">
-            <router-outlet></router-outlet>
-        </main>
+  <clr-header class="header">
+    <div class="logo"></div>
+    <span class="logo-title">VCP-X</span>
+    <div class="header-actions header-actions-overflow">
+      <span class="welcome-text">환영합니다! (admin)님</span>
+      <clr-dropdown>
+        <button class="dropbtn" clrDropdownTrigger>
+          <clr-icon shape="user"></clr-icon>
+          <span>Admin</span>
+          <div class="icon"></div>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+          <div clrDropdownItem (click)="userinfo()">User Profile</div>
+          <div clrDropdownItem (click)="noticeboard()">Notice</div>
+          <div clrDropdownItem (click)="password()">Password</div>
+          <hr>
+          <div clrDropdownItem>Logout</div>
+        </clr-dropdown-menu>
+      </clr-dropdown>
     </div>
+  </clr-header>
+  <div class="content-container">
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+      <a clrVerticalNavLink routerLinkActive="active" routerLink="mainhome">
+        <clr-icon shape="home" clrVerticalNavIcon></clr-icon>
+        Home
+      </a>
+      <a clrVerticalNavLink routerLinkActive="active" routerLink="monitoring">
+        <clr-icon shape="video-camera" clrVerticalNavIcon></clr-icon>
+        Monitoring
+      </a>
+      <clr-vertical-nav-group routerLinkActive="active">
+        <clr-icon shape="cloud" size="16" clrVerticalNavIcon></clr-icon>
+        <span>EDC</span>
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink routerLink="assets" routerLinkActive="active">
+            <clr-icon shape="folder" clrVerticalNavIcon></clr-icon>
+            Assets
+          </a>
+          <a clrVerticalNavLink routerLink="policies" routerLinkActive="active">
+            <clr-icon shape="scroll" clrVerticalNavIcon></clr-icon>
+            Policies
+          </a>
+          <a clrVerticalNavLink routerLink="contractdefinitions" routerLinkActive="active">
+            <clr-icon shape="view-list" clrVerticalNavIcon></clr-icon>
+            Contract Definitions
+          </a>
+          <a clrVerticalNavLink routerLink="contracts-agreement" routerLinkActive="active">
+            <clr-icon shape="paperclip" clrVerticalNavIcon></clr-icon>
+            Contracts Agreement
+          </a>
+          <a clrVerticalNavLink routerLink="catalogbrowser" routerLinkActive="active">
+            <clr-icon shape="file" clrVerticalNavIcon></clr-icon>
+            Catalog Browser
+          </a>
+          <a clrVerticalNavLink routerLink="transferhistory" routerLinkActive="active">
+            <clr-icon shape="file-group" clrVerticalNavIcon></clr-icon>
+            Transfer History
+          </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+      <clr-vertical-nav-group routerLinkActive="active">
+        <clr-icon shape="cog" clrVerticalNavIcon></clr-icon>
+        <span>Configuration</span>
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink routerLink="company" routerLinkActive="active">
+            <clr-icon shape="host" clrVerticalNavIcon></clr-icon>
+            Company
+          </a>
+          <a clrVerticalNavLink routerLink="user" routerLinkActive="active">
+            <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+            User
+          </a>
+          <a clrVerticalNavLink routerLink="setting" routerLinkActive="active">
+            <clr-icon shape="help-info" clrVerticalNavIcon></clr-icon>
+            Settings
+          </a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+    </clr-vertical-nav>
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </clr-main-container>

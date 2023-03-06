@@ -1,11 +1,12 @@
-<clr-alert *ngIf="!alertClose" [(clrAlertClosed)]="alertClose" [clrAlertType]="inlineAlertType" [clrAlertClosable]="inlineAlertClosable"  [clrAlertAppLevel]="useAppLevelStyle">
-    <div class="alert-item" *ngIf="!alertClose">
+<clr-alert *ngIf="!alertClose" [(clrAlertClosed)]="alertClose" [clrAlertType]="inlineAlertType"
+           [clrAlertClosable]="inlineAlertClosable" [clrAlertAppLevel]="useAppLevelStyle">
+  <div class="alert-item" *ngIf="!alertClose">
         <span class="alert-text" [class.alert-text-blink]="blinking">
             {{errorMessage}}
         </span>
-        <div class="alert-actions" *ngIf="showCancelAction">
-            <button class="btn  btn-link alert-btn-link" (click)="close()">CLOSE</button>
-            <button class="btn  btn-link alert-btn-link" (click)="confirmCancel()">OK</button>
-        </div>
+    <div class="alert-actions" *ngIf="showCancelAction">
+      <button class="btn  btn-link alert-btn-link" (click)="close()">CLOSE</button>
+      <button class="btn  btn-link alert-btn-link" (click)="confirmCancel()">OK</button>
     </div>
+  </div>
 </clr-alert>

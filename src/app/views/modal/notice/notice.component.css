@@ -1,18 +1,22 @@
-.flex input{
-    width: 190px;
+.flex input {
+  width: 190px;
 }
-textarea{
-    margin-top: 10px;
-    padding: 10px 10px;
-    width: 100%;
+
+textarea {
+  margin-top: 10px;
+  padding: 10px 10px;
+  width: 100%;
 }
-.writer_input{
-    margin-left: 10px;
+
+.writer_input {
+  margin-left: 10px;
 }
-.file_container input{
-    padding-bottom: 10px;
-    margin-left: -40px ;
+
+.file_container input {
+  padding-bottom: 10px;
+  margin-left: -40px;
 }
-.flex{
-    display: flex;
+
+.flex {
+  display: flex;
 }

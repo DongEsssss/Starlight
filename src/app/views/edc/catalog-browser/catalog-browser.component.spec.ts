@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CatalogBrowserComponent } from './catalog-browser.component';
+import {CatalogBrowserComponent} from './catalog-browser.component';
 
 describe('CatalogBrowserComponent', () => {
   let component: CatalogBrowserComponent;
@@ -8,9 +8,9 @@ describe('CatalogBrowserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CatalogBrowserComponent ]
+      declarations: [CatalogBrowserComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CatalogBrowserComponent);
     component = fixture.componentInstance;

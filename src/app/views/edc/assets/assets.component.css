@@ -1,14 +1,17 @@
-.dataset_title{
-    display: flex;
-    align-items: center;
+.dataset_title {
+  display: flex;
+  align-items: center;
 }
-.dataset_text{
-    font-size: 20px;
+
+.dataset_text {
+  font-size: 20px;
 }
-.dataset_content{
-    margin-top: 15px;
+
+.dataset_content {
+  margin-top: 15px;
 }
-.dataset_content span{
-    padding-left: 10px;
-    display: block;
+
+.dataset_content span {
+  padding-left: 10px;
+  display: block;
 }

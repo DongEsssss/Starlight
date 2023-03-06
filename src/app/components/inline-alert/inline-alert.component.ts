@@ -11,8 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Component, Output, EventEmitter } from "@angular/core";
-import { Subscription } from "rxjs";
+import {Component, Output, EventEmitter} from "@angular/core";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: "inline-alert",
@@ -33,8 +33,8 @@ export class InlineAlertComponent {
   @Output() confirmEvt = new EventEmitter<boolean>();
   @Output() closeEvt = new EventEmitter<boolean>();
 
-  constructor(
-    ) {}
+  constructor() {
+  }
 
   public get errorMessage(): string {
     return this.displayedText;
@@ -63,13 +63,14 @@ export class InlineAlertComponent {
 
   // Show inline sccess info
   public showInlineSuccess(infoString: string): void {
-    this.displayedText =infoString;
+    this.displayedText = infoString;
     this.inlineAlertType = "success";
     this.showCancelAction = false;
     this.inlineAlertClosable = true;
     this.alertClose = false;
     this.useAppLevelStyle = false;
   }
+
   // Show warning
   public showInlineWarning(warningString: string): void {
     this.displayedText = warningString;
@@ -79,12 +80,14 @@ export class InlineAlertComponent {
     this.alertClose = false;
     this.useAppLevelStyle = false;
   }
+
   // Close alert
   public close(): void {
     this.alertClose = true;
   }
 
-  public blink() {}
+  public blink() {
+  }
 
   confirmCancel(): void {
     this.confirmEvt.emit(true);

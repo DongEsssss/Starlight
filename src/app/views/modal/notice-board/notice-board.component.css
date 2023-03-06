@@ -1,14 +1,16 @@
-.table{
-    position: relative;
-    height: 10rem;
+button:hover {
+  opacity: 0.7;
 }
-button:hover{
-    opacity: 0.7;
+
+.modify {
+  background: url('src/static/images/icon_modify_white.svg') no-repeat 50% 50% #333543;
 }
-.modify{
-    background: url('src/static/images/icon_modify_white.svg') no-repeat 50% 50% #333543;
+
+.container_title .delete {
+  right: 85px;
+  background: url('src/static/images/icon_delete_white.svg') no-repeat 50% 50% #333543;
 }
-.container_title .delete{
-    right: 85px;
-    background: url('src/static/images/icon_delete_white.svg') no-repeat 50% 50% #333543;
+
+.datatable {
+  margin-top: 20px;
 }

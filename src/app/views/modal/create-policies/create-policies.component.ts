@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { DefaultModalComponent } from 'src/app/components/default.modal.component';
-import { policy } from 'src/app/models/policies';
+import {Component} from '@angular/core';
+import {DefaultModalComponent} from 'src/app/components/default.modal.component';
+import {policy} from 'src/app/models/policies';
 
 @Component({
   selector: 'app-create-policies',

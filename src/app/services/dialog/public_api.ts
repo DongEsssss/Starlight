@@ -1,3 +1,3 @@
-export { DialogService } from './dialog.service';
+export {DialogService} from './dialog.service';
 
-export { AcceptType, ConfirmOptions, ConfirmType } from './dialog.types';
+export {AcceptType, ConfirmOptions, ConfirmType} from './dialog.types';

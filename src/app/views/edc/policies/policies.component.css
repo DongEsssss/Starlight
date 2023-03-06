@@ -1,34 +1,40 @@
 
 .clr-wizard .clr-wizard-page:not([aria-hidden=true]) {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-clr-input-container input, clr-control-error{
-    margin-left: 40px;
-    width: 230px;
+
+clr-input-container input, clr-control-error {
+  margin-left: 40px;
+  width: 230px;
 }
+
 .card {
-    margin-left: 0px;
-    min-width: 400px;
+  margin-left: 0px;
+  min-width: 400px;
 }
+
 .clr-textarea {
-    width: 90%;
-    height: 17rem;
-    background: #ffffff;
-    border: 0.05rem solid;
-    border-color: #ffffff;
-    color: #000000;
-    font-size:12px;
-    margin-top: -40px;
-    margin-left: -100px;
+  width: 90%;
+  height: 17rem;
+  background: #ffffff;
+  border: 0.05rem solid;
+  border-color: #ffffff;
+  color: #000000;
+  font-size: 12px;
+  margin-top: -40px;
+  margin-left: -100px;
 }
-span{
-    font-size:15px
+
+span {
+  font-size: 15px
 }
-.policy-info span{
-    margin-top: 5px;
-    padding-left: 20px;
+
+.policy-info span {
+  margin-top: 5px;
+  padding-left: 20px;
 }
-.policy-content{
-    padding: 0px 0px;
-    padding-bottom: -10px;
+
+.policy-content {
+  padding: 0px 0px;
+  padding-bottom: -10px;
 }

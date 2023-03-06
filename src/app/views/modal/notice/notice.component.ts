@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DefaultModalComponent } from 'src/app/components/default.modal.component';
-import { Noticeboard } from 'src/app/models/notice';;
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {DefaultModalComponent} from 'src/app/components/default.modal.component';
+import {Noticeboard} from 'src/app/models/notice';
+
+;
 
 
 @Component({

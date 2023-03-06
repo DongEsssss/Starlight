@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { DefaultModalComponent } from 'src/app/components/default.modal.component';
-import { CompanyInfo } from 'src/app/models/company';
+import {Component} from '@angular/core';
+import {DefaultModalComponent} from 'src/app/components/default.modal.component';
+import {CompanyInfo} from 'src/app/models/company';
 
 @Component({
   selector: 'app-company-info',

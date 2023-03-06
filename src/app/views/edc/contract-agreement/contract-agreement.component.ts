@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-contract-agreement',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./contract-agreement.component.css']
 })
 export class ContractAgreementComponent {
-definition: any;
-searchText !:  string;
+  definition: any;
+  searchText !: string;
 
 }

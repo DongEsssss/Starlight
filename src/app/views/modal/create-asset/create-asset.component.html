@@ -1,37 +1,61 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
-    <div class="modal-title">
-        Create New Assets
+  <div class="modal-title">
+    Create New Assets
+  </div>
+  <div class="modal-body body-format">
+    <form clrForm clrLayout="horizontal" class="clr-form">
+      <div class="selector">
+        <clr-select-container>
+          <label>Type</label>
+          <select clrSelect name="options" class="option-select" [(ngModel)]="datatype"
+                  (ngModelChange)="onChangeofOptions($event)" id="scanner-authorization" required>
+            <option value="none" selected>
+              --select--
+            </option>
+            <option value="json">
+              Custom Datasource Config (JSON)
+            </option>
+            <option value="get">
+              REST-API Endpoint (GET)
+            </option>
+          </select>
+          <clr-control-error>You must select option</clr-control-error>
+        </clr-select-container>
+      </div>
+      <clr-input-container>
+        <label>ID*</label>
+        <input clrInput [(ngModel)]="Assetname" name="id" type="text" class="id" required
+               placeholder="Input Assets ID"/>
+        <clr-control-error>Input Assets ID</clr-control-error>
+      </clr-input-container>
+      <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'json'">
+        <label>type*</label>
+        <input clrInput [(ngModel)]="type" name="type" type="text" class="type" required
+               placeholder="Input Assets Type"/>
+        <clr-control-error>Input Assets Type</clr-control-error>
+      </clr-input-container>
+      <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'json'">
+        <label>Path*</label>
+        <input clrInput [(ngModel)]="path" name="path" type="text" class="path" required
+               placeholder="Input Assets path"/>
+        <clr-control-error>Input Assets Path</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Filename*</label>
+        <input clrInput [(ngModel)]="filename" name="filename" type="text" class="filename" required
+               placeholder="Input Assets filename"/>
+        <clr-control-error>Input Assets filename</clr-control-error>
+      </clr-input-container>
+      <div class="type-input">
+        <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'get'">
+          <label>Endpoint</label>
+          <input clrInput name="endpoint" required type="text" id="Name" placeholder="https://"/>
+        </clr-input-container>
+      </div>
+    </form>
+    <div class="setbtn">
+      <button class="btn btn-outline">Create</button>
+      <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
     </div>
-    <div class="modal-body body-format">
-        <form clrForm clrLayout="horizontal" class="clr-form">
-            <clr-input-container>
-                <label>ID*</label>
-                <input clrInput [(ngModel)]="Assetname" name="id" type="text" class="id" required
-                    placeholder="Input Assets ID" />
-                <clr-control-error>Input Assets ID</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-                <label>type*</label>
-                <input clrInput [(ngModel)]="type" name="type" type="text" class="type" required
-                    placeholder="Input Assets Type" />
-                <clr-control-error>Input Assets Type</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-                <label>Path*</label>
-                <input clrInput [(ngModel)]="path" name="path" type="text" class="path" required
-                    placeholder="Input Assets path" />
-                <clr-control-error>Input Assets Path</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-                <label>Filename*</label>
-                <input clrInput [(ngModel)]="filename" name="filename" type="text" class="filename" required
-                    placeholder="Input Assets filename" />
-                <clr-control-error>Input Assets filename</clr-control-error>
-            </clr-input-container>
-        </form>
-        <div class="setbtn">
-            <button class="btn btn-outline">Create</button>
-            <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
-        </div>
-    </div>
+  </div>
 </clr-modal>

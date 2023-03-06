@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { ClrDatagrid} from '@clr/angular';
-import { transhistory } from 'src/app/models/transferhistory';
+import {Component, ViewChild} from '@angular/core';
+import {ClrDatagrid} from '@clr/angular';
+import {transhistory} from 'src/app/models/transferhistory';
 
 @Component({
   selector: 'app-transfer-history',
@@ -9,28 +9,28 @@ import { transhistory } from 'src/app/models/transferhistory';
 })
 export class TransferHistoryComponent {
 
-  @ViewChild('cDataGrid', { static: true }) cDataGrid !: ClrDatagrid;
-  cDataLoading:boolean = false;
-  page:number = 1;
+  @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
+  cDataLoading: boolean = false;
+  page: number = 1;
   totalCount: number = 0;
-  cSelection?:any;  
+  cSelection?: any;
   pagenationSize = 99;
   currentFilteredType: number = 0; // all projects
   projectName: string = '';
-  historyList : transhistory[] = [];
+  historyList: transhistory[] = [];
   searchText !: string;
 
   columnDefs = [
-    {headerName:'ID', field : 'noNm'},
-    {headerName:'AssetID', field:'assetid'},
-    {headerName:'PolicyID', field:'policyid'},
-    {headerName:'ConnectorID', field:'connectorid'},
-    {headerName:'State', field:'state'},
-    {headerName:'Last Updated', field:'lastupdate'},
-    {headerName:'CreateDate', field:'createdate'},
+    {headerName: 'ID', field: 'noNm'},
+    {headerName: 'AssetID', field: 'assetid'},
+    {headerName: 'PolicyID', field: 'policyid'},
+    {headerName: 'ConnectorID', field: 'connectorid'},
+    {headerName: 'State', field: 'state'},
+    {headerName: 'Last Updated', field: 'lastupdate'},
+    {headerName: 'CreateDate', field: 'createdate'},
   ];
 
-  getField(history:transhistory, key:string){
+  getField(history: transhistory, key: string) {
     return history[key as keyof transhistory];
   }
 
@@ -38,7 +38,8 @@ export class TransferHistoryComponent {
     // console.log(this.gridApi.setdatasou');
     // this.gridApi.refreshServerSide();
   }
-  refresh(){
+
+  refresh() {
     location.reload();
   }
 }

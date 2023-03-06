@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TransferHistoryComponent } from './transfer-history.component';
+import {TransferHistoryComponent} from './transfer-history.component';
 
 describe('TransferHistoryComponent', () => {
   let component: TransferHistoryComponent;
@@ -8,9 +8,9 @@ describe('TransferHistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransferHistoryComponent ]
+      declarations: [TransferHistoryComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TransferHistoryComponent);
     component = fixture.componentInstance;

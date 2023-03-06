@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { Router, RouterModule } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClarityModule } from '@clr/angular';
+import {NgModule} from '@angular/core';
+import {Router, RouterModule} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ClarityModule} from '@clr/angular';
 
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { AngularResizeEventModule } from 'angular-resize-event'
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {AngularResizeEventModule} from 'angular-resize-event'
 
 @NgModule({
   imports: [
@@ -19,8 +19,7 @@ import { AngularResizeEventModule } from 'angular-resize-event'
     Ng2SearchPipeModule,
     AngularResizeEventModule
   ],
-  declarations: [
-  ],
+  declarations: [],
   exports: [
     CommonModule,
     RouterModule,
@@ -29,10 +28,10 @@ import { AngularResizeEventModule } from 'angular-resize-event'
     Ng2SearchPipeModule,
     AngularResizeEventModule
   ],
-  providers: [
-  ]
+  providers: []
 })
-export class SharedModule {}
+export class SharedModule {
+}
 
 
 @NgModule({
@@ -48,7 +47,7 @@ export class SharedModule {}
     HttpClientTestingModule,
     RouterTestingModule,
   ],
-  providers: [
-  ]
+  providers: []
 })
-export class SharedTestingModule {}
+export class SharedTestingModule {
+}
