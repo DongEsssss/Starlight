@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
-import {Asset, assets} from 'src/app/models/assets';
+import {Asset} from 'src/app/models/assets';
 import { CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR } from 'src/app/utils/shared.utils';
 import {CreateAssetComponent} from '../../modal/create-asset/create-asset.component';
 
@@ -15,7 +15,6 @@ export class AssetsComponent {
     this.CreateAsset.open();
   }
 
-  assets = assets;
   cDataLoading: boolean = false;
   cSelection ?: any;
   isCardView !: boolean;

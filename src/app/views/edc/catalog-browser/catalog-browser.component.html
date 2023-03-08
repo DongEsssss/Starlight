@@ -23,16 +23,17 @@
   </div>
 </div>
 <div class="data-area" *ngIf="isCardView">
-  <div class="dataset" *ngFor="let assets of assets | filter:searchText">
+  <div class="dataset" *ngFor="let assets of AssetList | filter:searchText">
     <div class="dataset_title">
       <div class="dataset_icon"></div>
       <div class="text">
-        <span class="dataset_text">{{assets.assets_title}}</span><br>
-        <span class="dataset-sub">{{assets.assets_sub}}</span>
+        <span class="dataset_text">{{assets.Asset_ID}}</span><br>
+        <span class="dataset-sub">{{assets.property_type}}</span>
       </div>
     </div>
     <div class="dataset_content">
-      {{assets.assets_content}}
+      {{assets.property_value}}
+      {{assets.property_name}}
     </div>
   </div>
 </div>

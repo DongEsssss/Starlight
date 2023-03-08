@@ -124,8 +124,8 @@ button :hover {
 }
 
 .dataset {
-  min-width: 32%;
-  max-width: 32%;
+  min-width: 32.5%;
+  max-width: 32.5%;
   min-height: 200px;
   color: #eee;
   background-color: #333544;
