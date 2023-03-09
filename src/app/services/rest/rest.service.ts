@@ -8,6 +8,10 @@ import {nullUndif, SERVER_URL} from 'src/app/utils/shared.utils';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+const httpFileOption = {
+  headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+}
+
 
 export const API_URL = SERVER_URL;// + '/api/v1';
 
