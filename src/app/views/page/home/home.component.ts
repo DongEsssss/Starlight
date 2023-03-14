@@ -25,8 +25,4 @@ export class HomeComponent {
   password() {
     this.PasswordSetting.open();
   }
-
-  constructor() {
-  }
-
 }

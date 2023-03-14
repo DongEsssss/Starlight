@@ -2,7 +2,7 @@ import {NgForm} from '@angular/forms';
 import {HttpHeaders, HttpParams} from "@angular/common/http";
 
 export const DEV_MODE = true;
-export const DEV_SERVER_URL = 'http://localhost:8182';
+export const DEV_SERVER_URL = '192.168.0.101:8182';
 export const STA_SERVER_URL = '';
 
 export const SERVER_URL = DEV_MODE?DEV_SERVER_URL:STA_SERVER_URL;
@@ -19,6 +19,9 @@ export const TRUE_STR: string = 'true';
 export const FALSE_STR: string = 'false';
 export const CARD_VIEW_LOCALSTORAGE_KEY = 'card-view';
 export const PROJECT_SUMMARY_CARD_VIEW_LOCALSTORAGE_KEY = 'project_card-view';
+
+export const MODAL_RES_CANCEL = 2000;
+export const MODAL_RES_CLOSE = 1000;
 
 enum APILevels {
   V1 = '/v1',

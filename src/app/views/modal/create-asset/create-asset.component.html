@@ -29,22 +29,10 @@
         <clr-control-error>Input Assets ID</clr-control-error>
       </clr-input-container>
       <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'json'">
-        <label>type*</label>
-        <input clrInput [(ngModel)]="type" name="type" type="text" class="type" required
-               placeholder="Input Assets Type"/>
-        <clr-control-error>Input Assets Type</clr-control-error>
-      </clr-input-container>
-      <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'json'">
         <label>Path*</label>
         <input clrInput [(ngModel)]="path" name="path" type="text" class="path" required
                placeholder="Input Assets path"/>
         <clr-control-error>Input Assets Path</clr-control-error>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Filename*</label>
-        <input clrInput [(ngModel)]="filename" name="filename" type="text" class="filename" required
-               placeholder="Input Assets filename"/>
-        <clr-control-error>Input Assets filename</clr-control-error>
       </clr-input-container>
       <div class="type-input">
         <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'get'">

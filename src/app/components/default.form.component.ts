@@ -7,6 +7,7 @@ import {SessionService} from "../services/session/session.service";
 import {FormField} from "../models/common";
 import {NgForm} from "@angular/forms";
 import {InlineAlertComponent} from "./inline-alert/inline-alert.component";
+import { DefaultComponent } from "./default.component";
 
 
 @Component({
@@ -79,5 +80,16 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
       // Reset
       this.validationStateMap[key] = true;
     }
+  }
+
+  callback?:DefaultComponent;
+  callbackData?:any;
+
+  @Input() set setCallback(callback:DefaultComponent){
+    this.callback = callback;
+  }
+
+  @Input() set setCallbackData(callbackData:any){
+    this.callbackData = callbackData;
   }
 }

@@ -1,6 +1,9 @@
 clr-icon {
-    width: 40px;
-    height: 40px;
-    margin-top: 5px;
+    width: 35px;
+    height: 35px;
+    margin-top: 15px;
     margin-right: 10px;
-  }
+}
+.refresh{
+  width: 30px;
+}

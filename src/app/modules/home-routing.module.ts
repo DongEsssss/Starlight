@@ -1,8 +1,8 @@
 import {Component, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AssetsComponent} from '../views/edc/assets/assets.component';
-import {CatalogBrowserComponent} from '../views/edc/catalog-browser/catalog-browser.component';
+import { AssetsComponent } from '../views/edc/assets/assets.component';
+import { CatalogBrowserComponent } from '../views/edc/catalog-browser/catalog-browser.component';
 import {ContractDefinitionsComponent} from '../views/edc/contract-definitions/contract-definitions.component';
 import {ContractAgreementComponent} from '../views/edc/contract-agreement/contract-agreement.component';
 import {PoliciesComponent} from '../views/edc/policies/policies.component';

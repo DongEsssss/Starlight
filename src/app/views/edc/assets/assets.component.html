@@ -6,6 +6,11 @@
   </div>
   <div class="tool">
     <div class="search-tool">
+      <select class="toolbar-select" name="select" [(ngModel)]="select">
+        <option *ngFor="let type of typeList; index as i" [value]="type.id">
+            {{type.name}}
+        </option>
+    </select>
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
              rel="search"/>
              <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Asset</button>
@@ -20,40 +25,33 @@
                 <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
             </span>
       <span class="filter-divider"></span>
-      <span class="refresh-btn" (click)="onrefresh()"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
     </div>
   </div>
 </div>
 <div class="data-area" *ngIf="isCardView">
-  <div class="dataset" *ngFor="let assets of AssetList | filter:searchText" [ngClass]="assets.AssetList?'enable':'disable'">
     <div class="dataset_title">
       <div class="dataset_icon"></div>
-      <div class="text">
-        <span class="dataset_text">{{assets.Asset_ID}}</span><br>
-        <span class="dataset-sub">{{assets.property_type}}</span>
-      </div>
-    </div>
-    <div class="dataset_content">
-      {{assets.property_value}}
-      {{assets.property_name}}
     </div>
   </div>
-</div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
-    <clr-datagrid #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="onRefresh()">
+    <!-- <clr-datagrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="requestAssets()"> -->
+      <clr-datagrid>
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *ngFor="let assets of AssetList | filter:searchText" [clrDgItem]="AssetList">
-        <clr-dg-cell *ngFor="let header of columnDefs">{{getField(assets, header.field)}}</clr-dg-cell>
+      <clr-dg-row *ngFor="let data of assetList | async | filter :searchText" [clrDgItem]="data">
+        <clr-dg-cell>{{data.createdAt}}</clr-dg-cell>
+        <clr-dg-cell>{{data.id}}</clr-dg-cell>
+        <clr-dg-cell>{{data.properties}}</clr-dg-cell>
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't load any Detail</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [(clrDgPage)]="page" [clrDgPageSize]="pagenationSize"
           [clrDgTotalItems]="totalCount">
           {{((page - 1) * pagenationSize) + 1}} - {{(page - 1) * pagenationSize + 1 + pagenationSize}}
-          of more [total {{totalCount}}]
+          of more [total {{totalCount}}] {{getPageSize()}}
         </clr-dg-pagination>
-      </clr-dg-footer>~
+      </clr-dg-footer>
     </clr-datagrid>
   </div>
 </div>
