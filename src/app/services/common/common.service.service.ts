@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { RestService } from '../rest/rest.service';
 import { EventService } from '../event/event.service';
-import { asset } from 'src/app/models/asset_post';
+import { asset_post } from 'src/app/models/asset_post';
 
 @Injectable({
   providedIn: 'root'

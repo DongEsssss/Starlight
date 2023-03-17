@@ -1,5 +1,6 @@
-<!-- <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
   <div class="modal-title">
+    <clr-icon shape="info"></clr-icon>
     Create New Assets
   </div>
   <div class="modal-body body-format">
@@ -7,8 +8,7 @@
       <div class="selector">
         <clr-select-container>
           <label>Type</label>
-          <select clrSelect name="options" class="option-select" [(ngModel)]="datatype"
-                  (ngModelChange)="onChangeofOptions($event)" id="scanner-authorization" required>
+          <select clrSelect name="options" class="option-select" [(ngModel)]="datatype" required>
             <option value="none" selected>
               --select--
             </option>
@@ -26,7 +26,7 @@
         <label>ID*</label>
         <input clrInput [(ngModel)]="Assetname" name="id" type="text" class="id" required
                placeholder="Input Assets ID"/>
-        <clr-control-error>Input Assets ID</clr-control-error>
+        <clr-control-error>Input your Assets ID</clr-control-error>
       </clr-input-container>
       <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'json'">
         <label>Path*</label>
@@ -46,4 +46,4 @@
       <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
     </div>
   </div>
-</clr-modal> -->
+</clr-modal>

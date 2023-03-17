@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Keyword } from 'src/app/models/common';
 import { DefaultComponent } from 'src/app/components/default.component';
-import { asset } from 'src/app/models/asset_post';
+import { asset_post } from 'src/app/models/asset_post';
 import { ClrDatagrid } from '@clr/angular';
-import { HTTP_CODE_SUCCESS } from 'src/app/utils/shared.utils';
+import { PAGE_SIZE } from 'src/app/utils/shared.utils';
 import { CreateAssetComponent } from '../../modal/create-asset/create-asset.component';
 
 const asset_id = 'asset:prop:id';
@@ -13,20 +13,22 @@ const asset_id = 'asset:prop:id';
   styleUrls: ['./assets.component.css'],
 })
 export class AssetsComponent extends DefaultComponent implements OnInit {
-  @ViewChild('cDataGrid') cDataGrid !: ClrDatagrid;
+  @ViewChild('cDataGrid') cDataGrid!: ClrDatagrid;
   @ViewChild('createasset', { static: false })
   CreateAsset!: CreateAssetComponent;
   createbtn() {
-    // this.CreateAsset.open();
+    this.CreateAsset.open();
   }
 
   cDataLoading: boolean = false;
-  assetList = asset;
-  totalCount: number = 0;
-  pagenationSize = 100;
-  page: number = 1;
-  searchText!: any;
 
+  asset_post: asset_post[] = [];
+
+  pageSize = 10;
+  lastPage : any;
+  selectedRows: any[]=[];
+  dataloading = false;
+  searchText !: any;
   typeList: Array<Keyword> = [
     {
       id: '01',
@@ -45,9 +47,32 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   keyword: string = '';
 
   /** datagrid */
+
   columnDefs = [
     { headerName: 'createdAt', field: 'createdAt' },
     { headerName: 'id', field: 'id' },
-    { headerName: 'asset:prop:id', field:'asset_id'}
+    { headerName: 'asset:prop:id', field: 'properties', filterParams : '[0]'}
   ];
+
+  getField(asset:asset_post, key:any){
+    return asset[key as keyof asset_post];
+  }
+
+
+  async getRequest() {
+    if (this.cDataLoading) return;
+    this.cDataLoading = false;
+    this.restService.getRequest().subscribe(
+      (resp: any) => {
+        this.asset_post = resp;
+        this.cDataGrid.dataChanged();
+        this.cDataLoading = false;
+      },
+      (err) => {
+        console.log(err);
+        this.cDataLoading = false;
+      }
+    );
+  }
 }
+

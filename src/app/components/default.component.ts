@@ -117,8 +117,6 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
   getPageSize(page: number, size: number, total: number): string {
-    return `${(page - 1) * size + 1}  -  ${
-      (page - 1) * size + size
-    } of Total ${total}`;
-  }
+    return `${((page - 1) * size) + 1}  -  ${(page - 1) * size + size} of Total ${total}`;
+}
 }

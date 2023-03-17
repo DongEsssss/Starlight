@@ -1,5 +1,5 @@
 import {ObjectLoader} from "../utils/objectloader";
-import {asset} from "./asset_post";
+import {asset_post} from "./asset_post";
 import {UserProfile} from "./user-profile";
 
 export class Keyword {

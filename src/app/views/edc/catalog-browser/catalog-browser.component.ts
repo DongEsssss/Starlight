@@ -1,6 +1,5 @@
 import {Component, ChangeDetectorRef} from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
-import {asset} from 'src/app/models/asset_post';
 import {CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR} from 'src/app/utils/shared.utils';
 import {ClrDatagrid} from '@clr/angular';
 

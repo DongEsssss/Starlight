@@ -37,15 +37,21 @@
 </div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
-    <clr-datagrid #cDataGrid>
-      <clr-dg-column>asd</clr-dg-column>
-      <clr-dg-column>asd</clr-dg-column>
-      <clr-dg-column>asd</clr-dg-column>
-      <clr-dg-row *ngFor="let user of assetList">
-        <clr-dg-cell>{{user.assets_id}}</clr-dg-cell>
-        <clr-dg-cell>{{user.properites.asset_id}}</clr-dg-cell>
-        <clr-dg-cell>{{user.assets_title}}</clr-dg-cell>
-    </clr-dg-row>
+    <clr-datagrid #cDataGrid [clrDgLoading]="cDataLoading" [(clrDgSelected)]="selectedRows" (clrDgRefresh)="getRequest()">
+      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+      <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset">
+        <!-- <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell> -->
+        <clr-dg-cell>{{asset.createdAt}}</clr-dg-cell>
+        <clr-dg-cell>{{asset.properties?.['asset:prop:id']}}</clr-dg-cell>
+        <clr-dg-cell>{{asset.id}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Assets per page</clr-dg-page-size>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Assets
+      </clr-dg-pagination>
+      </clr-dg-footer>
     </clr-datagrid>
   </div>
-</div>
+<span>Selected users: <span *ngFor="let asset of selectedRows">{{asset.id}} , </span>

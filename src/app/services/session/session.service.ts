@@ -2,7 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {catchError, map, Observable, Subject, tap, throwError} from 'rxjs';
-import {ResultBody} from 'src/app/models/resultbody';
 import {SignInCredential, User} from 'src/app/models/user';
 import {
   HTTP_FORM_OPTIONS, HTTP_GET_OPTIONS, HTTP_JSON_OPTIONS, SERVER_URL,
@@ -46,20 +45,6 @@ export class SessionService implements CanActivate {
     return this.http.post(signInUrl, signInCredential, HTTP_FORM_OPTIONS)
       .pipe(tap(_ => console.log(``))
         , catchError(error => throwError(error)));
-  }
-
-  signOut(): Observable<ResultBody<User>> {
-    return this.http.get<ResultBody<User>>(signOutUrl, HTTP_GET_OPTIONS)
-      .pipe(tap(_ => console.log(``))
-        , catchError(error => throwError(error)));
-    /*.pipe(map(res=>{
-      if (res.code == HTTP_CODE_SUCCESS) {
-        this.session = undefined;
-        this.isLogin = false;
-        this.router.navigate(['/account/sign-in']);
-        return true;
-      }else return false;
-    }));*/
   }
 
   clearSession() {
