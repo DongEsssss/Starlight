@@ -1,5 +1,6 @@
 <app-create-asset #createasset></app-create-asset>
 <div class="container">
+
   <div class="container_title">
     <div class="title_icon"></div>
     <span class="title_text"> Assets </span>
@@ -8,50 +9,43 @@
     <div class="search-tool">
       <select class="toolbar-select" name="select" [(ngModel)]="select">
         <option *ngFor="let type of typeList; index as i" [value]="type.id">
-            {{type.name}}
+          {{type.name}}
         </option>
-    </select>
+      </select>
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
-             rel="search"/>
-             <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Asset</button>
+        rel="search" />
+      <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Asset</button>
     </div>
     <div class="cardgrid">
-            <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
-                  (mouseleave)="mouseLeave('list')">
-                <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
-            </span>
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+      </span>
       <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
-            (mouseleave)="mouseLeave('card')">
-                <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
-            </span>
+        (mouseleave)="mouseLeave('card')">
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
+      </span>
       <span class="filter-divider"></span>
       <span class="refresh-btn"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
     </div>
   </div>
 </div>
 <div class="data-area" *ngIf="isCardView">
-    <div class="dataset_title">
-      <div class="dataset_icon"></div>
-    </div>
+  <div class="dataset_title">
+    <div class="dataset_icon"></div>
   </div>
+</div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
-    <!-- <clr-datagrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="requestAssets()"> -->
-      <clr-datagrid>
-      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *ngFor="let data of assetList | async | filter :searchText" [clrDgItem]="data">
-        <clr-dg-cell>{{data.createdAt}}</clr-dg-cell>
-        <clr-dg-cell>{{data.id}}</clr-dg-cell>
-        <clr-dg-cell>{{data.properties}}</clr-dg-cell>
-      </clr-dg-row>
-      <clr-dg-placeholder>We couldn't load any Detail</clr-dg-placeholder>
-      <clr-dg-footer>
-        <clr-dg-pagination #pagination [(clrDgPage)]="page" [clrDgPageSize]="pagenationSize"
-          [clrDgTotalItems]="totalCount">
-          {{((page - 1) * pagenationSize) + 1}} - {{(page - 1) * pagenationSize + 1 + pagenationSize}}
-          of more [total {{totalCount}}] {{getPageSize()}}
-        </clr-dg-pagination>
-      </clr-dg-footer>
+    <clr-datagrid #cDataGrid>
+      <clr-dg-column>asd</clr-dg-column>
+      <clr-dg-column>asd</clr-dg-column>
+      <clr-dg-column>asd</clr-dg-column>
+      <clr-dg-row *ngFor="let user of assetList">
+        <clr-dg-cell>{{user.assets_id}}</clr-dg-cell>
+        <clr-dg-cell>{{user.properites.asset_id}}</clr-dg-cell>
+        <clr-dg-cell>{{user.assets_title}}</clr-dg-cell>
+    </clr-dg-row>
     </clr-datagrid>
   </div>
 </div>

@@ -26,14 +26,12 @@ import {AngularResizeEventModule} from 'angular-resize-event'
     ClarityModule,
     FormsModule,
     Ng2SearchPipeModule,
-    AngularResizeEventModule
+    AngularResizeEventModule,
   ],
   providers: []
 })
 export class SharedModule {
 }
-
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,

@@ -15,8 +15,7 @@ import {AppComponent} from '../views/page/app/app.component'
 import {EventService} from '../services/event/event.service';
 import {SessionService} from '../services/session/session.service';
 import {DialogModule} from '../services/dialog/dialog.module';
-import {HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,10 +23,11 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpClientXsrfModule,
     AppRoutingModule,
     ClarityModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     Ng2SearchPipeModule,
     FormsModule,
     ReactiveFormsModule,
@@ -37,17 +37,14 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [
     SessionService,
-    EventService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   recevedMessages: string[] = [];
-
   constructor() {
   }
 
   ngOnInit(): void {
-    ClarityIcons.addIcons(userIcon);
   }
 }

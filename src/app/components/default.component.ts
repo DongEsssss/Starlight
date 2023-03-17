@@ -1,21 +1,35 @@
-import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit} from "@angular/core";
-import { take, tap } from "rxjs";
-import {CommonServiceService} from "../services/common/common.service.service";
-import {DialogService} from "../services/dialog";
-import {EventService} from "../services/event/event.service";
-import {RestService} from "../services/rest/rest.service";
-import {SessionService} from "../services/session/session.service";
-import { CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR } from "../utils/shared.utils";
-
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { take, tap } from 'rxjs';
+import { CommonServiceService } from '../services/common/common.service.service';
+import { DialogService } from '../services/dialog';
+import { EventService } from '../services/event/event.service';
+import { RestService } from '../services/rest/rest.service';
+import { SessionService } from '../services/session/session.service';
+import {
+  CARD_VIEW_LOCALSTORAGE_KEY,
+  FALSE_STR,
+  TRUE_STR,
+} from '../utils/shared.utils';
 
 @Component({
-  template: ''
+  template: '',
 })
-
-export class DefaultComponent implements OnInit, OnDestroy {
-  isCardView !: boolean;
+export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
+  isCardView!: boolean;
   cardHover = false;
   listHover = false;
+  static menuState: boolean = false
+  interval: any = undefined
+  isInit: boolean = false;
+
+  message: string = 'loading :(';
 
   constructor(
     public cd: ChangeDetectorRef,
@@ -25,21 +39,37 @@ export class DefaultComponent implements OnInit, OnDestroy {
     public session: SessionService,
     public dialog: DialogService,
     public el: ElementRef,
+    private cdr : ChangeDetectorRef
   ) {
     if (localStorage) {
       this.isCardView =
         localStorage.getItem(CARD_VIEW_LOCALSTORAGE_KEY) === TRUE_STR;
     }
   }
-  static menuState: boolean = false
-  assetList:any;
-  assetList$:any;
+
+  ngAfterViewInit() {
+    this.message = 'all done loading :)'
+    this.cdr.detectChanges();
+  }
+
   ngOnInit(): void {
-    this.assetList = this.restService.requestAssets()
-    .pipe(tap((assetList) => (this.assetList$=this.assetList)));
+    this.eventService.LoadCommonDataEvent.subscribe(() => {
+      this.ngOnCommonInit();
+    });
+
+    if (this.commonService.isComplete && !this.isInit) {
+      this.ngOnCommonInit();
+    }
+  }
+
+  ngOnCommonInit(): void {
+    this.isInit = true;
   }
 
   ngOnDestroy(): void {
+    if (this.interval != null) {
+      clearInterval(this.interval);
+    }
   }
 
   showCard(cardView: boolean) {
@@ -57,10 +87,10 @@ export class DefaultComponent implements OnInit, OnDestroy {
       }
     }
     if (this.isCardView) {
-      this.refresh();
+      this.return();
     }
   }
-  refresh() {
+  return() {
     location.reload();
   }
   mouseEnter(itemName: string) {
@@ -85,5 +115,10 @@ export class DefaultComponent implements OnInit, OnDestroy {
     } else {
       return this.listHover;
     }
+  }
+  getPageSize(page: number, size: number, total: number): string {
+    return `${(page - 1) * size + 1}  -  ${
+      (page - 1) * size + size
+    } of Total ${total}`;
   }
 }

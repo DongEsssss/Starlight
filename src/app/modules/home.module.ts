@@ -77,7 +77,7 @@ import {SharedModule} from './shared.module';
   imports: [
     HomeRoutingModule,
     SharedModule,
-    ClarityModule
+    ClarityModule,
   ]
 })
 export class HomeModule {

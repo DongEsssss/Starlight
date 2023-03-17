@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {DefaultModalComponent} from 'src/app/components/default.modal.component';
-import {Asset} from 'src/app/models/assets';
+import {asset} from 'src/app/models/asset_post';
 
 @Component({
   selector: 'app-create-asset',
   templateUrl: './create-asset.component.html',
   styleUrls: ['./create-asset.component.css']
 })
-export class CreateAssetComponent extends DefaultModalComponent<Asset> {
+export class CreateAssetComponent{
   Assetname !: string;
   Version !: string;
   type !: string;

@@ -1,5 +1,5 @@
 import {ObjectLoader} from "../utils/objectloader";
-import {Asset} from "./assets";
+import {asset} from "./asset_post";
 import {UserProfile} from "./user-profile";
 
 export class Keyword {
@@ -27,5 +27,4 @@ export class CommonCD extends ObjectLoader {
   item2?: string;
   item3?: string;
   item4?: string;
-  busList?: Array<UserProfile>;
 }
