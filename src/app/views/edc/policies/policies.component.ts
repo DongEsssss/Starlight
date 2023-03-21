@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {ClrWizard} from '@clr/angular/wizard';
 import {policy} from 'src/app/models/policies';
-import {DeleteComponent} from '../../modal/delete/delete.component';
+
 
 @Component({
   selector: 'app-policies',
@@ -26,12 +26,8 @@ export class PoliciesComponent {
   extensible_properties !: JSON;
   duties !: JSON;
 
-  @ViewChild('delete', {static: false}) Delete !: DeleteComponent
   @ViewChild("number") numberFi !: any;
 
-  deletemodal() {
-    this.Delete.open();
-  }
 
   model = {
     name: "",
@@ -62,9 +58,6 @@ export class PoliciesComponent {
     this.resetWizard();
   }
 
-  onDelete() {
-    this.Delete.open();
-  }
 
   resetWizard(): void {
     this.wizard.reset();

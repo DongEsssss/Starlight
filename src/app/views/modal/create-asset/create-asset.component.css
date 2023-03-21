@@ -2,9 +2,23 @@ form {
   position: relative;
   margin: auto;
 }
+.required{
+  margin-left: -10px;
+}
 
-clr-input-container input, clr-control-error {
+input{
+  margin-left: 15px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  color: #eee;
   width: 400px;
+  outline:none;
+  background-color: transparent;
+}
+
+clr-control-error span{
+  margin-left: 15px;
+  color: red;
 }
 
 .option-select {

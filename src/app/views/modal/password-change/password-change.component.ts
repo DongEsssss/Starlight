@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {DefaultModalComponent} from 'src/app/components/default.modal.component';
 import {PasswordSetting} from 'src/app/models/PasswordSetting';
 import {InlineAlertComponent} from 'src/app/components/inline-alert/inline-alert.component';
 import {DefaultFormComponent} from 'src/app/components/default.form.component';
@@ -18,7 +17,6 @@ export class PasswordChangeComponent extends DefaultFormComponent<PasswordSettin
   show2 = false;
   show3 = false;
   isValid: any;
-  inProgress: any;
 
   override resetFormModel(): void {
     super.resetFormModel();

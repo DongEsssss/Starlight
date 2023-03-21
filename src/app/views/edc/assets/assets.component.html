@@ -1,6 +1,6 @@
 <app-create-asset #createasset></app-create-asset>
+<app-cancel #deletemodal></app-cancel>
 <div class="container">
-
   <div class="container_title">
     <div class="title_icon"></div>
     <span class="title_text"> Assets </span>
@@ -14,7 +14,7 @@
       </select>
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
         rel="search" />
-      <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Asset</button>
+      <button type="button" class="createbtn" (click)="addAsset()"> + Create Asset</button>
     </div>
     <div class="cardgrid">
       <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
@@ -37,9 +37,13 @@
 </div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
-    <clr-datagrid #cDataGrid [clrDgLoading]="cDataLoading" [(clrDgSelected)]="selectedRows" (clrDgRefresh)="getRequest()">
+    <clr-datagrid class="customgrid sengee" #cDataGrid
+    [clrDgRowSelection]="true" [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset">
+      <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset" >
+        <clr-dg-action-overflow>
+          <button class="action-item" (click)="deleteAsset()">Delete</button>
+      </clr-dg-action-overflow>
         <!-- <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell> -->
         <clr-dg-cell>{{asset.createdAt}}</clr-dg-cell>
         <clr-dg-cell>{{asset.properties?.['asset:prop:id']}}</clr-dg-cell>
@@ -54,4 +58,3 @@
       </clr-dg-footer>
     </clr-datagrid>
   </div>
-<span>Selected users: <span *ngFor="let asset of selectedRows">{{asset.id}} , </span>

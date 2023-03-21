@@ -1,4 +1,4 @@
-import {Component, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import { AssetsComponent } from '../views/edc/assets/assets.component';
@@ -10,7 +10,6 @@ import {TransferHistoryComponent} from '../views/edc/transfer-history/transfer-h
 
 import {MonitoringComponent} from '../views/monitoring/monitoring.component';
 import {HomeComponent} from '../views/page/home/home.component';
-import {SignInComponent} from '../views/page/sign-in/sign-in.component';
 import {MainhomeComponent} from '../views/mainhome/mainhome.component';
 import {CompanyComponent} from '../views/configuration/company/company.component';
 import {SettingComponent} from '../views/configuration/setting/setting.component';

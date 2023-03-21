@@ -64,6 +64,19 @@ hr {
   background-color: #eee;
   color: #131313;
 }
+.deletebtn{
+  color: #eee;
+  background-color: #ff0000;
+  height: 45px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 10px;
+  padding: 0px 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 .createbtn {
   color: #eee;
@@ -80,7 +93,7 @@ hr {
 }
 /* button */
 
-.createbtn:hover {
+.createbtn:hover, .deletebtn:hover {
   opacity: 0.7;
 }
 

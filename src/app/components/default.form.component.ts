@@ -1,34 +1,39 @@
-import {Component, Input, OnDestroy, OnInit, ViewChild} from "@angular/core";
-import {CommonServiceService} from "../services/common/common.service.service";
-import {DialogService} from "../services/dialog";
-import {EventService} from "../services/event/event.service";
-import {RestService} from "../services/rest/rest.service";
-import {SessionService} from "../services/session/session.service";
-import {FormField} from "../models/common";
-import {NgForm} from "@angular/forms";
-import {InlineAlertComponent} from "./inline-alert/inline-alert.component";
-import { DefaultComponent } from "./default.component";
-
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { CommonServiceService } from '../services/common/common.service.service';
+import { DialogService } from '../services/dialog';
+import { EventService } from '../services/event/event.service';
+import { RestService } from '../services/rest/rest.service';
+import { SessionService } from '../services/session/session.service';
+import { FormField } from '../models/common';
+import { NgForm } from '@angular/forms';
+import { InlineAlertComponent } from './inline-alert/inline-alert.component';
+import { DefaultComponent } from './default.component';
+import { Router } from '@angular/router';
 
 @Component({
-  template: ''
+  template: '',
 })
-
 export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   constructor(
     public restService: RestService,
     public commonService: CommonServiceService,
     public eventService: EventService,
     public session: SessionService,
-    public dialog: DialogService
-  ) {
-  }
+    public dialog: DialogService,
+  ) {}
 
+  parentComponent?: DefaultComponent;
   opened: boolean = false;
   isInit: boolean = false;
   onGoing: boolean = false;
+  formData!: T;
+  newForm: Array<FormField> = [];
+  jsonForm: Array<FormField> = [];
+  getForm: Array<FormField> = [];
+  isEditable = false;
+  datatype: any;
 
-  @ViewChild("modalFrom", {static: true})
+  @ViewChild('modalFrom', { static: true })
   modalForm!: NgForm;
 
   @ViewChild(InlineAlertComponent)
@@ -38,25 +43,37 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     this.opened = true;
   }
 
-  ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
+  ngOnInit(): void {
+    this.eventService.LoadCommonDataEvent.subscribe(() => {
+      this.ngOnCommonInit();
+    });
+
+    if (this.commonService.isComplete && !this.isInit) {
+      this.ngOnCommonInit();
+    }
   }
 
-  ngOnInit(): void {
-    throw new Error("Method not implemented.");
+  ngOnCommonInit(): void {
+    this.isInit = true;
   }
+
+  ngOnDestroy(): void {}
 
   close(): void {
     this.opened = false;
   }
 
-  formData!: T;
   validationStateMap: any = {};
   formValueChanged = false;
 
   getFormModel(name: string): any {
-    return this.formData[name as keyof T]
+    return this.formData[name as keyof T];
   }
+
+  getValidationState(key: string): boolean {
+    return !this.validationStateMap[key];
+  }
+  onModalResponse(code: number, data?: any) {}
 
   resetFormModel() {
     this.modalForm.reset();
@@ -81,15 +98,17 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
       this.validationStateMap[key] = true;
     }
   }
+  public get inProgress(): boolean {
+    return this.onGoing;
+  }
+  callback?: DefaultComponent;
+  callbackData?: any;
 
-  callback?:DefaultComponent;
-  callbackData?:any;
-
-  @Input() set setCallback(callback:DefaultComponent){
+  @Input() set setCallback(callback: DefaultComponent) {
     this.callback = callback;
   }
 
-  @Input() set setCallbackData(callbackData:any){
+  @Input() set setCallbackData(callbackData: any) {
     this.callbackData = callbackData;
   }
 }

@@ -4,7 +4,7 @@
     Create New Assets
   </div>
   <div class="modal-body body-format">
-    <form clrForm clrLayout="horizontal" class="clr-form">
+    <form clrForm clrLayout="horizontal" class="clr-form" #createForm="ngForm">
       <div class="selector">
         <clr-select-container>
           <label>Type</label>
@@ -22,27 +22,40 @@
           <clr-control-error>You must select option</clr-control-error>
         </clr-select-container>
       </div>
-      <clr-input-container>
-        <label>ID*</label>
-        <input clrInput [(ngModel)]="Assetname" name="id" type="text" class="id" required
-               placeholder="Input Assets ID"/>
-        <clr-control-error>Input your Assets ID</clr-control-error>
-      </clr-input-container>
-      <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'json'">
-        <label>Path*</label>
-        <input clrInput [(ngModel)]="path" name="path" type="text" class="path" required
-               placeholder="Input Assets path"/>
-        <clr-control-error>Input Assets Path</clr-control-error>
-      </clr-input-container>
-      <div class="type-input">
-        <clr-input-container [hidden]="jsontype !== 'input' && datatype !== 'get'">
-          <label>Endpoint</label>
-          <input clrInput name="endpoint" required type="text" id="Name" placeholder="https://"/>
-        </clr-input-container>
+      <div class="clr-form-control" *ngFor="let item of jsonForm" [hidden]="datatype !== 'json'">
+        <label class="required clr-control-label" [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input type="text" required [pattern]="item.regex!"
+              [maxlength]="item.max!" #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+              [id]="item.name!" (input)='handleValidation(item.name! , false)' [readOnly]="item.readonly == true">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <!-- <span class="spinner spinner-inline spinner-pos" [hidden]='isChecking("name")'></span> -->
+          </div>
+          <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+            <span>please input</span>
+          </clr-control-error>
+        </div>
+      </div>
+      <div class="clr-form-control" *ngFor="let item of getForm" [hidden]="datatype !== 'get'">
+        <label class="required clr-control-label"
+          [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input type="text" required [pattern]="item.regex!"
+              [maxlength]="item.max!" #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+              [id]="item.name!" (input)='handleValidation(item.name! , false)' [readOnly]="item.readonly == true">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <!-- <span class="spinner spinner-inline spinner-pos" [hidden]='isChecking("name")'></span> -->
+          </div>
+          <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+            <span>please input</span>
+          </clr-control-error>
+        </div>
       </div>
     </form>
     <div class="setbtn">
-      <button class="btn btn-outline">Create</button>
+      <button class="btn btn-outline" (click)="addAsset()">Create</button>
       <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
     </div>
   </div>

@@ -22,6 +22,9 @@ import {
   template: '',
 })
 export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
+  onModalResponse(MODAL_RES_CLOSE: number, callbackData: any) {
+
+  }
   isCardView!: boolean;
   cardHover = false;
   listHover = false;

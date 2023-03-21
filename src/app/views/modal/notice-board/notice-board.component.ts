@@ -1,7 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {Noticeboard, notices} from 'src/app/models/notice';
-import {DeleteComponent} from 'src/app/views/modal/delete/delete.component';
-import {NoticeComponent} from 'src/app/views/modal/notice/notice.component';
 import {DefaultModalComponent} from 'src/app/components/default.modal.component';
 import {ClrDatagrid} from '@clr/angular/data/datagrid/datagrid';
 

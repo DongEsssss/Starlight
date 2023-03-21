@@ -3,8 +3,9 @@ import { Keyword } from 'src/app/models/common';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { asset_post } from 'src/app/models/asset_post';
 import { ClrDatagrid } from '@clr/angular';
-import { PAGE_SIZE } from 'src/app/utils/shared.utils';
+import { HTTP_CODE_SUCCESS, MODAL_RES_CANCEL, MODAL_RES_CLOSE, PAGE_SIZE } from 'src/app/utils/shared.utils';
 import { CreateAssetComponent } from '../../modal/create-asset/create-asset.component';
+import { CancelComponent } from '../../modal/cancel/cancel.component';
 
 const asset_id = 'asset:prop:id';
 @Component({
@@ -14,16 +15,11 @@ const asset_id = 'asset:prop:id';
 })
 export class AssetsComponent extends DefaultComponent implements OnInit {
   @ViewChild('cDataGrid') cDataGrid!: ClrDatagrid;
-  @ViewChild('createasset', { static: false })
-  CreateAsset!: CreateAssetComponent;
-  createbtn() {
-    this.CreateAsset.open();
-  }
 
   cDataLoading: boolean = false;
-
+  asset !:any;
   asset_post: asset_post[] = [];
-
+  cSelection?:any;
   pageSize = 10;
   lastPage : any;
   selectedRows: any[]=[];
@@ -49,20 +45,19 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   /** datagrid */
 
   columnDefs = [
-    { headerName: 'createdAt', field: 'createdAt' },
-    { headerName: 'id', field: 'id' },
-    { headerName: 'asset:prop:id', field: 'properties', filterParams : '[0]'}
+    { headerName: 'Create Date', field: 'createdAt' },
+    { headerName: 'ID', field: 'id' },
+    { headerName: 'Properties ID', field: 'properties', filterParams : '[0]'}
   ];
 
   getField(asset:asset_post, key:any){
     return asset[key as keyof asset_post];
   }
 
-
-  async getRequest() {
+  async getRequestAsset() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    this.restService.getRequest().subscribe(
+    this.restService.getRequestAsset().subscribe(
       (resp: any) => {
         this.asset_post = resp;
         this.cDataGrid.dataChanged();
@@ -73,6 +68,29 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
         this.cDataLoading = false;
       }
     );
+  }
+
+  // create asset data
+  @ViewChild('createasset', { static: false }) CreateAsset!: CreateAssetComponent ;
+  addAsset(): void{
+    this.CreateAsset.open();
+  }
+
+  createBus() {
+    this.CreateAsset.callback = this;
+    this.CreateAsset.open();
+  }
+
+  // delete asset data
+  override ngOnInit(): void {
+    this.restService.getRequestAsset()
+    .subscribe(response => {
+      this.asset_post = response;
+    });
+  }
+  @ViewChild('deletemodal', { static: false }) deletemodal !: CancelComponent
+
+  deleteAsset(){
   }
 }
 
