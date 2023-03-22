@@ -1,35 +1,17 @@
-form {
-  position: relative;
-  margin: auto;
-}
-.required{
-  margin-left: -10px;
-}
-
 input{
   margin-left: 15px;
   border: none;
   border-bottom: 1px solid #eee;
   color: #eee;
-  width: 400px;
+  width: 390px;
   outline:none;
   background-color: transparent;
 }
-
-clr-control-error span{
-  margin-left: 15px;
-  color: red;
+clr-select-container{
+  margin-left: 0px;
+}
+select{
+  width: 390px;
 }
 
-.option-select {
-  width: 400px;
-}
 
-.type-select {
-  width: 150px;
-}
-
-.selector {
-  position: relative;
-  display: flex;
-}

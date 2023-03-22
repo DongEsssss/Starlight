@@ -16,7 +16,7 @@ export class PasswordChangeComponent extends DefaultFormComponent<PasswordSettin
   show1 = false;
   show2 = false;
   show3 = false;
-  isValid: any;
+
 
   override resetFormModel(): void {
     super.resetFormModel();

@@ -27,7 +27,8 @@
 }
 
 .datagrid {
-  margin-top: 5px;
+  margin-top: 0px;
+  height: 25.65rem;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
@@ -37,6 +38,23 @@
   align-items: center;
 }
 
+.datagrid .datagrid-cell{
+  line-height: 20px;
+}
+.datagrid-table .datagrid-cell.datagrid-row-actions {
+  background: #333543;
+}
+.datagrid-action-overflow{
+  background-color: red;
+  border-radius : 5px; ;
+  outline: none;
+}
+.datagrid-action-overflow button{
+  background-color:red;
+  color: white;
+  outline: none;
+  border: none;
+}
 // verical nav
 .clr-vertical-nav, .clr-vertical-nav .nav-trigger {
   background: #333543;
@@ -81,7 +99,6 @@
 
 //wizard
 .clr-wizard.wizard-lg .modal-dialog {
-  width: 700px;
   min-height: 26rem;
   max-height: 26rem;
 }

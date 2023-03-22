@@ -16,6 +16,7 @@ import {EventService} from '../services/event/event.service';
 import {SessionService} from '../services/session/session.service';
 import {DialogModule} from '../services/dialog/dialog.module';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { RestService } from '../services/rest/rest.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
   ],
   providers: [
     SessionService,
+    RestService
   ],
   bootstrap: [AppComponent]
 })

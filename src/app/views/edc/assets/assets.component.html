@@ -7,14 +7,10 @@
   </div>
   <div class="tool">
     <div class="search-tool">
-      <select class="toolbar-select" name="select" [(ngModel)]="select">
-        <option *ngFor="let type of typeList; index as i" [value]="type.id">
-          {{type.name}}
-        </option>
-      </select>
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
         rel="search" />
-      <button type="button" class="createbtn" (click)="addAsset()"> + Create Asset</button>
+        <button type="button" class="searchbtn" (click)="searchasset()"></button>
+        <button type="button" class="createbtn" (click)="addAsset()"></button>
     </div>
     <div class="cardgrid">
       <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
@@ -37,24 +33,24 @@
 </div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
-    <clr-datagrid class="customgrid sengee" #cDataGrid
-    [clrDgRowSelection]="true" [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()">
+    <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" [clrDgRowSelection]="true"
+    [(clrDgSingleSelected)]="cSelection" (clrDgRefresh)="getRequestAsset()">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset" >
-        <clr-dg-action-overflow>
-          <button class="action-item" (click)="deleteAsset()">Delete</button>
-      </clr-dg-action-overflow>
+      <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset"
+        [(clrDgSelected)]="asset.selected">
         <!-- <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell> -->
-        <clr-dg-cell>{{asset.createdAt}}</clr-dg-cell>
-        <clr-dg-cell>{{asset.properties?.['asset:prop:id']}}</clr-dg-cell>
-        <clr-dg-cell>{{asset.id}}</clr-dg-cell>
+        <clr-dg-cell class="width33">{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+        <clr-dg-cell class="width33">{{asset.properties?.['asset:prop:id']}}</clr-dg-cell>
+        <clr-dg-cell class="width33">{{asset.id}}</clr-dg-cell>
+        <clr-dg-cell class="width5"><button class="deletebtn" (click)="deleteAsset(asset.id)"><clr-icon shape="trash"></clr-icon></button></clr-dg-cell>
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
           <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Assets per page</clr-dg-page-size>
           {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Assets
-      </clr-dg-pagination>
+        </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
   </div>
+</div>
