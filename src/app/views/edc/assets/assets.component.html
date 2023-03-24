@@ -1,5 +1,6 @@
 <app-create-asset #createasset></app-create-asset>
 <app-cancel #deletemodal></app-cancel>
+<app-asset-detail #assetdetail></app-asset-detail>
 <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
@@ -9,8 +10,8 @@
     <div class="search-tool">
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
         rel="search" />
-        <button type="button" class="searchbtn" (click)="searchasset()"></button>
-        <button type="button" class="createbtn" (click)="addAsset()"></button>
+      <!-- <button type="button" class="searchbtn" (click)="searchasset()"></button> -->
+      <button type="button" class="createbtn" (click)="addAsset()"></button>
     </div>
     <div class="cardgrid">
       <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
@@ -22,7 +23,7 @@
         <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
       </span>
       <span class="filter-divider"></span>
-      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="fetchData()"></clr-icon></span>
     </div>
   </div>
 </div>
@@ -33,8 +34,8 @@
 </div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
-    <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" [clrDgRowSelection]="true"
-    [(clrDgSingleSelected)]="cSelection" (clrDgRefresh)="getRequestAsset()">
+    <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()"
+      data-detail-view="true" >
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
       <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset"
         [(clrDgSelected)]="asset.selected">
@@ -42,8 +43,19 @@
         <clr-dg-cell class="width33">{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
         <clr-dg-cell class="width33">{{asset.properties?.['asset:prop:id']}}</clr-dg-cell>
         <clr-dg-cell class="width33">{{asset.id}}</clr-dg-cell>
-        <clr-dg-cell class="width5"><button class="deletebtn" (click)="deleteAsset(asset.id)"><clr-icon shape="trash"></clr-icon></button></clr-dg-cell>
       </clr-dg-row>
+      <clr-dg-detail *clrIfDetail="let asset_post">
+        <clr-dg-detail-header>Select Asset ID : {{asset_post.id}}</clr-dg-detail-header>
+        <clr-dg-detail-body>
+          <clr-datagrid  clrDgLoading]="cDataLoading">
+            <clr-dg-column *ngFor="let header of detail_columnDef">{{header.headerNames}}</clr-dg-column>
+            <clr-dg-row *clrDgItems="let dataasset of dataasset" [clrDgItem]="dataasset" >
+            <clr-dg-cell  *ngFor="let header of detail_columnDef">{{getdetailField(dataasset, header.field)}}</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
+          </clr-datagrid>
+        </clr-dg-detail-body>
+      </clr-dg-detail>
       <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
