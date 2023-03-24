@@ -30,20 +30,26 @@ hr {
   font-size: 30px;
 }
 
-.title_icon, .dataset_icon {
-  min-width: 50px;
-  min-height: 50px;
+.title_icon,
+.dataset_icon,
+.modal_icon {
+  width: 50px;
+  height: 50px;
+}
+.title_icon,
+.dataset_icon {
   background: url("src/static/images/EDClogo.png") 50% 50% no-repeat;
   background-size: contain;
 }
 
 /* search-tool */
-.search-tool{
+.search-tool {
   position: relative;
   top: -10px;
 }
+
 .search_input {
-  background: url('src/static/images/icon_search_white.svg') #eee no-repeat 5% 50%;
+  background: url("src/static/images/icon_search_white.svg") #eee no-repeat 5% 50%;
   padding: 5px 0px;
   outline: none;
   border: none;
@@ -53,7 +59,7 @@ hr {
   height: 45px;
 }
 
-.toolbar-select{
+.toolbar-select {
   width: 100px;
   height: 45px;
   padding: 0px 10px;
@@ -64,7 +70,8 @@ hr {
   background-color: #eee;
   color: #131313;
 }
-.deletebtn{
+
+.deletebtn {
   width: 100%;
   height: 100%;
   color: #eee;
@@ -73,7 +80,9 @@ hr {
   outline: none;
   border: none;
 }
-.createbtn, .searchbtn {
+
+.createbtn,
+.searchbtn {
   position: relative;
   top: 18px;
   width: 47px;
@@ -81,16 +90,21 @@ hr {
   border-radius: 10px;
   margin-left: 10px;
 }
-.createbtn{
+
+.createbtn {
   background: url(static/images/icon_modify_white.svg) 100% 50% no-repeat #333544;
   background-size: contain;
 }
+
 .searchbtn {
   background: url(static/images/icon_search_white.svg) 50% 50% no-repeat #333544;
 }
+
 /* button */
 
-.createbtn:hover,.searchbtn:hover,  .deletebtn:hover {
+.createbtn:hover,
+.searchbtn:hover,
+.deletebtn:hover {
   opacity: 0.7;
 }
 
@@ -127,13 +141,14 @@ button :hover {
 }
 
 /*modal*/
-.enrollment{
+.enrollment {
   width: 40px;
   height: 40px;
-  background: url('static/images/icon_enrollment_white.svg') 50% 50% no-repeat;
+  background: url("static/images/icon_enrollment_white.svg") 50% 50% no-repeat;
   background-size: contain;
   margin-right: 10px;
 }
+
 .modal-title {
   display: flex;
   align-items: center;
@@ -152,22 +167,81 @@ button :hover {
   display: flex;
   justify-content: space-between;
 }
+
 .data_table {
   width: 100%;
 }
 
+/* datagrid */
+
 .customgrid {
-    width: 100%;
-    height: 100%;
-    padding:10px;
-    border-radius: 15px;
-    background-color: #333544;
+  width: 100%;
+  height: 100%;
+  height: 565px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #333544;
+}
+
+.customgrid .datagrid {
+  border-width: 0px;
+  border-color: #eee;
+  margin-top: 0;
+}
+
+.customgrid .datagrid-placeholder-container,
+.customgrid .datagrid-header .datagrid-column,
+.customgrid .datagrid-row {
+  background-color: #333544;
+}
+
+.datagrid-row.datagrid-selected {
+  background-color: #324f62 !important;
+}
+
+.customgrid .datagrid .datagrid-column-title {
+  display: flex;
+  justify-content: center;
+  color: #eee;
+  font-size: 17px;
+}
+
+.customgrid .datagrid .datagrid-column,
+.datagrid .datagrid-cell {
+  padding: 15px 15px;
+}
+.datagrid-cell{
+  padding:  20px 20px;
+}
+.customgrid .datagrid .datagrid-table .datagrid-cell {
+  display: flex;
+  justify-content: center;
+  color: #eee;
+  font-size: 15px;
+}
+
+.customgrid .datagrid-footer {
+  background-color: #333544;
+  border-width: 0px;
+  border-top: 1px solid;
+  font-size: 16px;
+  padding: 0.6rem;
 }
 
 .customgrid .datagrid-table .datagrid-cell:focus {
   outline: none;
   outline-offset: none;
 }
-.customgrid.sengee .datagrid-row-sticky {
-  display: none;
+
+.customgrid .datagrid-spinner {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  border-radius: 15px;
+}
+
+.customgrid.multi .datagrid-row-sticky,
+.customgrid .datagrid-table .datagrid-placeholder {
+  background-color: transparent;
 }

@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { take, tap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonServiceService } from '../services/common/common.service.service';
 import { DialogService } from '../services/dialog';
 import { EventService } from '../services/event/event.service';
@@ -121,5 +121,9 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   getPageSize(page: number, size: number, total: number): string {
     return `${((page - 1) * size) + 1}  -  ${(page - 1) * size + size} of Total ${total}`;
-}
+  }
+
+  onRefresh() {
+
+  }
 }

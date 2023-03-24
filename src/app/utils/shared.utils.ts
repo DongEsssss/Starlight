@@ -22,6 +22,10 @@ export const PROJECT_SUMMARY_CARD_VIEW_LOCALSTORAGE_KEY = 'project_card-view';
 
 export const MODAL_RES_CANCEL = 2000;
 export const MODAL_RES_CLOSE = 1000;
+export const MODAL_RES_SELECT = 3000;
+export const MODAL_RES_BUS_SELECT = 4000;
+export const MODAL_RES_COMPANY_SELECT = 5000;
+export const MODAL_RES_COMMON_SELECT = 6000;
 
 enum APILevels {
   V1 = '/v1',
@@ -327,3 +331,13 @@ export interface HttpOptionTextInterface {
   withCredentials?: boolean;
 }
 
+export function toFormData<T>( formValue: any ):FormData {
+  var formData = new FormData();
+
+  for ( const key of Object.keys(formValue) ) {
+    let value = formValue[key];
+    formData.append(key, value);
+  }
+
+  return formData;
+}

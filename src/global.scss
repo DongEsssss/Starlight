@@ -1,59 +1,6 @@
 // datagrid
-.datagrid, .datagrid .datagrid-header .datagrid-column, .datagrid-table .datagrid-cell, .datagrid-footer, .datagrid-table .datagrid-column {
-  font-size: 15px;
-  background-color: #333543;
-  border: 1px solid #333543;
-  color: #eee;
-}
-
-.datagrid-table .datagrid-placeholder.datagrid-empty, .datagrid-table .datagrid-placeholder-container, .datagrid-header .datagrid-row, .datagrid-row-sticky .datagrid-cell:last-child:after {
-  background-color: #333543;
-  border: 1px solid #333543;
-}
-
-.datagrid-table .datagrid-cell.datagrid-fixed-column {
-  outline: none;
-}
-
-.datagrid-table .datagrid-placeholder {
-  background: #333543;
-}
-
-.datagrid-footer {
-  border-top: 1px solid #eee;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding: 20px;
-}
-
-.datagrid {
-  margin-top: 0px;
-  height: 25.65rem;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-}
-
-.datagrid-table .datagrid-placeholder .datagrid-placeholder-image, .datagrid-table .datagrid-placeholder.datagrid-empty {
-  justify-content: center;
-  align-items: center;
-}
-
 .datagrid .datagrid-cell{
-  line-height: 20px;
-}
-.datagrid-table .datagrid-cell.datagrid-row-actions {
-  background: #333543;
-}
-.datagrid-action-overflow{
-  background-color: red;
-  border-radius : 5px; ;
-  outline: none;
-}
-.datagrid-action-overflow button{
-  background-color:red;
-  color: white;
-  outline: none;
-  border: none;
+  line-height: 20.9px;
 }
 // verical nav
 .clr-vertical-nav, .clr-vertical-nav .nav-trigger {
@@ -108,38 +55,6 @@
   padding: 10px 30px;
 }
 
-// combobox
-.clr-combobox-wrapper, .clr-combobox-option.clr-focus, .clr-combobox-option {
-  width: 400px;
-  color: #eee;
-  background-color: #eee;
-}
-
-.clr-wizard .clr-wizard-stepnav-wrapper {
-  background-color: #131313;
-  border-right: #eee 1px solid;
-}
-
-.clr-wizard .clr-wizard-stepnav-item.active .clr-wizard-stepnav-link {
-  background-color: #333543;
-  border-right-color: #333543;
-}
-
-.clr-combobox-option {
-  background-color: #eee;
-}
-
-.modal-footer {
-  padding: 0px 0px;
-}
-
-.dropdown-menu {
-  margin-right: 10px;
-  background: #131313;
-  border-color: #eee;
-  color: #eee;
-}
-
 //login
 .login-wrapper {
   background-color: #333543;
@@ -191,10 +106,3 @@ clr-accordion {
   min-width: 100%;
 }
 
-.modal-header--accessible {
-  padding-bottom: 0px;
-}
-
-.modal-body-wrapper {
-  padding: 0px 0px;
-}

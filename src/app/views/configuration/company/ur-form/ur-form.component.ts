@@ -38,7 +38,7 @@ export class UrFormComponent extends DefaultComponent implements OnInit {
     return history[key as keyof User];
   }
 
-  onRefresh(): void {
+  override onRefresh(): void {
     // console.log(this.gridApi.setdatasou');
     // this.gridApi.refreshServerSide();
   }

@@ -29,6 +29,7 @@ import { UserCreateComponent } from '../views/modal/user-create/user-create.comp
 import { CompanyInfoComponent } from '../views/modal/company-info/company-info.component';
 import { UserEditComponent } from '../views/modal/user-edit/user-edit.component';
 import { CancelComponent } from '../views/modal/cancel/cancel.component';
+import { AssetDetailComponent } from '../views/modal/asset-detail/asset-detail.component';
 
 /** configuration */
 import { SettingComponent } from '../views/configuration/setting/setting.component';
@@ -71,6 +72,7 @@ import { SharedModule } from './shared.module';
     UserComponent,
     CompanyInfoComponent,
     UserEditComponent,
+    AssetDetailComponent,
   ],
   providers: [CommonServiceService],
   imports: [HomeRoutingModule, SharedModule, ClarityModule],

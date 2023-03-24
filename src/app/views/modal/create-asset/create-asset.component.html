@@ -5,21 +5,6 @@
   </div>
   <div class="modal-body body-format">
     <form clrForm clrLayout="horizontal" class="clr-form" #createForm="ngForm">
-      <clr-select-container>
-        <label>Type</label>
-        <select clrSelect name="options" class="option-select" [(ngModel)]="datatype" required>
-          <option value="none" selected>
-            --select--
-          </option>
-          <option value="json">
-            Custom Datasource Config (JSON)
-          </option>
-          <option value="get">
-            REST-API Endpoint (GET)
-          </option>
-        </select>
-        <clr-control-error>You must select option</clr-control-error>
-      </clr-select-container>
       <form class="clr-form-control" *ngFor="let item of newForm" #newForm="ngForm">
         <label class="required clr-control-label"
           [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
@@ -38,7 +23,7 @@
       </form>
     </form>
     <div class="setbtn">
-      <button class="btn btn-outline" (click)="createasset()">Create</button>
+      <!-- <button class="btn btn-outline" (click)="createasset()">Create</button> -->
       <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
     </div>
   </div>

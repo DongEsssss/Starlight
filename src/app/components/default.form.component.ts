@@ -9,6 +9,7 @@ import { FormBuilder, NgForm } from '@angular/forms';
 import { InlineAlertComponent } from './inline-alert/inline-alert.component';
 import { DefaultComponent } from './default.component';
 import { Router } from '@angular/router';
+import { AssetDetailComponent } from '../views/modal/asset-detail/asset-detail.component';
 
 @Component({
   template: '',
@@ -20,7 +21,7 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     public commonService: CommonServiceService,
     public eventService: EventService,
     public session: SessionService,
-    public dialog: DialogService,
+    public dialog: DialogService
   ) {}
 
   parentComponent?: DefaultComponent;
@@ -33,7 +34,6 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   getForm: Array<FormField> = [];
   isEditable = false;
   datatype: any;
-
 
   @ViewChild('modalFrom', { static: true })
   modalForm!: NgForm;
@@ -105,13 +105,16 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     if (this.modalForm == undefined) return false;
     var v = true;
 
-    for(var field of this.isEditable?this.jsonForm:this.getForm){
-        if (field.require && this.modalForm.controls[field.name!]?.value == undefined) {
-            v = false;
-        }
+    for (var field of this.newForm) {
+      if (
+        field.require &&
+        this.modalForm.controls[field.name!]?.value == undefined
+      ) {
+        v = false;
+      }
     }
     return v;
-}
+  }
 
   public get inProgress(): boolean {
     return this.onGoing;
