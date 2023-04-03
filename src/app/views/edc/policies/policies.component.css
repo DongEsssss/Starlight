@@ -1,36 +1,16 @@
-
-.clr-wizard .clr-wizard-page:not([aria-hidden=true]) {
-  margin-top: 10px;
-}
-
-clr-input-container input, clr-control-error {
-  margin-left: 40px;
-  width: 230px;
-}
-
 .card {
   margin-left: 0px;
-  min-width: 400px;
+  min-width: 455px;
 }
-
-.clr-textarea {
-  width: 90%;
-  height: 17rem;
-  background: #ffffff;
-  border: 0.05rem solid;
-  border-color: #ffffff;
-  color: #000000;
-  font-size: 12px;
-  margin-top: -40px;
-  margin-left: -100px;
+.textarea {
+  margin-top: -20px;
+  width: 510px;
+  height: 340px;
+  color: black;
+  background: #eee;
+  resize: none;
 }
-
-.policy-info span {
-  margin-top: 5px;
-  padding-left: 20px;
-}
-
-.policy-content {
-  padding: 0px 0px;
-  padding-bottom: -10px;
+.enrollment-input label{
+  margin-top: 80px;
+  width: 350px;
 }

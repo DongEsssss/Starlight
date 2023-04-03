@@ -10,8 +10,7 @@
     <div class="search-tool">
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
         rel="search" />
-      <!-- <button type="button" class="searchbtn" (click)="searchasset()"></button> -->
-      <button type="button" class="createbtn" (click)="addAsset()"></button>
+      <button type="submit" class="createbtn" (click)="addAsset()"></button>
     </div>
     <div class="cardgrid">
       <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
@@ -35,27 +34,13 @@
 <div class="data-area" *ngIf="!isCardView">
   <div class="data_table">
     <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()"
-      data-detail-view="true" >
+      data-detail-view="true" [clrDgRowSelection]="true"  [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let asset of asset_post | filter : searchText" [clrDgItem]="asset"
-        [(clrDgSelected)]="asset.selected">
-        <!-- <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell> -->
-        <clr-dg-cell class="width33">{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-        <clr-dg-cell class="width33">{{asset.properties?.['asset:prop:id']}}</clr-dg-cell>
-        <clr-dg-cell class="width33">{{asset.id}}</clr-dg-cell>
+      <clr-dg-row *ngFor="let asset of assetList;  index as i" [clrDgItem]="asset" (click)="detailasset()">
+        <clr-dg-cell>{{i+1}}</clr-dg-cell>
+        <clr-dg-cell class="width30">{{asset.id}}</clr-dg-cell>
+        <clr-dg-cell class="width30">{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
       </clr-dg-row>
-      <clr-dg-detail *clrIfDetail="let asset_post">
-        <clr-dg-detail-header>Select Asset ID : {{asset_post.id}}</clr-dg-detail-header>
-        <clr-dg-detail-body>
-          <clr-datagrid  clrDgLoading]="cDataLoading">
-            <clr-dg-column *ngFor="let header of detail_columnDef">{{header.headerNames}}</clr-dg-column>
-            <clr-dg-row *clrDgItems="let dataasset of dataasset" [clrDgItem]="dataasset" >
-            <clr-dg-cell  *ngFor="let header of detail_columnDef">{{getdetailField(dataasset, header.field)}}</clr-dg-cell>
-          </clr-dg-row>
-          <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
-          </clr-datagrid>
-        </clr-dg-detail-body>
-      </clr-dg-detail>
       <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">

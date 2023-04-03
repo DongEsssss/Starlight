@@ -1,3 +1,4 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -6,10 +7,12 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonServiceService } from '../services/common/common.service.service';
 import { DialogService } from '../services/dialog';
 import { EventService } from '../services/event/event.service';
+import { MessageService } from '../services/message/message.service';
 import { RestService } from '../services/rest/rest.service';
 import { SessionService } from '../services/session/session.service';
 import {
@@ -17,11 +20,13 @@ import {
   FALSE_STR,
   TRUE_STR,
 } from '../utils/shared.utils';
+import { ClrModal } from '@clr/angular';
 
 @Component({
   template: '',
 })
 export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
+
   onModalResponse(MODAL_RES_CLOSE: number, callbackData: any) {
 
   }
@@ -31,23 +36,20 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   static menuState: boolean = false
   interval: any = undefined
   isInit: boolean = false;
-
+  courses?: any;
   message: string = 'loading :(';
 
   constructor(
-    public cd: ChangeDetectorRef,
     public restService: RestService,
     public commonService: CommonServiceService,
     public eventService: EventService,
     public session: SessionService,
     public dialog: DialogService,
     public el: ElementRef,
-    private cdr : ChangeDetectorRef
+    public route: ActivatedRoute,
+    public http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {
-    if (localStorage) {
-      this.isCardView =
-        localStorage.getItem(CARD_VIEW_LOCALSTORAGE_KEY) === TRUE_STR;
-    }
   }
 
   ngAfterViewInit() {
@@ -81,7 +83,7 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     this.isCardView = cardView;
     // manually run change detecting to avoid ng-change-checking error
-    this.cd.detectChanges();
+    this.cdr.detectChanges();
     if (localStorage) {
       if (this.isCardView) {
         localStorage.setItem(CARD_VIEW_LOCALSTORAGE_KEY, TRUE_STR);
@@ -125,5 +127,19 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onRefresh() {
 
+  }
+  //Fetch Data
+  loading = true;
+  selected = [];
+  current = 1;
+
+  fetchData(clearSelection = true) {
+    this.loading = true;
+  }
+
+  //wizard
+  validationStateMap: any = {};
+  getValidationState(key: string): boolean {
+    return !this.validationStateMap[key];
   }
 }

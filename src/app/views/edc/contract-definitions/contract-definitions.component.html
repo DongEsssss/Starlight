@@ -2,17 +2,35 @@
 <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
-    <span class="title_text">Contract Definitions</span>
+    <span class="title_text"> Contract Definition </span>
   </div>
-  <div class="search-tool">
-    <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Contract Definition"
-           rel="search"/>
-    <button type="button" class="createbtn btn-primary" (click)="createbtn()"> ⊕ Create Contract
-      Definitions
-    </button>
+  <div class="tool">
+    <div class="search-tool">
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
+        rel="search" />
+      <!-- <button type="button" class="searchbtn" (click)="searchasset()"></button> -->
+      <button type="submit" class="createbtn" (click)="createbtn()"></button>
+    </div>
+    <div class="cardgrid">
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+      </span>
+      <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
+        (mouseleave)="mouseLeave('card')">
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
+      </span>
+      <span class="filter-divider"></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onrefresh()"></clr-icon></span>
+    </div>
   </div>
-  <div class="data-area">
-    <div class="card">
+  <div class="data-area" *ngIf="!isCardView">
+    <div class="dataset_title">
+      <div class="dataset_icon"></div>
+    </div>
+  </div>
+  <div class="data-area" *ngIf="isCardView">
+    <!-- <div class="card">
       <div class="card-block">
         <h3 class="card-title">Contract Definition ID</h3>
         <div class="card-text">
@@ -47,8 +65,8 @@
       </div>
       <div class="card-footer">
         <label>Create Date</label>
-        <!-- <button class="btn btn-danger" (click)="onDelete()">Delete</button> -->
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

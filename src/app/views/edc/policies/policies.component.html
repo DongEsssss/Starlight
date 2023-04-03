@@ -1,178 +1,99 @@
-<clr-wizard #wizard [(clrWizardOpen)]="open" [clrWizardSize]="'lg'">
-  <clr-wizard-title>STEP</clr-wizard-title>
-  <clr-wizard-button [type]="'cancel'">Close</clr-wizard-button>
-  <clr-wizard-button [type]="'previous'">Previous</clr-wizard-button>
-  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-  <clr-wizard-button [type]="'finish'">Create</clr-wizard-button>
-  <clr-wizard-page
-    [clrWizardPageNextDisabled]="(name.pristine && quest.pristine && velocity.pristine) || !formPage.valid">
-    <ng-template clrPageTitle>Create New Policy</ng-template>
-    <form clrForm #formPage="ngForm">
-      <clr-input-container>
-        <label>ID*</label>
-        <input clrInput name="name" required [(ngModel)]="wizards.poID" #name="ngModel"/>
-        <clr-control-error>This field is required!</clr-control-error>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Create_at*</label>
-        <input clrInput name="quest" required [(ngModel)]="wizards.create_at" #quest="ngModel"/>
-        <clr-control-error>This field is required!</clr-control-error>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Policy_Type*</label>
-        <input clrInput name="velocity" required [(ngModel)]="wizards.policy_type" #velocity="ngModel"/>
-        <clr-control-error>This field is required!</clr-control-error>
-      </clr-input-container>
-      <clr-input-container>
-        <label>Assginee</label>
-        <input clrInput type="text" id="target" [(ngModel)]="assginee" name="name" #name="ngModel">
-      </clr-input-container>
-      <clr-input-container>
-        <label>Assginer</label>
-        <input clrInput type="text" id="target" [(ngModel)]="assginer" name="name" #name="ngModel">
-      </clr-input-container>
-      <clr-input-container>
-        <label>Inherits_from</label>
-        <input clrInput type="text" id="target" [(ngModel)]="inherits" name="name" #name="ngModel">
-      </clr-input-container>
-      <clr-input-container>
-        <label>Target</label>
-        <input clrInput type="text" id="target" [(ngModel)]="target" name="name" #name="ngModel">
-      </clr-input-container>
-    </form>
-  </clr-wizard-page>
-  <clr-wizard-page>
-    <ng-template clrPageTitle>Permission</ng-template> <!-- mandatory -->
-    <ng-template clrPageNavTitle>
-      Permission
-    </ng-template> <!-- optional -->
-    <form #formPageTwo="ngForm">
-      <section class="form-block">
-        <div class="form-group">
-          <form clrForm>
-            <clr-textarea-container>
-              <textarea clrTextarea [(ngModel)]="permission" name="description"></textarea>
-            </clr-textarea-container>
-          </form>
-        </div>
-      </section>
-    </form>
-  </clr-wizard-page>
-  <clr-wizard-page>
-    <ng-template clrPageTitle>Prohibitions</ng-template> <!-- mandatory -->
-    <ng-template clrPageNavTitle>
-      Prohibitions
-    </ng-template> <!-- optional -->
-    <form #formPageTwo="ngForm">
-      <section class="form-block">
-        <div class="form-group">
-          <form clrForm>
-            <clr-textarea-container>
-              <textarea clrTextarea [(ngModel)]="Prohibitions" name="description"></textarea>
-            </clr-textarea-container>
-          </form>
-        </div>
-      </section>
-    </form>
-  </clr-wizard-page>
-  <clr-wizard-page>
-    <ng-template clrPageTitle>Extensible Properties</ng-template> <!-- mandatory -->
-    <ng-template clrPageNavTitle>
-      extensible_properties
-    </ng-template> <!-- optional -->
-    <form #formPageTwo="ngForm">
-      <section class="form-block">
-        <div class="form-group">
-          <form clrForm>
-            <clr-textarea-container>
-              <textarea clrTextarea [(ngModel)]="extensible_properties" name="description"></textarea>
-            </clr-textarea-container>
-          </form>
-        </div>
-      </section>
-    </form>
-  </clr-wizard-page>
-  <clr-wizard-page>
-    <ng-template clrPageTitle>Duties</ng-template> <!-- mandatory -->
-    <ng-template clrPageNavTitle>
-      Duties
-    </ng-template> <!-- optional -->
-    <form #formPageTwo="ngForm">
-      <section class="form-block">
-        <div class="form-group">
-          <form clrForm>
-            <clr-textarea-container>
-              <textarea clrTextarea [(ngModel)]="duties" name="description"></textarea>
-            </clr-textarea-container>
-          </form>
-        </div>
-      </section>
-    </form>
-  </clr-wizard-page>
-</clr-wizard>
 <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
-    <span class="title_text"> Policies </span>
+    <span class="title_text"> Policy </span>
   </div>
-  <div class="search-tool">
-    <input class="search_input" type="search" placeholder="Search Policies" [(ngModel)]="searchText" rel="search"/>
-    <button type="button" class="createbtn btn-primary" (click)="wizard.open()"> ⊕ Create Policies</button>
-  </div>
-  <div class="data-area">
-    <div class="clr-row card">
-      <div class="card-block">
-        <h3 class="card-title">Policy ID</h3>
-        <div class="card-text">
-          <div class="clr-col-12 type">
-            <span>Policy Type : Type</span>
-          </div>
-          <div class="clr-row policy-info">
-            <h3 class="clr-col-12">Policy Content</h3>
-            <span class="clr-col-6">Assginee : N/A</span>
-            <span class="clr-col-6">Assginer : N/A</span>
-            <span class="clr-col-6">Inherits_from : N/A</span>
-            <span class="clr-col-6">validty : N/A</span>
-          </div>
-          <h4>Selector Expression</h4>
-          <div class="expression">
-            <clr-accordion>
-              <clr-accordion-panel>
-                <clr-accordion-title>Persmission</clr-accordion-title>
-                <clr-accordion-content *clrIfExpanded>
-                  Persmission
-                  Content Details
-                </clr-accordion-content>
-              </clr-accordion-panel>
-              <clr-accordion-panel>
-                <clr-accordion-title>Prohibitions</clr-accordion-title>
-                <clr-accordion-content *clrIfExpanded>
-                  Prohibitions
-                  Content Details
-                </clr-accordion-content>
-              </clr-accordion-panel>
-              <clr-accordion-panel>
-                <clr-accordion-title>Duties</clr-accordion-title>
-                <clr-accordion-content *clrIfExpanded>
-                  Duties
-                  Content Details
-                </clr-accordion-content>
-              </clr-accordion-panel>
-              <clr-accordion-panel>
-                <clr-accordion-title>Extensible_Properties</clr-accordion-title>
-                <clr-accordion-content *clrIfExpanded>
-                  Extensible_Properties
-                  Content Details
-                </clr-accordion-content>
-              </clr-accordion-panel>
-            </clr-accordion>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer">
-        <label>Create Date</label>
-        <!-- <button class="btn btn-danger" (click)="onDelete()">Delete</button> -->
-      </div>
+  <div class="tool">
+    <div class="search-tool">
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
+        rel="search" />
+      <!-- <button type="button" class="searchbtn" (click)="searchasset()"></button> -->
+      <button type="submit" class="createbtn" (click)="mdOpen=true"></button>
+    </div>
+    <div class="cardgrid">
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+      </span>
+      <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
+        (mouseleave)="mouseLeave('card')">
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
+      </span>
+      <span class="filter-divider"></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onrefresh()"></clr-icon></span>
     </div>
   </div>
-</div>
+  <div class="data-area" *ngIf="!isCardView">
+    <div class="dataset_title">
+      <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getRequestPolicy()" data-detail-view="true"
+        [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
+        <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+        <clr-dg-row *ngFor="let policy of policy;  index as i" [clrDgItem]="policy">
+          <clr-dg-cell>{{policy.id}}</clr-dg-cell>
+          <clr-dg-cell>{{policy.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
+        <clr-dg-footer>
+          <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Policy per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
+          </clr-dg-pagination>
+        </clr-dg-footer>
+      </clr-datagrid>
+    </div>
+  </div>
+  <div class="data-area" *ngIf="isCardView">
+  </div>
+
+  <!-- Wizzard -->
+  <clr-wizard #wizardmd [(clrWizardOpen)]="mdOpen" clrWizardSize="lg">
+    <clr-wizard-title>STEP</clr-wizard-title>
+    <clr-wizard-button [type]="'cancel'">Close</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Previous</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'" (click)="create()">Create</clr-wizard-button>
+    <clr-wizard-page>
+      <ng-template clrPageTitle>Create New Policy</ng-template>
+      <form #formPageOne="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
+        <div class="clr-form-control" *ngFor="let item of isEditable?editForm:newForm">
+          <label class="required clr-control-label"
+            [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+          <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+            <div class="clr-input-wrapper">
+              <input type="text" class="clr-input enrollment-input" required [pattern]="item.regex!"
+              [maxlength]="item.max!" #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) '
+              [readOnly]="item.readonly == true">
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+              <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+                Input Your {{item.text}}
+                <ng-template [ngIf]="item?.placeholder !== undefined">
+                  ( ex : {{item.placeholder}})
+                </ng-template>
+              </clr-control-error>
+            </div>
+          </div>
+        </div>
+      </form>
+    </clr-wizard-page>
+    <clr-wizard-page *ngFor="let policy of textform">
+      <ng-template clrPageTitle>{{policy.text}}</ng-template> <!-- mandatory -->
+      <ng-template clrPageNavTitle>
+        {{policy.text}}
+      </ng-template>
+      <form #modalFrom="ngForm">
+        <section class="form-block">
+          <textarea (input)='handleValidation(policy.name! , false) ' (blur)='handleValidation(policy.name!, true)'
+            [ngModel]='getFormModel(policy.name!)' [name]="policy.name!" [id]="policy.name!"
+            class="textarea"></textarea>
+        </section>
+      </form>
+      <ng-container *ngIf="loading">
+        <p>Loading...</p>
+        <div class="progress">
+          <progress [value]="progress" max="100" [attr.data-displayval]="progress + '%'"></progress>
+        </div>
+      </ng-container>
+    </clr-wizard-page>
+  </clr-wizard>

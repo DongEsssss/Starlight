@@ -1,38 +1,6 @@
-.searchbtn clr-icon{
-  width: 20px;
-  height: 20px;
-  margin: 0px -10px;
+.width10{
+  width: 3.5%;
 }
-.cardgrid clr-icon {
-  width: 35px;
-  height: 35px;
-  margin-top: 20px;
-  margin-right: 10px;
+.width30{
+  width: 31%;
 }
-.refresh-btn clr-icon{
-  width: 25px;
-  height: 25px;
-}
-.area{
-  background-color: white; width: 100%; height: 3rem;
-}
-.width5{
-  width: 3%;
-  text-align: right;
-}
-.width33{
-  width: 30.5%;
-}
-
-table{
-  display:flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  overflow-x: auto;
-  overflow-y: hidden;
-  }
-
-  tbody
-  {display:flex}
-
-  th,td{display:block}

@@ -1,17 +1,26 @@
+.clr-form {
+    padding: 0.3rem;
+    position: relative;
+    margin-left: 25px;
+}
 input{
-  margin-left: 15px;
   border: none;
   border-bottom: 1px solid #eee;
   color: #eee;
-  width: 390px;
+  width: 360px;
   outline:none;
   background-color: transparent;
 }
 clr-select-container{
   margin-left: 0px;
 }
-select{
-  width: 390px;
+.select-form{
+  margin-top: 10px;
 }
-
+select{
+  width: 360px;
+}
+.clr-form-horizontal .clr-form-control>.clr-control-label{
+  width: 100px;
+}
 

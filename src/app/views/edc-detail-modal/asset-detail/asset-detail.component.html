@@ -1,0 +1,14 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
+  <div class="container" *ngIf="assetList">
+    <div class="modal-title">
+      <div class="modal_icon"></div>
+      {{assetList}}sadasd
+    </div>
+    <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
+    <div class="modal-body body-format">
+      <div>
+
+      </div>
+    </div>
+  </div>
+</clr-modal>

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SignInComponent } from '../views/page/sign-in/sign-in.component';
 import { HomeComponent } from '../views/page/home/home.component';
-import { AppComponent } from '../views/page/app/app.component';
 
 /* EDC */
 import { CatalogBrowserComponent } from '../views/edc/catalog-browser/catalog-browser.component';
@@ -21,15 +19,16 @@ import { MainhomeComponent } from '../views/mainhome/mainhome.component';
 import { UserInfoComponent } from '../views/modal/user-info/user-info.component';
 import { NoticeComponent } from '../views/modal/notice/notice.component';
 import { NoticeBoardComponent } from '../views/modal/notice-board/notice-board.component';
-import { PasswordChangeComponent } from '../views/modal/password-change/password-change.component';
 import { CreateAssetComponent } from '../views/modal/create-asset/create-asset.component';
-import { CreatePoliciesComponent } from '../views/modal/create-policies/create-policies.component';
 import { CreateDefinitionsComponent } from '../views/modal/create-definitions/create-definitions.component';
 import { UserCreateComponent } from '../views/modal/user-create/user-create.component';
 import { CompanyInfoComponent } from '../views/modal/company-info/company-info.component';
 import { UserEditComponent } from '../views/modal/user-edit/user-edit.component';
 import { CancelComponent } from '../views/modal/cancel/cancel.component';
-import { AssetDetailComponent } from '../views/modal/asset-detail/asset-detail.component';
+
+/** edc-detail-modal */
+import { AssetDetailComponent } from '../views/edc-detail-modal/asset-detail/asset-detail.component';
+import { PolicyDetailComponent } from '../views/detail-modal/policy-detail/policy-detail.component';
 
 /** configuration */
 import { SettingComponent } from '../views/configuration/setting/setting.component';
@@ -57,11 +56,9 @@ import { SharedModule } from './shared.module';
     MonitoringComponent,
     UserInfoComponent,
     NoticeComponent,
-    PasswordChangeComponent,
     CreateAssetComponent,
     InlineAlertComponent,
     CreateDefinitionsComponent,
-    CreatePoliciesComponent,
     CancelComponent,
     SettingComponent,
     CompanyComponent,
@@ -73,6 +70,7 @@ import { SharedModule } from './shared.module';
     CompanyInfoComponent,
     UserEditComponent,
     AssetDetailComponent,
+    PolicyDetailComponent
   ],
   providers: [CommonServiceService],
   imports: [HomeRoutingModule, SharedModule, ClarityModule],

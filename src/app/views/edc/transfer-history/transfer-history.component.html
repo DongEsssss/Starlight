@@ -12,20 +12,25 @@
     </div>
   </div>
   <div class="datatable">
-    <clr-datagrid #cDataGrid [(clrDgSingleSelected)]="cSelection" [clrDgRowSelection]="true"
-                  [clrDgLoading]="cDataLoading" (clrDgRefresh)="onRefresh()">
-      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *ngFor="let history of historyList" [clrDgItem]="historyList">
-        <clr-dg-cell *ngFor="let header of columnDefs">{{getField(history, header.field)}}</clr-dg-cell>
-      </clr-dg-row>
-      <clr-dg-placeholder>We couldn't load any Transfer History</clr-dg-placeholder>
-      <clr-dg-footer>
-        <clr-dg-pagination #pagination [(clrDgPage)]="page" [clrDgPageSize]="pagenationSize"
-                           [clrDgTotalItems]="totalCount">
-          {{((page - 1) * pagenationSize) + 1}} - {{(page - 1) * pagenationSize + 1 + pagenationSize}}
-          of more [total {{totalCount}}]
-        </clr-dg-pagination>
-      </clr-dg-footer>
-    </clr-datagrid>
+    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="gettransfer()"
+    [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
+    <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+    <clr-dg-row *ngFor="let item of historyList;  index as i" [clrDgItem]="item">
+      <clr-dg-cell>{{item.AssetID}}</clr-dg-cell>
+      <clr-dg-cell>{{item.ConnectorID}}</clr-dg-cell>
+      <clr-dg-cell>{{item.ContractID}}</clr-dg-cell>
+      <clr-dg-cell>{{item.ID}}</clr-dg-cell>
+      <clr-dg-cell>{{item.LastUpdated}}</clr-dg-cell>
+      <clr-dg-cell>{{item.State}}</clr-dg-cell>
+      <clr-dg-cell>{{item.Create| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]="10">
+        <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Policy per page</clr-dg-page-size>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
   </div>
 </div>

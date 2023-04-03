@@ -12,6 +12,7 @@ export const APP_ROOT = (APP_NAME.length > 0 ? '/' : '') + APP_NAME;
 
 export const HTTP_CODE_SUCCESS = 200;
 export const HTTP_CODE_FAILURE = -1;
+export const HTTP_CODE_MODIFIY = -4;
 
 export const PAGE_SIZE = 10;
 
@@ -43,6 +44,8 @@ export const nullUndif = (null || undefined)
 /**
  * To check if form is empty
  */
+
+
 export const isEmptyForm = function (ngForm: NgForm): boolean {
   if (ngForm && ngForm.form) {
     let values = ngForm.form.value;
@@ -195,7 +198,7 @@ export function getChartSummary(list: Array<any>, time: number, timeRange: numbe
 }
 
 export function parseFloatfromIntegerString(fVal: any): string {
-  if (typeof fVal == 'number') {
+  if (typeof fVal == 'string') {
     return parseInt(fVal + '').toString();
   } else {
     return parseInt(fVal).toString();
@@ -340,4 +343,8 @@ export function toFormData<T>( formValue: any ):FormData {
   }
 
   return formData;
+}
+
+export function objectCopy(obj:any){
+  return JSON.parse(JSON.stringify(obj));
 }

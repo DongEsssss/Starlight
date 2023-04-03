@@ -36,6 +36,7 @@ hr {
   width: 50px;
   height: 50px;
 }
+
 .title_icon,
 .dataset_icon {
   background: url("src/static/images/EDClogo.png") 50% 50% no-repeat;
@@ -173,52 +174,46 @@ button :hover {
 }
 
 /* datagrid */
-
-.customgrid {
-  width: 100%;
-  height: 100%;
-  height: 565px;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 15px;
+.datagrid{
+  height: 500px;
+}
+.customgrid .datagrid-placeholder-container {
   background-color: #333544;
 }
 
-.customgrid .datagrid {
-  border-width: 0px;
-  border-color: #eee;
-  margin-top: 0;
+.customgrid .datagrid-header .datagrid-column {
+  background-color: #333544;
 }
 
-.customgrid .datagrid-placeholder-container,
-.customgrid .datagrid-header .datagrid-column,
 .customgrid .datagrid-row {
   background-color: #333544;
 }
+
 
 .datagrid-row.datagrid-selected {
   background-color: #324f62 !important;
 }
 
+
 .customgrid .datagrid .datagrid-column-title {
   display: flex;
   justify-content: center;
-  color: #eee;
-  font-size: 17px;
+  color: #EEEEEE;
+  font-size: 14px;
 }
+
 
 .customgrid .datagrid .datagrid-column,
 .datagrid .datagrid-cell {
-  padding: 15px 15px;
+  padding: 1rem 0.6rem;
 }
-.datagrid-cell{
-  padding:  20px 20px;
-}
+
 .customgrid .datagrid .datagrid-table .datagrid-cell {
   display: flex;
   justify-content: center;
-  color: #eee;
-  font-size: 15px;
+  color: #EEEEEE;
+  letter-spacing: -0.49px;
+  font-size: 14px;
 }
 
 .customgrid .datagrid-footer {
@@ -237,11 +232,61 @@ button :hover {
 .customgrid .datagrid-spinner {
   width: 100%;
   height: 100%;
-  inset: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   border-radius: 15px;
 }
 
-.customgrid.multi .datagrid-row-sticky,
+.customgrid.sengee .datagrid-row-sticky {
+  display: none;
+}
+
+.customgrid.multi .datagrid-row-sticky {
+  background-color: transparent;
+}
+
 .customgrid .datagrid-table .datagrid-placeholder {
   background-color: transparent;
+}
+
+.modal-dialog.modal-xl {
+  width: 100rem;
+  scale: 80%;
+  max-width: none;
+}
+
+.modal-dialog .modal-title-icon {
+  height: 35px;
+  width: 35px;
+}
+
+.modal-dialog .modal-title {
+  position: relative;
+  top: 5px;
+  margin-left: 5px;
+  font-size: 25px;
+  color: #eeeeee;
+  display: flex;
+  align-items: center;
+
+}
+
+
+.searchbtn clr-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.cardgrid clr-icon {
+  width: 35px;
+  height: 35px;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+
+.refresh-btn clr-icon {
+  width: 25px;
+  height: 25px;
 }

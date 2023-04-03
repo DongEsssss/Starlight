@@ -1,6 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit} from '@angular/core';
 import { DefaultFormComponent } from 'src/app/components/default.form.component';
-import { AssetAdvancedFormModel, asset_post } from 'src/app/models/asset_post';
+import { asset_post, contentList } from 'src/app/models/asset_post';
+import { CommonCD, FormField } from 'src/app/models/common';
+import { COMMON_CODE_TYPE } from 'src/app/services/common/common.service.service';
+import { HTTP_CODE_SUCCESS, MODAL_RES_CLOSE} from 'src/app/utils/shared.utils';
 
 @Component({
   selector: 'app-create-asset',
@@ -8,15 +11,28 @@ import { AssetAdvancedFormModel, asset_post } from 'src/app/models/asset_post';
   styleUrls: ['./create-asset.component.css'],
 })
 
-export class CreateAssetComponent extends DefaultFormComponent<asset_post> implements OnInit
-{
-  all: any;
+export class CreateAssetComponent extends DefaultFormComponent<asset_post> implements OnInit {
+  contentList!: Array<contentList>
+  commonCdList !: Array<CommonCD>
+  assetList: Array<asset_post> = []
+  getForm: Array<FormField> = [];
+  restForm: Array<FormField> = [];
+
   override ngOnInit(): void {
-    this.newForm = [
-      { name: 'id', text: 'ID', type: 'string' },
-      { name: 'path', text: 'PATH', type: 'string' },
-      { name: 'filename', text: 'FILENAME', type: 'string' },
+    super.ngOnInit();
+    this.getForm = [
+      { name: 'id', text: 'AssetID', require: true, type: 'string', placeholder: 'test-document' },
+      { name: 'path', text: 'Path', require: true, type: 'string', placeholder: '/home/vargrant/' },
+      { name: 'filename', text: 'FileName', require: true, type: 'string', placeholder: 'postman.json' },
     ];
+    this.restForm = [
+      { name: 'id', text: 'AssetID', require: true, type: 'string', placeholder: 'test-document' },
+      { name: 'path', text: 'Path', require: true, type: 'string', placeholder: '/home/vargrant/' }
+    ];
+    this.validationStateMap = {
+      "AssetTitle": true,
+    };
+    
     this.formData = new asset_post();
   }
 
@@ -24,27 +40,60 @@ export class CreateAssetComponent extends DefaultFormComponent<asset_post> imple
     super.resetFormModel();
     this.inlineAlert.close();
     this.formValueChanged = false;
-    this.formData = new asset_post();
+    this.formData= new asset_post();
   }
 
-  override resetFormState() {
+  override resetFormState(){
     this.validationStateMap = {
-      id: true,
-      path: true,
-      filename: true,
+      "AssetTitle": true,
     };
   }
-  override open(notice?: asset_post): void {
-    super.open();
-    this, this.resetFormState();
-    if (notice === undefined) {
-      this.isEditable = false;
-      this.formData = new asset_post();
-    }
+
+  selectContentType(newvalue: string) {
+    if (newvalue == undefined) return;
+    this.formData.contentNM = this.contentList[0].contentNM
   }
-  //create asset
-  get value(): AssetAdvancedFormModel {
-    return this.all.value;
+  
+  override ngOnCommonInit(): void {
+    this.commonCdList = this.commonService.getCommonList();
+    this.contentList = this.commonCdList.filter(commonCode => commonCode.baseCd == COMMON_CODE_TYPE);
   }
 
+  override open(asset?: asset_post): void {
+    super.open();
+    this.resetFormState();
+  }
+
+  override close() {
+    super.close();
+  }
+  create() {
+    this.inlineAlert.close();
+    let assetFormData = this.modalForm.value;
+    this.restService.createAsset(assetFormData).subscribe((res: any) => {
+      this.onGoing = false;
+      if (res.code == HTTP_CODE_SUCCESS) {
+        if(this.callback != undefined){
+          this.callback.onModalResponse(MODAL_RES_CLOSE, this.callbackData);
+        }
+        this.close();
+      } else {
+        this.inlineAlert.showInlineError('BAD REQUEST');
+      }
+    }, err => {
+      this.onGoing = false;
+      this.inlineAlert.showInlineError('BAD REQUEST');
+      console.log(err);
+      console.log(assetFormData)
+    });
+  if (!this.isValid) {
+    return;
+  }
+  // We have new user data
+  if (!assetFormData) {
+    return;
+  }
 }
+}
+
+

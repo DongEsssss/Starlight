@@ -1,5 +1,4 @@
 <app-user-info #userprofilemodal></app-user-info>
-<app-password-change #passwordmodal></app-password-change>
 <app-notice-board #noticeboardmodal></app-notice-board>
 <clr-main-container>
   <clr-header class="header">
@@ -16,7 +15,7 @@
         <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
           <div clrDropdownItem (click)="userinfo()">User Profile</div>
           <div clrDropdownItem (click)="noticeboard()">Notice</div>
-          <div clrDropdownItem (click)="password()">Password</div>
+
           <hr>
           <div clrDropdownItem>Logout</div>
         </clr-dropdown-menu>

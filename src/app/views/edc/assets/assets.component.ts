@@ -1,13 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
-import { dataasset, asset_post } from 'src/app/models/asset_post';
+import { asset_post } from 'src/app/models/asset_post';
 import { ClrDatagrid } from '@clr/angular';
 import { CreateAssetComponent } from '../../modal/create-asset/create-asset.component';
-import { AssetDetailComponent } from '../../modal/asset-detail/asset-detail.component';
-import { id } from '@cds/core/internal';
+import { AssetDetailComponent } from '../../edc-detail-modal/asset-detail/asset-detail.component';
+import { objectCopy } from 'src/app/utils/shared.utils';
 
-
-const asset_id = 'asset:prop:id';
 @Component({
   selector: 'app-assets',
   templateUrl: './assets.component.html',
@@ -15,29 +13,20 @@ const asset_id = 'asset:prop:id';
 })
 export class AssetsComponent extends DefaultComponent implements OnInit {
   @ViewChild('cDataGrid') cDataGrid!: ClrDatagrid;
-
-  cDataLoading: boolean = false;
-  asset_post: any[] = [];
-  dataasset: any[]=[];
-  cSelection: any;
-  selectedRows: any[] = [];
-  dataloading = false;
   searchText!: any;
+  cDataLoading: boolean = false;
+  assetList: asset_post[] = [];
+  cSelection: any;
   page?: number;
+  assets: asset_post[] = [];
+  totalCount: number = 0 ;
+
 
   /** datagrid */
-
   columnDefs = [
-    { headerName: 'Create Date', field: 'createdAt' },
-    { headerName: 'ID', field: "id" },
-    { headerName: 'Properties ID', field: 'properties.asset' },
-  ];
-
-  detail_columnDef = [
-    { headerNames: 'ID', field: 'id' },
-    { headerNames: 'Type', field: "type" },
-    { headerNames: 'Path', field: 'path' },
-    { headerNames: 'Filename', field: 'filename' }
+    { headerName: 'No' },
+    { headerName: 'ID' , field :'id'},
+    { headerName: 'Create Date', field : 'create' },
   ];
 
   defaultColDef = {
@@ -55,18 +44,11 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   getField(asset: asset_post, key: any) {
     return asset[key as keyof asset_post];
   }
-  getdetailField(assets: dataasset, key: any) {
-    return assets[key as keyof dataasset];
-  }
-  override ngOnInit(): void {
-    super.ngOnInit();
-  }
 
+  //request Asset Data
   override ngOnCommonInit(): void {
     super.ngOnCommonInit();
-    this.asset_post = this.commonService.getRequestAsset();
-    this.onRefresh();
-    this.dataasset = this.commonService.getassetaddress();
+    this.assetList = this.commonService.getRequestAsset();
     this.onRefresh();
   }
 
@@ -78,59 +60,34 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   async getRequestAsset() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    this.restService.getRequestAsset().subscribe(
-      (resp: any) => {
-        this.asset_post = resp;
-        this.cDataGrid.dataChanged();
-        this.cDataLoading = false;
-      },
+    this.assetList.length = 0;
+    await this.restService.getRequestAsset().subscribe((resp: any) => {
+      this.totalCount = parseInt(resp.totalCount!)
+      this.assetList = resp;
+      this.cDataGrid.dataChanged();
+      this.cDataLoading = false;
+    },
       (err) => {
-        console.log(err);
         this.cDataLoading = false;
+        console.log(err);
       }
     );
   }
-  //fetchdata
-  loading = true;
-  selected = [];
-  current = 1;
-
-  fetchData(clearSelection = true) {
-    this.loading = true;
-    this.asset_post = [this.getRequestAsset()];
-  }
-
   // create asset data
-  @ViewChild('createasset', { static: false })
-  CreateAsset!: CreateAssetComponent;
+  @ViewChild('createasset', { static: false }) CreateAsset!: CreateAssetComponent;
+  @ViewChild('assetdetail', { static: false }) DetailModal!: AssetDetailComponent;
+
+  getSelection(): asset_post | undefined {
+    return this.cSelection;
+  }
   addAsset(): void {
+    this.CreateAsset.callback = this;
     this.CreateAsset.open();
   }
 
-  // delete asset data
-  deleteAsset(id: any): void {
-    this.restService.deleteAssets(id).subscribe()
-    console.log(id)
-    this.asset_post.splice(id, 1)
-  }
-
-  // getSelection(): asset_post | undefined {
-  //   return this.cSelection;
-  // }
-
-  async getassetaddress(id :string) {
-    if (this.cDataLoading) return;
-    this.cDataLoading = false;
-    this.restService.getassetaddress(id).subscribe(
-      (resp: any) => {
-        this.dataasset = resp;
-        this.cDataGrid.dataChanged();
-        this.cDataLoading = false;
-      },
-      (err) => {
-        console.log(err);
-        this.cDataLoading = false;
-      }
-    );
+  detailasset(): void {
+    this.DetailModal.open();
   }
 }
+
+

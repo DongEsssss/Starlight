@@ -27,4 +27,5 @@ export class CommonCD extends ObjectLoader {
   item2?: string;
   item3?: string;
   item4?: string;
+  assetList?:Array<asset_post>;
 }

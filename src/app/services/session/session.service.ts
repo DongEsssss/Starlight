@@ -23,11 +23,10 @@ export class SessionService implements CanActivate {
   public auth?: string;
   public session?: User;
 
-
   constructor(private http: HttpClient) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canActivate(router: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     throw new Error('Method not implemented.');
   }
 
