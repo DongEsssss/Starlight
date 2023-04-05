@@ -11,6 +11,7 @@ import { InlineAlertComponent } from './inline-alert/inline-alert.component';
 import { DefaultComponent } from './default.component';
 import { HttpClient } from '@angular/common/http';
 import { CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR } from '../utils/shared.utils';
+import { Router } from '@angular/router';
 
 @Component({
   template: '',
@@ -25,6 +26,7 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     public session: SessionService,
     public dialog: DialogService,
     public http: HttpClient,
+    public router: Router,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -136,13 +138,13 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     if (this.modalForm == undefined) return false;
     var v = true;
 
-    for (var field of this.isEditable ? this.editForm : this.newForm) {
-      if (field.require && this.modalForm.controls[field.name!]?.value == undefined) {
-        v = false;
-      }
+    for(var field of this.isEditable?this.editForm:this.newForm){
+        if (field.require && this.modalForm.controls[field.name!]?.value == undefined) {
+            v = false;
+        }
     }
     return v;
-  }
+}
 
   //policy
   isCardView!: boolean;

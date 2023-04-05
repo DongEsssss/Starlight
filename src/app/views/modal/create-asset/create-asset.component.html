@@ -9,27 +9,27 @@
       <div class="clr-form-control select-form">
         <label class="required clr-control-label form-required">TYPE</label>
         <div class="clr-control-container">
-          <select class="toolbar-select" name="contenttype" [(ngModel)]="formData.type" required name="contenttype"
+          <select class="toolbar-select" name="contenttype" [(ngModel)]="formData.contentNM" required name="contenttype"
             id="contenttype" required>
-            <option selected>--select--</option>
-            <option value="json">Custom Datasource Config (Rest)</option>
+            <option selected disabled>--select--</option>
+            <option value="rest">Custom Datasource Config (Rest)</option>
             <option value="get">REST-API Endpoint (GET)</option>
           </select>
           <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
         </div>
       </div>
-      <div class="clr-form-control" *ngFor="let item of restForm" [hidden]="formData.type !== 'json'">
+      <div class="clr-form-control" *ngFor="let item of restForm" [hidden]="formData.contentNM !== 'rest'">
         <label class="required clr-control-label"
           [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
         <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
           <div class="clr-input-wrapper">
-            <input [type]="item.type" class="clr-input enrollment-input"
-              #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
-              [id]="item.name!" size="30" (input)='handleValidation(item.name! , false) '
-              (blur)='handleValidation(item.name!, true)' [readOnly]="item.readonly == true">
+            <input [type]="item.type" class="clr-input enrollment-input" #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true"  [required]="item.require">
             <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
-              Input Your 
+              Input Your
               <ng-template [ngIf]="item?.placeholder != undefined">
                 ( ex : {{item.placeholder}})
               </ng-template>
@@ -37,18 +37,18 @@
           </div>
         </div>
       </div>
-      <div class="clr-form-control" *ngFor="let item of getForm" [hidden]="formData.type !== 'get'">
+      <div class="clr-form-control" *ngFor="let item of getForm" [hidden]="formData.contentNM !== 'get'">
         <label class="required clr-control-label"
           [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
         <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
           <div class="clr-input-wrapper">
-            <input type="text" class="clr-input enrollment-input" required 
-              #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
-              [id]="item.name!" size="30" (input)='handleValidation(item.name! , false) '
-              (blur)='handleValidation(item.name!, true)' [readOnly]="item.readonly == true">
+            <input type="text" class="clr-input enrollment-input" required #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
             <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
-              Input Your 
+              Input Your
               <ng-template [ngIf]="item?.placeholder != undefined">
                 ( ex : {{item.placeholder}})
               </ng-template>
@@ -57,12 +57,12 @@
         </div>
       </div>
     </form>
-    <div class="modal-footer">
-      <div class="setbtn">
-        <span class="spinner spinner-inline loading-top" [hidden]="inProgress === false"> </span>
-        <button class="btn btn-outline" (click)="create(); modalForm.resetForm()">Create</button>
-        <button class="btn btn-warning-outline" (click)="close()">Close</button>
-      </div>
+  </div>
+  <div class="modal-footer">
+    <div class="setbtn">
+      <span class="spinner spinner-inline loading-top" [hidden]="inProgress === false"> </span>
+      <button type="button" id="save-button" class="btn btn-outline" (click)="create()" [disabled]="!isValid || inProgress">Create</button>
+      <button type="button" class="btn btn-warning-outline" (click)="close()">Close</button>
     </div>
   </div>
 </clr-modal>

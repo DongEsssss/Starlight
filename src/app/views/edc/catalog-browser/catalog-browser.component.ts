@@ -11,8 +11,5 @@ import {ClrDatagrid} from '@clr/angular';
 export class CatalogBrowserComponent extends DefaultComponent {
   cDataLoading: boolean = false;
   cSelection ?: any;
-  totalCount: number = 0;
-  page: number = 1;
-  pagenationSize = 99;
 
 }

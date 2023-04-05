@@ -20,13 +20,14 @@ import {
   FALSE_STR,
   TRUE_STR,
 } from '../utils/shared.utils';
-import { ClrModal } from '@clr/angular';
 
 @Component({
   template: '',
 })
 export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
-
+  open() {
+    throw new Error('Method not implemented.');
+  }
   onModalResponse(MODAL_RES_CLOSE: number, callbackData: any) {
 
   }
@@ -40,16 +41,19 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   message: string = 'loading :(';
 
   constructor(
+    public cd: ChangeDetectorRef,
     public restService: RestService,
     public commonService: CommonServiceService,
     public eventService: EventService,
     public session: SessionService,
     public dialog: DialogService,
     public el: ElementRef,
-    public route: ActivatedRoute,
-    public http: HttpClient,
+    public route : ActivatedRoute,
+    public http : HttpClient,
+    public messageservice : MessageService,
+    public router : Router,
     private cdr: ChangeDetectorRef
-  ) {
+    ){
   }
 
   ngAfterViewInit() {
@@ -95,9 +99,6 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
       this.return();
     }
   }
-  return() {
-    location.reload();
-  }
   mouseEnter(itemName: string) {
     if (itemName === 'card') {
       this.cardHover = true;
@@ -121,11 +122,7 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
       return this.listHover;
     }
   }
-  getPageSize(page: number, size: number, total: number): string {
-    return `${((page - 1) * size) + 1}  -  ${(page - 1) * size + size} of Total ${total}`;
-  }
-
-  onRefresh() {
+  return() {
 
   }
   //Fetch Data
@@ -136,10 +133,18 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   fetchData(clearSelection = true) {
     this.loading = true;
   }
-
-  //wizard
-  validationStateMap: any = {};
-  getValidationState(key: string): boolean {
-    return !this.validationStateMap[key];
+  onrefresh() {
+    location.reload();
   }
+
+  // getpagesize 
+  pagenationSize: number = 100;
+  page:number = 1;
+  totalCount: number = 0;
+
+
+  onRefresh() {
+    location.reload();
+  }
+  
 }

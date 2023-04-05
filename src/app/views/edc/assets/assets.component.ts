@@ -74,7 +74,7 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   @ViewChild('assetdetail', { static: false }) DetailModal!: AssetDetailComponent;
 
   getSelection(): asset_post | undefined {
-    return this.selected;
+    return this.cSelection;
   }
   addAsset(): void {
     this.CreateAsset.callback = this;

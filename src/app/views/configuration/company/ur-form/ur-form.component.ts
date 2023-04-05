@@ -14,10 +14,7 @@ export class UrFormComponent extends DefaultComponent implements OnInit {
 
   @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
   cDataLoading: boolean = false;
-  page: number = 1;
-  totalCount: number = 0;
   cSelection?: any;
-  pagenationSize = 99;
   currentFilteredType: number = 0; // all projects
   projectName: string = '';
   historyList: User[] = [];

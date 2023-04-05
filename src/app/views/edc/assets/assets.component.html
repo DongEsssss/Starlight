@@ -13,41 +13,63 @@
       <button type="submit" class="createbtn" (click)="addAsset()"></button>
     </div>
     <div class="cardgrid">
-      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
-        (mouseleave)="mouseLeave('list')">
-        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
-      </span>
       <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
         (mouseleave)="mouseLeave('card')">
         <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
       </span>
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+      </span>
       <span class="filter-divider"></span>
-      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="fetchData()"></clr-icon></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onrefresh()"></clr-icon></span>
     </div>
   </div>
 </div>
-<div class="data-area" *ngIf="isCardView">
-  <div class="dataset_title">
-    <div class="dataset_icon"></div>
-  </div>
-</div>
-<div class="data-area" *ngIf="!isCardView">
+<div *ngIf="!isCardView">
   <div class="data_table">
     <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()"
-      data-detail-view="true" [clrDgRowSelection]="true"  [(clrDgSingleSelected)]="cSelection">
+      data-detail-view="true" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *ngFor="let asset of assetList;  index as i" [clrDgItem]="asset" (click)="detailasset()">
-        <clr-dg-cell>{{i+1}}</clr-dg-cell>
-        <clr-dg-cell class="width30">{{asset.id}}</clr-dg-cell>
-        <clr-dg-cell class="width30">{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      <clr-dg-row *clrDgItems="let asset of assetList | filter : searchText  index as i" [clrDgItem]="asset"
+      [(clrDgSelected)]="asset.selected" (click)="detailasset()">
+        <clr-dg-cell>{{asset.id}}</clr-dg-cell>
+        <clr-dg-cell>{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
-          <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Assets per page</clr-dg-page-size>
           {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Assets
+          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Assets per page</clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
+  </div>
+</div>
+<div *ngIf="isCardView">
+  <div class="data-area">
+    <div class="dataset" *ngFor="let asset of assetList | filter:searchText">
+      <div class="clr-row">
+        <div class="clr-col-lg-6 clr-col-12">
+          <div class="card">
+            <h3 class="card-header">{{asset.id}}</h3>
+            <div class="card-block">
+              <div class="card-media-block">
+                <div class="card-media-description">
+                  <span class="card-media-title">{{asset.contentNM}}</span>
+                  <span class="card-media-text"> Owner: John Doe </span>
+                </div>
+              </div>
+              <div class="card-text">
+                ...
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-link">{{asset.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

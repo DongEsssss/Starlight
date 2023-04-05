@@ -23,23 +23,24 @@
       <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onrefresh()"></clr-icon></span>
     </div>
   </div>
-  <div class="data-area" *ngIf="!isCardView">
+  <div *ngIf="!isCardView">
     <div class="dataset_title">
-      <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getRequestPolicy()" data-detail-view="true"
-        [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
-        <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-        <clr-dg-row *ngFor="let policy of policy;  index as i" [clrDgItem]="policy">
-          <clr-dg-cell>{{policy.id}}</clr-dg-cell>
-          <clr-dg-cell>{{policy.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-        </clr-dg-row>
-        <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
-        <clr-dg-footer>
-          <clr-dg-pagination #pagination [clrDgPageSize]="10">
-            <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Policy per page</clr-dg-page-size>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
-          </clr-dg-pagination>
-        </clr-dg-footer>
-      </clr-datagrid>
+      <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestPolicy()"
+      data-detail-view="true" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+      <clr-dg-row *clrDgItems="let policy of policy | filter : searchText  index as i" [clrDgItem]="policy">
+        <clr-dg-cell>{{i+1}}</clr-dg-cell>
+        <clr-dg-cell>{{policy.id}}</clr-dg-cell>
+        <clr-dg-cell>{{policy.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
+          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Policy per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
     </div>
   </div>
   <div class="data-area" *ngIf="isCardView">
@@ -54,7 +55,7 @@
     <clr-wizard-button [type]="'finish'" (click)="create()">Create</clr-wizard-button>
     <clr-wizard-page>
       <ng-template clrPageTitle>Create New Policy</ng-template>
-      <form #formPageOne="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
+      <form #modalFrom="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
         <div class="clr-form-control" *ngFor="let item of isEditable?editForm:newForm">
           <label class="required clr-control-label"
             [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
@@ -77,23 +78,19 @@
         </div>
       </form>
     </clr-wizard-page>
-    <clr-wizard-page *ngFor="let policy of textform">
-      <ng-template clrPageTitle>{{policy.text}}</ng-template> <!-- mandatory -->
+    <!-- <clr-wizard-page *ngFor="let policy of textform">
+      <ng-template clrPageTitle>{{policy.text}}</ng-template> 
       <ng-template clrPageNavTitle>
         {{policy.text}}
       </ng-template>
-      <form #modalFrom="ngForm">
+      <form #modalFrom="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
         <section class="form-block">
-          <textarea (input)='handleValidation(policy.name! , false) ' (blur)='handleValidation(policy.name!, true)'
-            [ngModel]='getFormModel(policy.name!)' [name]="policy.name!" [id]="policy.name!"
-            class="textarea"></textarea>
+          <input type="text" class="clr-input enrollment-input" required [pattern]="policy.regex!"
+          [maxlength]="policy.max!" #usernameInput="ngModel" [name]="policy.name!"
+          [ngModel]="getFormModel(policy.name!)" [id]="policy.name!" size="30"
+          (input)='handleValidation(policy.name! , false) '
+          [readOnly]="policy.readonly == true">
         </section>
       </form>
-      <ng-container *ngIf="loading">
-        <p>Loading...</p>
-        <div class="progress">
-          <progress [value]="progress" max="100" [attr.data-displayval]="progress + '%'"></progress>
-        </div>
-      </ng-container>
-    </clr-wizard-page>
+    </clr-wizard-page> -->
   </clr-wizard>

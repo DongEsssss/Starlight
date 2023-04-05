@@ -79,13 +79,26 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
       { name: 'inherits_from', text: 'Inherits From', type: 'string' },
       { name: 'target', text: 'Target', type: 'string' },
     ];
-    this.formData = new policyList();
     this.textform = [
-      { name: 'permission', text: 'Permission', require: true, type: 'string' },
-      { name: 'prohibitions', text: 'Prohibitions', require: true, type: 'string' },
-      { name: 'extensible_properties', text: 'Extensible Properties', require: true, type: 'string' },
-      { name: 'obligation', text: 'Obligation', require: true, type: 'string' }
+      { name: 'permission', text: 'Permission', type: 'string' },
+      { name: 'prohibitions', text: 'Prohibitions', type: 'string' },
+      { name: 'extensible_properties', text: 'Extensible Properties', type: 'string' },
+      { name: 'obligation', text: 'Obligation', type: 'string' }
     ]
+    this.validationStateMap = {
+      "policy_id": true,
+      "type": true,
+      "assignee": true,
+      "assigner": true,
+      "inherits_from": true,
+      "target": true,
+      "permission": true,
+      "prohibitions": true,
+      "extensible_properties": true,
+      "obligation": true
+    };
+
+    this.formData = new policyList();
   }
 
   // datagrid
@@ -103,6 +116,7 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
 
   @ViewChild('cDataGrid', { static: true }) cDataGrid !: ClrDatagrid;
   columnDefs = [
+    { headerName: 'No', field : 'no'},
     { headerName: 'Policy ID', field: 'id' },
     { headerName: 'Create Date', field: 'createdAt' }
   ];
@@ -128,7 +142,6 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
       this.policy = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
-      console.log(resp)
     },
       (err) => {
         this.cDataLoading = false;
@@ -137,32 +150,81 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
     );
   }
 
+  override resetFormModel(): void {
+    super.resetFormModel();
+    this.inlineAlert.close();
+    this.formValueChanged = false;
+    this.formData = new policyList();
+  }
+
+  override resetFormState() {
+    this.validationStateMap = {
+      "policy_id": true,
+      "type": true,
+      "assignee": true,
+      "assigner": true,
+      "inherits_from": true,
+      "target": true,
+      "permission": true,
+      "prohibitions": true,
+      "extensible_properties": true,
+      "obligation": true
+    };
+  }
+  override open(asset?: policyList): void {
+    super.open();
+    this.resetFormState();
+  }
+
+  override close() {
+    super.close()
+  }
+
   create() {
-    let policyformdata = this.modalForm.value
-    this.onGoing = true
-    this.restService.createpolicy().subscribe((res: any) => {
-      this.onGoing = false;
-      if (res.code == HTTP_CODE_SUCCESS) {
-        if (this.callback != undefined) {
-          this.callback.onModalResponse(MODAL_RES_CLOSE, this.callbackData);
+    let tempData = this.modalForm.value
+    if (!tempData == null) {
+      tempData = null
+    }
+    let policyformdata = {
+      "policy": {
+        "uid": "956e172f-2de1-4501-8881-057a57fd0e69",
+        "permissions": [
+          {
+            "edctype": "dataspaceconnector:permission",
+            "uid": "test",
+            "target": "test-document1",
+            "action": {
+              "type": "USE",
+              "includedIn": "test",
+              "constraint": null
+            },
+            "assignee": "test",
+            "assigner": "test",
+            "constraints": [],
+            "duties": []
+          }
+        ],
+        "prohibitions": [],
+        "obligations": [],
+        "extensibleProperties": {},
+        "inheritsFrom": null,
+        "assigner": null,
+        "assignee": null,
+        "target": null,
+        "@type": {
+          "@policytype": "set"
         }
-        this.close();
-      } else {
-        this.inlineAlert.showInlineError('BAD REQUEST');
       }
+      
+    }
+    this.restService.createpolicy(policyformdata).subscribe((res: any) => {
+      this.onGoing = false;
     }, err => {
       this.onGoing = false;
-      this.inlineAlert.showInlineError('BAD! REQUEST');
+      this.inlineAlert.showInlineError('BAD REQUEST');
       console.log(err);
     });
-    if (!this.isValid) {
-      return;
-    }
-    // We have new user data
-    if (!policyformdata) {
-      return;
-    }
-    console.log(policyformdata)
+    this.modalForm.reset();
   }
 }
 

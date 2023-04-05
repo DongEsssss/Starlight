@@ -28,7 +28,7 @@ import { CancelComponent } from '../views/modal/cancel/cancel.component';
 
 /** edc-detail-modal */
 import { AssetDetailComponent } from '../views/edc-detail-modal/asset-detail/asset-detail.component';
-import { PolicyDetailComponent } from '../views/detail-modal/policy-detail/policy-detail.component';
+import { PolicyDetailComponent } from '../views/edc-detail-modal/policy-detail/policy-detail.component';
 
 /** configuration */
 import { SettingComponent } from '../views/configuration/setting/setting.component';

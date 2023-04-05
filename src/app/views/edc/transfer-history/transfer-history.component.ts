@@ -12,10 +12,7 @@ export class TransferHistoryComponent extends DefaultComponent implements OnInit
 
   @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
   cDataLoading: boolean = false;
-  page: number = 1;
-  totalCount: number = 0;
   cSelection?: any;
-  pagenationSize = 99;
   currentFilteredType: number = 0; // all projects
   projectName: string = '';
   historyList: transhistory[] = [];
@@ -40,19 +37,19 @@ export class TransferHistoryComponent extends DefaultComponent implements OnInit
   }
 
   async gettransfer() {
-    if (this.cDataLoading) return;
-    this.cDataLoading = false;
-    this.historyList.length = 0;
-    await this.restService.gettransfer().subscribe((resp: any) => {
-      this.totalCount = parseInt(resp.totalCount!)
-      this.historyList = resp;
-      this.cDataGrid.dataChanged();
-      this.cDataLoading = false;
-    },
-      (err) => {
-        this.cDataLoading = false;
-        console.log(err);
-      }
-    );
+    // if (this.cDataLoading) return;
+    // this.cDataLoading = false;
+    // this.historyList.length = 0;
+    // await this.restService.gettransfer().subscribe((resp: any) => {
+    //   this.totalCount = parseInt(resp.totalCount!)
+    //   this.historyList = resp;
+    //   this.cDataGrid.dataChanged();
+    //   this.cDataLoading = false;
+    // },
+    //   (err) => {
+    //     this.cDataLoading = false;
+    //     console.log(err);
+    //   }
+    // );
   }
 }

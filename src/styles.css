@@ -1,24 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-span,
-p,
-pre,
-h1,
-h2,
-h3,
-h4,
-h5,
-label,
-th,
-td,
-textarea,
-label {
-  color: #eee;
-}
-
 hr {
-  width: 100%;
+  width: 80%;
 }
-
 /* content-area css */
 .container_title {
   display: flex;
@@ -30,15 +12,12 @@ hr {
   font-size: 30px;
 }
 
-.title_icon,
-.dataset_icon,
-.modal_icon {
+.title_icon,.dataset_icon,.modal_icon {
   width: 50px;
   height: 50px;
 }
 
-.title_icon,
-.dataset_icon {
+.title_icon,.dataset_icon {
   background: url("src/static/images/EDClogo.png") 50% 50% no-repeat;
   background-size: contain;
 }
@@ -50,8 +29,7 @@ hr {
 }
 
 .search_input {
-  background: url("src/static/images/icon_search_white.svg") #eee no-repeat 5% 50%;
-  padding: 5px 0px;
+  background: url("src/static/images/icon_search_white.svg") #eee no-repeat 4% 50%;
   outline: none;
   border: none;
   text-indent: 40px;
@@ -60,30 +38,7 @@ hr {
   height: 45px;
 }
 
-.toolbar-select {
-  width: 100px;
-  height: 45px;
-  padding: 0px 10px;
-  margin-right: 10px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  background-color: #eee;
-  color: #131313;
-}
-
-.deletebtn {
-  width: 100%;
-  height: 100%;
-  color: #eee;
-  background-color: #ff0000;
-  border-radius: 5px;
-  outline: none;
-  border: none;
-}
-
-.createbtn,
-.searchbtn {
+.createbtn,.searchbtn {
   position: relative;
   top: 18px;
   width: 47px;
@@ -102,10 +57,7 @@ hr {
 }
 
 /* button */
-
-.createbtn:hover,
-.searchbtn:hover,
-.deletebtn:hover {
+.createbtn:hover,.searchbtn:hover,.deletebtn:hover {
   opacity: 0.7;
 }
 
@@ -123,11 +75,6 @@ button {
   color: #eee;
 }
 
-button :hover {
-  color: #eee;
-  opacity: 0.7;
-}
-
 .option-btn button {
   width: 40px;
   height: 40px;
@@ -135,48 +82,47 @@ button :hover {
   background-color: #333544;
 }
 
-.option-btn button clr-icon {
-  width: 30px;
-  height: 30px;
-  padding-right: -10px;
-}
-
 /*modal*/
-.enrollment {
-  width: 40px;
-  height: 40px;
-  background: url("static/images/icon_enrollment_white.svg") 50% 50% no-repeat;
-  background-size: contain;
-  margin-right: 10px;
-}
-
-.modal-title {
-  display: flex;
-  align-items: center;
-}
-
-.modal-title span {
-  font-size: 30px;
-}
-
 .modal-title clr-icon {
   width: 40px;
   height: 40px;
 }
 
+/*clr Tool*/
 .tool {
   display: flex;
   justify-content: space-between;
 }
-
-.data_table {
-  width: 100%;
+.cardgrid clr-icon {
+  width: 35px;
+  height: 35px;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+.refresh-btn clr-icon,
+.searchbtn clr-icon  {
+  width: 25px;
+  height: 25px;
 }
 
 /* datagrid */
-.datagrid{
-  height: 500px;
+.customgrid {
+  width: 100%;
+  height: 100%;
+  min-height: 675px;
+  padding: 5px;
+  border-radius: 15px;
+  background-color: #333544;
 }
+
+.customgrid .datagrid {
+  border-width: 0px;
+  border-color: #EEEEEE;
+  margin-top: 0px;
+}
+
+/*.customgrid .datagrid-row,
+.customgrid .datagrid-row-scrollable,*/
 .customgrid .datagrid-placeholder-container {
   background-color: #333544;
 }
@@ -185,7 +131,7 @@ button :hover {
   background-color: #333544;
 }
 
-.customgrid .datagrid-row {
+.customgrid .datagrid-row{
   background-color: #333544;
 }
 
@@ -194,14 +140,12 @@ button :hover {
   background-color: #324f62 !important;
 }
 
-
 .customgrid .datagrid .datagrid-column-title {
   display: flex;
   justify-content: center;
   color: #EEEEEE;
   font-size: 14px;
 }
-
 
 .customgrid .datagrid .datagrid-column,
 .datagrid .datagrid-cell {
@@ -222,6 +166,7 @@ button :hover {
   border-top: 1px solid;
   font-size: 16px;
   padding: 0.6rem;
+
 }
 
 .customgrid .datagrid-table .datagrid-cell:focus {
@@ -232,7 +177,7 @@ button :hover {
 .customgrid .datagrid-spinner {
   width: 100%;
   height: 100%;
-  top: 0px;
+  top:0px;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -251,42 +196,9 @@ button :hover {
   background-color: transparent;
 }
 
-.modal-dialog.modal-xl {
-  width: 100rem;
-  scale: 80%;
-  max-width: none;
-}
-
-.modal-dialog .modal-title-icon {
-  height: 35px;
-  width: 35px;
-}
-
-.modal-dialog .modal-title {
-  position: relative;
-  top: 5px;
-  margin-left: 5px;
-  font-size: 25px;
-  color: #eeeeee;
+/*data area*/
+.data-area{
   display: flex;
-  align-items: center;
-
-}
-
-
-.searchbtn clr-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.cardgrid clr-icon {
-  width: 35px;
-  height: 35px;
-  margin-top: 20px;
-  margin-right: 5px;
-}
-
-.refresh-btn clr-icon {
-  width: 25px;
-  height: 25px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
