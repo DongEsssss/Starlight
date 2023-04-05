@@ -6,6 +6,7 @@ import { CreateAssetComponent } from '../../modal/create-asset/create-asset.comp
 import { AssetDetailComponent } from '../../edc-detail-modal/asset-detail/asset-detail.component';
 import { objectCopy } from 'src/app/utils/shared.utils';
 
+
 @Component({
   selector: 'app-assets',
   templateUrl: './assets.component.html',
@@ -17,16 +18,10 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   cDataLoading: boolean = false;
   assetList: asset_post[] = [];
   cSelection: any;
-  page?: number;
-  assets: asset_post[] = [];
-  totalCount: number = 0 ;
-
-
-  /** datagrid */
+    /** datagrid */
   columnDefs = [
-    { headerName: 'No' },
-    { headerName: 'ID' , field :'id'},
-    { headerName: 'Create Date', field : 'create' },
+    { headerName: 'ID' },
+    { headerName: 'Create Date' }
   ];
 
   defaultColDef = {
@@ -40,6 +35,7 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
     flex: 1,
     minWidth: 100,
   };
+
 
   getField(asset: asset_post, key: any) {
     return asset[key as keyof asset_post];
@@ -60,12 +56,11 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   async getRequestAsset() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    this.assetList.length = 0;
     await this.restService.getRequestAsset().subscribe((resp: any) => {
-      this.totalCount = parseInt(resp.totalCount!)
       this.assetList = resp;
-      this.cDataGrid.dataChanged();
+      this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
+      console.log(resp)
     },
       (err) => {
         this.cDataLoading = false;
@@ -73,20 +68,30 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
       }
     );
   }
+
   // create asset data
   @ViewChild('createasset', { static: false }) CreateAsset!: CreateAssetComponent;
   @ViewChild('assetdetail', { static: false }) DetailModal!: AssetDetailComponent;
 
   getSelection(): asset_post | undefined {
-    return this.cSelection;
+    return this.selected;
   }
   addAsset(): void {
     this.CreateAsset.callback = this;
-    this.CreateAsset.open();
+    this.CreateAsset.open(undefined);
   }
 
   detailasset(): void {
-    this.DetailModal.open();
+    let selectionAsset = this.getSelection();
+    if(selectionAsset === undefined){
+      this.dialog.warning({
+        title: 'None',
+        content: 'None'
+      });
+    }else{
+      this.DetailModal.callback = this;
+      this.DetailModal.open();
+    }
   }
 }
 
