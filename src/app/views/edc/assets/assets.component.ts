@@ -1,11 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { asset_post } from 'src/app/models/asset_post';
 import { ClrDatagrid } from '@clr/angular';
 import { CreateAssetComponent } from '../../modal/create-asset/create-asset.component';
 import { AssetDetailComponent } from '../../edc-detail-modal/asset-detail/asset-detail.component';
-import { objectCopy } from 'src/app/utils/shared.utils';
-
 
 @Component({
   selector: 'app-assets',
@@ -14,14 +12,18 @@ import { objectCopy } from 'src/app/utils/shared.utils';
 })
 export class AssetsComponent extends DefaultComponent implements OnInit {
   @ViewChild('cDataGrid') cDataGrid!: ClrDatagrid;
-  searchText!: any;
   cDataLoading: boolean = false;
   assetList: asset_post[] = [];
   cSelection: any;
-    /** datagrid */
+  keyword?: string;
+  searchText : string = '';
+
+  /** search */
+  /** datagrid */
   columnDefs = [
+    { headerName: 'No' },
     { headerName: 'ID' },
-    { headerName: 'Create Date' }
+    { headerName: 'Create Date'}
   ];
 
   defaultColDef = {
@@ -74,24 +76,41 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   @ViewChild('assetdetail', { static: false }) DetailModal!: AssetDetailComponent;
 
   getSelection(): asset_post | undefined {
-    return this.cSelection;
+    return this.cSelection
   }
+
   addAsset(): void {
-    this.CreateAsset.callback = this;
     this.CreateAsset.open(undefined);
   }
 
   detailasset(): void {
-    let selectionAsset = this.getSelection();
-    if(selectionAsset === undefined){
-      this.dialog.warning({
-        title: 'None',
-        content: 'None'
-      });
-    }else{
-      this.DetailModal.callback = this;
-      this.DetailModal.open();
-    }
+    let selectrow = this.getSelection()
+    console.log(selectrow)
+    this.restService.getasset(selectrow).subscribe({
+      next: (resp) => {
+        this.assetList = resp;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => console.info('complete')
+    });
+    this.DetailModal.callback = this;
+    this.DetailModal.callbackData = selectrow
+    this.DetailModal.open();
+  }
+  /** Card */
+  deleteAsset(id: any):void{
+    this.restService.deleteAssets(id).subscribe({
+      next: () => {
+        this.getRequestAsset();
+        console.log(id)
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => console.info(`${id} Delete Complete`)
+    });
   }
 }
 

@@ -70,13 +70,19 @@ export class RestService {
     .pipe(catchError(this.handleError));
   }
 
-  // getassetaddress(id : any) : Observable<any>{
-  //   const url = API_URL + URL_GET_ASSETS  + id + URL_GET_ASSETS_DATAADDRESS;
-  //   return this.http.get<asset_post[]>(url, httpOptions)
-  //   .pipe(catchError(this.handleError))
-  // }
+  getasset(id : any) : Observable<any>{
+    const url = API_URL + URL_GET_ASSETS + `${id}`;
+    return this.http.get<asset_post>(url, httpOptions)
+    .pipe(catchError(this.handleError))
+  }
 
-  deleteAssets(id :any): Observable<any> {
+  getassetaddress(id : any) : Observable<any>{
+    const url = API_URL + URL_GET_ASSETS  + id + URL_GET_ASSETS_DATAADDRESS;
+    return this.http.get<asset_post>(url, httpOptions)
+    .pipe(catchError(this.handleError))
+  }
+
+  deleteAssets(id : any): Observable<any> {
     const url = API_URL + URL_ASSET_DELETE  + id;
     return this.http.delete<asset_post>(url, httpOptions)
     .pipe(catchError(this.handleError));

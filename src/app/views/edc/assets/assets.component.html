@@ -9,7 +9,7 @@
   <div class="tool">
     <div class="search-tool">
       <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
-        rel="search" />
+        rel="search"/>
       <button type="submit" class="createbtn" (click)="addAsset()"></button>
     </div>
     <div class="cardgrid">
@@ -22,7 +22,7 @@
         <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
       </span>
       <span class="filter-divider"></span>
-      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onrefresh()"></clr-icon></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="fetchData()"></clr-icon></span>
     </div>
   </div>
 </div>
@@ -32,7 +32,8 @@
       data-detail-view="true" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
       <clr-dg-row *clrDgItems="let asset of assetList | filter : searchText  index as i" [clrDgItem]="asset"
-      [(clrDgSelected)]="asset.selected" (click)="detailasset()">
+        (click)="detailasset()" [id]="asset.id">
+        <clr-dg-cell>{{i+1}}</clr-dg-cell>
         <clr-dg-cell>{{asset.id}}</clr-dg-cell>
         <clr-dg-cell>{{asset.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
       </clr-dg-row>
@@ -48,24 +49,21 @@
 </div>
 <div *ngIf="isCardView">
   <div class="data-area">
-    <div class="dataset" *ngFor="let asset of assetList | filter:searchText">
+    <div class="dataset">
       <div class="clr-row">
         <div class="clr-col-lg-6 clr-col-12">
-          <div class="card">
+          <div class="card" *ngFor="let asset of assetList | filter:searchText">
             <h3 class="card-header">{{asset.id}}</h3>
             <div class="card-block">
               <div class="card-media-block">
-                <div class="card-media-description">
-                  <span class="card-media-title">{{asset.contentNM}}</span>
-                  <span class="card-media-text"> Owner: John Doe </span>
+                <div class="card-text">
+
                 </div>
-              </div>
-              <div class="card-text">
-                ...
               </div>
             </div>
             <div class="card-footer">
               <button class="btn btn-sm btn-link">{{asset.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteAsset(asset.id)">Delete</button>
             </div>
           </div>
         </div>

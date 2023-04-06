@@ -27,7 +27,6 @@ export class AssetDetailComponent extends DefaultFormComponent<asset_post> imple
       this.assetList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
-      console.log(resp)
     },
       (err) => {
         this.cDataLoading = false;

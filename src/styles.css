@@ -199,6 +199,5 @@ button {
 /*data area*/
 .data-area{
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }

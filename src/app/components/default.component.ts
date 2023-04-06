@@ -133,7 +133,7 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   fetchData(clearSelection = true) {
     this.loading = true;
   }
-  onrefresh() {
+  refetech() {
     location.reload();
   }
 

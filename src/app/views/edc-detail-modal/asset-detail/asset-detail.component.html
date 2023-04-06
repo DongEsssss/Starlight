@@ -1,16 +1,16 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
     <div class="modal-title" *ngFor="let asset of assetList">
-      {{asset.asset?.properties['asset:prop:id']}}
+      {{asset.id}}
     </div>
     <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
     <div class="modal-body body-format">
       <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()"
       data-detail-view="true" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *ngFor="let asset of assetList" [clrDgItem]="asset">
-        <clr-dg-cell>{{asset.dataaddress?.properties?.type}}</clr-dg-cell>
+      <clr-dg-row *clrDgItems="let asset of assetList" [clrDgItem]="asset">
+        <!-- <clr-dg-cell>{{asset.asset?.properties['asset:prop:id']}}</clr-dg-cell>
         <clr-dg-cell>{{asset.dataaddress?.properties?.filename}}</clr-dg-cell>
-        <clr-dg-cell>{{asset.dataaddress?.properties?.path}}</clr-dg-cell>
+        <clr-dg-cell>{{asset.dataaddress?.properties?.path}}</clr-dg-cell> -->
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
       <clr-dg-footer>
