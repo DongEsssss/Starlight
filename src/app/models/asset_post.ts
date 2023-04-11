@@ -24,3 +24,12 @@ export class contentList extends ObjectLoader {
   contentNM?: string;
   assetList?: Array<asset_post>;
 }
+
+
+export class asset_type extends ObjectLoader{
+  properties: {
+      path: string
+      filename: string
+      type: string
+  }
+}

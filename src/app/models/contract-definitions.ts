@@ -1,15 +1,17 @@
-export class definitions {
-  created_at !: string
-  contract_definition_id !: string
-  access_policy_id !: string
-  contract_policy_id !: string
-  selector_expression !: JSON
-  validity !: string
+import { ObjectLoader } from "../utils/objectloader"
+
+export class definitions extends ObjectLoader {
+  createdAt : number;
+  validity: number;
+  id: string
+  accessPolicyId: string
+  contractPolicyId: string
+  criteria: [
+    {
+      operandLeft: string
+      operandRight: string
+      operator: string
+    }
+  ]
 }
 
-export const de = [{
-  id: "test",
-  assetPolicyId: "test",
-  contractPolicyId: "test",
-  asset: "test"
-}]

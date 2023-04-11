@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
-import { asset_post } from 'src/app/models/asset_post';
+import { asset_post, asset_type } from 'src/app/models/asset_post';
 import { ClrDatagrid } from '@clr/angular';
 import { CreateAssetComponent } from '../../modal/create-asset/create-asset.component';
 import { AssetDetailComponent } from '../../edc-detail-modal/asset-detail/asset-detail.component';
+import { MODAL_RES_COMMON_SELECT, objectCopy } from 'src/app/utils/shared.utils';
 
 @Component({
   selector: 'app-assets',
@@ -11,14 +12,16 @@ import { AssetDetailComponent } from '../../edc-detail-modal/asset-detail/asset-
   styleUrls: ['./assets.component.css'],
 })
 export class AssetsComponent extends DefaultComponent implements OnInit {
+
   @ViewChild('cDataGrid') cDataGrid!: ClrDatagrid;
   cDataLoading: boolean = false;
-  assetList: asset_post[] = [];
+  assetList : asset_post[] = [];
+  assettype : asset_type[] = [];
   cSelection: any;
   keyword?: string;
   searchText : string = '';
+  id: 'test11';
 
-  /** search */
   /** datagrid */
   columnDefs = [
     { headerName: 'No' },
@@ -38,6 +41,10 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
     minWidth: 100,
   };
 
+  @Input() set setMultiSelect(enable:boolean){
+    this.isMultipleSelect = enable;
+  }
+  isMultipleSelect:boolean = true;
 
   getField(asset: asset_post, key: any) {
     return asset[key as keyof asset_post];
@@ -75,41 +82,65 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   @ViewChild('createasset', { static: false }) CreateAsset!: CreateAssetComponent;
   @ViewChild('assetdetail', { static: false }) DetailModal!: AssetDetailComponent;
 
-  getSelection(): asset_post | undefined {
-    return this.cSelection
-  }
 
   addAsset(): void {
-    this.CreateAsset.open(undefined);
+    this.CreateAsset.open();
   }
 
-  detailasset(): void {
-    let selectrow = this.getSelection()
-    console.log(selectrow)
-    this.restService.getasset(selectrow).subscribe({
-      next: (resp) => {
-        this.assetList = resp;
-      },
-      error: (e) => {
-        console.log(e);
-      },
-      complete: () => console.info('complete')
-    });
-    this.DetailModal.callback = this;
-    this.DetailModal.callbackData = selectrow
-    this.DetailModal.open();
-  }
+
   /** Card */
   deleteAsset(id: any):void{
     this.restService.deleteAssets(id).subscribe({
       next: () => {
         this.getRequestAsset();
-        console.log(id)
       },
       error: (e) => {
         console.log(e);
       },
-      complete: () => console.info(`${id} Delete Complete`)
+      complete: () => console.info(`Asset ID : ${id} Delete Complete`)
+    });
+  }
+
+  /** detail */
+  onSelection(){
+    if(this.callback != undefined){
+      this.callback.onModalResponse(MODAL_RES_COMMON_SELECT, this.isMultipleSelect?this.cSelection:this.cSelection);
+      this.close();
+    }
+  }
+  detailasset(id): void {
+    this.DetailModal.callback =  this;
+    this.DetailModal.open()
+    console.log(id)
+  }
+
+  //getassetaddress
+  async getassetaddress(id : any){
+    if (this.cDataLoading) return;
+    this.cDataLoading = false;
+    await this.restService.getassetaddress(id).subscribe((resp: any) => {
+      this.assetList = resp;
+      this.totalCount = parseInt(resp.totalCount!)
+      this.cDataLoading = false;
+      console.log(resp)
+    },
+      (err) => {
+        this.cDataLoading = false;
+        console.log(err);
+      }
+    );
+  }
+
+  //delete
+  delete(id: any):void{
+    this.restService.deleteAssets(id).subscribe({
+      next: () => {
+        this.getRequestAsset();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => console.info(`Asset ID : ${id} Delete Complete`)
     });
   }
 }

@@ -4,7 +4,6 @@ import { DefaultFormComponent } from 'src/app/components/default.form.component'
 import { FormField, } from 'src/app/models/common';
 import { policyList } from 'src/app/models/policies';
 import { ClrDatagrid } from '@clr/angular';
-import { HTTP_CODE_SUCCESS, MODAL_RES_CLOSE } from 'src/app/utils/shared.utils';
 
 @Component({
   selector: 'app-policies',
@@ -19,6 +18,7 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
   mdOpen: boolean = false;
   untouched: boolean = true;
   progress: number = 0;
+  actionForm: Array<FormField> = [];
   textform: Array<FormField> = [];
   policy: policyList[] = [];
   cSelection: any;
@@ -42,7 +42,6 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
     this.wizard.reset();
     this.model.id = "";
     this.model.type = "";
-
     this.progress = 0;
   }
 
@@ -72,30 +71,33 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
   override ngOnInit(): void {
     super.ngOnInit();
     this.newForm = [
-      { name: 'policy_id', text: 'PolicyID', require: true, type: 'string', placeholder: "test-document" },
-      { name: 'type', text: 'type', require: true, type: 'string', placeholder: "rest or get" },
+      { name: 'id', text: 'PolicyID', require: true, type: 'string', placeholder: "test-document" },
+      { name: 'uid', text: 'UID', type: 'string', require: true, placeholder: "956e172f-2de1-4501-8881-057a57fd0e69" },
+      { name: 'target', text: 'Target', type: 'string', require: true, placeholder: "test-document" },
+      { name: 'edctype', text: 'edctype', type: 'string' ,require : true, placeholder : "dataspaceconnector:permission"},
       { name: 'assignee', text: 'Assignee', type: 'string' },
       { name: 'assigner', text: 'Assigner', type: 'string' },
-      { name: 'inherits_from', text: 'Inherits From', type: 'string' },
-      { name: 'target', text: 'Target', type: 'string' },
+    ];
+    this.actionForm = [
+      { name: 'type', text: 'type', require: true, type: 'string', placeholder: "USE" },
+      { name: 'includedIn', text: 'IncludeIn', type: 'string', require: true, placeholder: "test" },
+      { name: 'Constraint', text: 'Constraint', type: 'string', },
     ];
     this.textform = [
-      { name: 'permission', text: 'Permission', type: 'string' },
-      { name: 'prohibitions', text: 'Prohibitions', type: 'string' },
-      { name: 'extensible_properties', text: 'Extensible Properties', type: 'string' },
-      { name: 'obligation', text: 'Obligation', type: 'string' }
+      { name: 'constraints', text: 'Constraints', type: 'string' },
+      { name: 'duties', text: 'Duties', type: 'string' },
     ]
     this.validationStateMap = {
-      "policy_id": true,
+      "id": true,
+      "edctype": true,
+      "uid": true,
       "type": true,
+      "target": true,
       "assignee": true,
       "assigner": true,
-      "inherits_from": true,
-      "target": true,
-      "permission": true,
-      "prohibitions": true,
-      "extensible_properties": true,
-      "obligation": true
+      "constraint": true,
+      "duties": true,
+      "Constraint" : true
     };
 
     this.formData = new policyList();
@@ -116,9 +118,9 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
 
   @ViewChild('cDataGrid', { static: true }) cDataGrid !: ClrDatagrid;
   columnDefs = [
-    { headerName: 'No', field : 'no'},
-    { headerName: 'Policy ID', field: 'id' },
-    { headerName: 'Create Date', field: 'createdAt' }
+    { headerName: 'No'},
+    { headerName: 'Policy ID'},
+    { headerName: 'Create Date'}
   ];
 
   getField(policy: policyList, key: any) {
@@ -129,19 +131,14 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
     super.ngOnCommonInit();
     this.onRefresh();
   }
-  onRefresh(): void {
-    this.page = 1
-    this.getRequestPolicy();
-  }
-
   async getRequestPolicy() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    this.policy.length = 0;
     await this.restService.getRequestPolicy().subscribe((resp: any) => {
       this.policy = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
+      console.log(resp)
     },
       (err) => {
         this.cDataLoading = false;
@@ -159,49 +156,42 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
 
   override resetFormState() {
     this.validationStateMap = {
-      "policy_id": true,
+      "id": true,
+      "edctype": true,
+      "uid": true,
       "type": true,
+      "target": true,
       "assignee": true,
       "assigner": true,
-      "inherits_from": true,
-      "target": true,
-      "permission": true,
-      "prohibitions": true,
-      "extensible_properties": true,
-      "obligation": true
+      "constraints": true,
+      "duties": true,
+      "constraint" : true
     };
-  }
-  override open(asset?: policyList): void {
-    super.open();
-    this.resetFormState();
-  }
-
-  override close() {
-    super.close()
   }
 
   create() {
-    let tempData = this.modalForm.value
+    let tempData = this.modalForm.value;
     if (!tempData == null) {
       tempData = null
     }
     let policyformdata = {
+      "id": tempData.id,
       "policy": {
-        "uid": "956e172f-2de1-4501-8881-057a57fd0e69",
+        "uid": tempData.uid,
         "permissions": [
           {
             "edctype": "dataspaceconnector:permission",
-            "uid": "test",
-            "target": "test-document1",
+            "uid": tempData.uid,
+            "target": tempData.target,
             "action": {
-              "type": "USE",
-              "includedIn": "test",
-              "constraint": null
+              "type": tempData.type,
+              "includedIn": tempData.includedIn,
+              "Constraint": tempData.constraint
             },
-            "assignee": "test",
-            "assigner": "test",
-            "constraints": [],
-            "duties": []
+            "assignee": tempData.assignee,
+            "assigner": tempData.assigner,
+            "constraints": tempData.constraints,
+            "duties": tempData.duties
           }
         ],
         "prohibitions": [],
@@ -215,16 +205,36 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
           "@policytype": "set"
         }
       }
-      
-    }
+    }  
     this.restService.createpolicy(policyformdata).subscribe((res: any) => {
       this.onGoing = false;
+      this.close()
+      this.onrefresh()
     }, err => {
       this.onGoing = false;
       this.inlineAlert.showInlineError('BAD REQUEST');
       console.log(err);
     });
     this.modalForm.reset();
+    if (!this.isValid) {
+      return;
+    }
+    // We have new user data
+    if (!policyformdata) {
+      return;
+    }
+  }
+  //delete
+  delete(id){
+    this.restService.deletepolicy(id).subscribe({
+      next: () => {
+        this.getRequestPolicy();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => console.info(`Policy ID : ${id} Delete Complete`)
+    });
   }
 }
 

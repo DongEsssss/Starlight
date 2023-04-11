@@ -1,3 +1,4 @@
+label,span,p,textarea,h1,h2,h3,h4,h5,th,td,title,input{color: white;}
 hr {
   width: 80%;
 }
@@ -36,6 +37,7 @@ hr {
   width: 400px;
   border-radius: 5px;
   height: 45px;
+  border: 2px black solid;
 }
 
 .createbtn,.searchbtn {
@@ -63,7 +65,6 @@ hr {
 
 .setbtn {
   margin-top: 20px;
-  display: flex;
   justify-content: end;
   color: #eee;
 }
@@ -121,6 +122,10 @@ button {
   margin-top: 0px;
 }
 
+.card-footer{
+  display: flex;
+  justify-content:space-between;
+}
 /*.customgrid .datagrid-row,
 .customgrid .datagrid-row-scrollable,*/
 .customgrid .datagrid-placeholder-container {
@@ -197,7 +202,16 @@ button {
 }
 
 /*data area*/
-.data-area{
+.dataarea{
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  margin-top: 0px;
+}
+/* card table */
+.table{
+  border-radius: 5px;
+}
+th, td{
+  background-color: #333543;
 }

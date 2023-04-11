@@ -1,12 +1,6 @@
-.card {
-  min-width: 280px;
+.card{
+  width: 49%;
 }
-
-.id-list {
-  display: flex;
-}
-
-span {
-  margin-left: 10px;
-  margin-right: 10px;
+.table{
+  margin-top: 5px;
 }

@@ -4,14 +4,13 @@ import {Observable} from "rxjs";
 import {FormField} from "../models/common";
 import {DefaultComponent} from "./default.component";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import { DefaultFormComponent } from "./default.form.component";
 
 @Component({
   template: ''
 })
 
 export class DefaultModalComponent<T> implements OnInit, OnDestroy {
-
-
   @ViewChild("modalFrom", {static: true})
   modalForm!: NgForm;
   parentComponent?: DefaultComponent;
@@ -46,6 +45,4 @@ export class DefaultModalComponent<T> implements OnInit, OnDestroy {
   close(): void {
     this.opened = false;
   }
-
-
 }

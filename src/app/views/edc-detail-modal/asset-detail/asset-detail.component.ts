@@ -8,30 +8,47 @@ import { asset_post } from 'src/app/models/asset_post';
   styleUrls: ['./asset-detail.component.css'],
 })
 export class AssetDetailComponent extends DefaultFormComponent<asset_post> implements OnInit {
-  cSelection : any;
-  @Input() viewMode = false;
-  cDataLoading: boolean;
-  assetList : asset_post[] = []
-  totalCount : number  = 0;
+  assetList : asset_post[] =[];
+  totalCount : number = 0;
+  columnDefs = [
+    { headerName: 'Content Type' , field: 'type'},
+    { headerName: 'Filename' , field: 'filename'},
+    { headerName: 'Path' , field: 'path'},
+  ];
+  cDataLoading: any;
 
-  columnDefs=[
-    {header : `type`, headerName : 'Content Type'},
-    {header : `filename`, headerName : 'FileName'},
-    {header : `path`, headerName : 'Path'},
-  ]
-
-  async getRequestAsset() {
-    if (this.cDataLoading) return;
-    this.cDataLoading = false;
-    await this.restService.getRequestAsset().subscribe((resp: any) => {
-      this.assetList = resp;
-      this.totalCount = parseInt(resp.totalCount!)
-      this.cDataLoading = false;
-    },
-      (err) => {
-        this.cDataLoading = false;
-        console.log(err);
-      }
-    );
+  getField(asset:asset_post, key:string){
+    return asset[key as keyof asset_post];
   }
+
+  // async getassetaddress(){
+  //   let id;
+  //   console.log(id)
+  //   if (this.cDataLoading) return;
+  //   this.cDataLoading = false;
+  //   this.assetList.length = 0;
+  //   await this.restService.getassetaddress(id).subscribe((resp: any) => {
+  //     this.assetList = resp;
+  //     this.totalCount = parseInt(resp.totalCount!)
+  //     this.cDataLoading = false;
+  //     console.log(resp)
+  //   },
+  //     (err) => {
+  //       this.cDataLoading = false;
+  //       console.log(err);
+  //     }
+  //   );
+  // }
+
+  // deleteAsset(id : any){
+  //   this.restService.deleteAssets(id).subscribe({
+  //     next: () => {
+  //       this.getassetaddress();
+  //     },
+  //     error: (e) => {
+  //       console.log(e);
+  //     },
+  //     complete: () => console.info(`Asset ID : ${id} Delete Complete`)
+  //   });
+  // }
 }

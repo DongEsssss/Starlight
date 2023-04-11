@@ -1,16 +1,21 @@
 .card {
   margin-left: 0px;
-  min-width: 455px;
+  width: 23.5%;
 }
-.textarea {
+textarea {
   margin-top: -20px;
   width: 510px;
-  height: 340px;
-  color: black;
+  min-height: 340px;
+  color: white;
   background: #eee;
   resize: none;
 }
 .enrollment-input label{
-  margin-top: 80px;
   width: 350px;
+}  
+.expression{
+  margin-top: 10px;
+}
+h3{
+  margin-bottom: 10px;
 }

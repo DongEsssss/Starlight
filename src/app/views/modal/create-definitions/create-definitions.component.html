@@ -1,58 +1,37 @@
-<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="false" [clrModalSize]="'m'">
   <div class="modal-title">
-    Create New Contract Definition
+    <clr-icon shape="info"></clr-icon>
+    Create New Asset
   </div>
   <div class="modal-body body-format">
-    <form clrForm clrLayout="vertical" class="clr-form clr-form-Compact">
-      <clr-input-container>
-        <label>ID*</label>
-        <input clrInput name="id" required type="text" id="id" placeholder="Input Definition ID" [(ngModel)]="dp"/>
-        <clr-control-error>This field is required!</clr-control-error>
-      </clr-input-container>
-
-      <clr-select-container>
-        <label>Access Policy*</label>
-        <select clrSelect name="access" class="type-select" id="scanner-authorization" [(ngModel)]="ap"
-                required>
-          <option value="time">Time-Period-Restricted</option>
-          <option value="usage">Connector-Restricted-Usage</option>
-        </select>
-        <clr-control-error>You must select Access option</clr-control-error>
-      </clr-select-container>
-
-      <clr-select-container>
-        <label>Contract Policy*</label>
-        <select clrSelect name="contract" class="type-select" id="scanner-authorization" [(ngModel)]="cp"
-                required>
-          <option value="time">Time-Period-Restricted</option>
-          <option value="usage">Connector-Restricted-Usage</option>
-        </select>
-        <clr-control-error>You must select Policy option</clr-control-error>
-      </clr-select-container>
-
-      <div class="fromto">
-        <clr-date-container>
-          <label>Start Date</label>
-          <input type="date" name="date" [(ngModel)]="startdate" clrDate required>
-        </clr-date-container>
-        <span>ㅡ </span>
-        <clr-date-container>
-          <label>End Date</label>
-          <input type="date" name="date" [(ngModel)]="enddate" clrDate required>
-        </clr-date-container>
+    <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
+    <form #modalFrom="ngForm" class="clr-form clr-form-horizontal" >
+      <div class="clr-form-control" *ngFor="let item of newForm">
+        <label class="required clr-control-label"
+          [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
+            [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+            (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+            [readOnly]="item.readonly == true" [required]="item.require">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+              Input Your {{item.text}}
+              <ng-template [ngIf]="item?.placeholder !== undefined">
+                ( ex : {{item.placeholder}})
+              </ng-template>
+            </clr-control-error>
+          </div>
+        </div>
       </div>
-
-      <clr-textarea-container>
-        <label>Selector_Expression</label>
-        <textarea clrTextarea [(ngModel)]="description" name="expression"
-                  placeholder="Put In Your Description (Ex Json..)" required></textarea>
-      </clr-textarea-container>
     </form>
   </div>
   <div class="modal-footer">
     <div class="setbtn">
-      <button class="btn btn-outline">Create</button>
-      <button class="btn btn-warning-outline" (click)="close()">Cancel</button>
+      <span class="spinner spinner-inline loading-top" [hidden]="inProgress === false"> </span>
+      <button type="button" id="save-button" class="btn btn-outline" (click)="create()">Create</button>
+      <button type="button" class="btn btn-warning-outline" (click)="close()">Close</button>
     </div>
   </div>
 </clr-modal>

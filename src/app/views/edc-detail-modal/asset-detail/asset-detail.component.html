@@ -1,24 +1,15 @@
-<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
-    <div class="modal-title" *ngFor="let asset of assetList">
-      {{asset.id}}
+<!-- <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
+    <div class="modal-title" *ngIf="assetList">
+     <h3>header(asset:prop:id)</h3> 
     </div>
-    <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
-    <div class="modal-body body-format">
-      <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" (clrDgRefresh)="getRequestAsset()"
-      data-detail-view="true" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getassetaddress()">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let asset of assetList" [clrDgItem]="asset">
-        <!-- <clr-dg-cell>{{asset.asset?.properties['asset:prop:id']}}</clr-dg-cell>
-        <clr-dg-cell>{{asset.dataaddress?.properties?.filename}}</clr-dg-cell>
-        <clr-dg-cell>{{asset.dataaddress?.properties?.path}}</clr-dg-cell> -->
+      <clr-dg-row *clrDgItems="let asset of assetList" [clrDgItem]="asset" >
+        <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell>
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
-      <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="10">
-          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Assets
-          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Assets per page</clr-dg-page-size>
-        </clr-dg-pagination>
-      </clr-dg-footer>
     </clr-datagrid>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-danger" (click)="deleteAsset(assetList)">Delete</button>
     </div>
-</clr-modal>
+</clr-modal> -->

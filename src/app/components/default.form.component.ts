@@ -11,7 +11,7 @@ import { InlineAlertComponent } from './inline-alert/inline-alert.component';
 import { DefaultComponent } from './default.component';
 import { HttpClient } from '@angular/common/http';
 import { CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR } from '../utils/shared.utils';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   template: '',
@@ -71,7 +71,10 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   }
 
   onCloseModal() {
-
+  }
+  
+  onRefresh() {
+    location.reload();
   }
 
   validationStateMap: any = {};

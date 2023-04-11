@@ -1,13 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonServiceService } from '../services/common/common.service.service';
 import { DialogService } from '../services/dialog';
@@ -15,22 +7,15 @@ import { EventService } from '../services/event/event.service';
 import { MessageService } from '../services/message/message.service';
 import { RestService } from '../services/rest/rest.service';
 import { SessionService } from '../services/session/session.service';
-import {
-  CARD_VIEW_LOCALSTORAGE_KEY,
-  FALSE_STR,
-  TRUE_STR,
-} from '../utils/shared.utils';
+import { CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR} from '../utils/shared.utils';
+import { DefaultFormComponent } from './default.form.component';
+import { DefaultModalComponent } from './default.modal.component';
 
 @Component({
   template: '',
 })
 export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
-  open() {
-    throw new Error('Method not implemented.');
-  }
-  onModalResponse(MODAL_RES_CLOSE: number, callbackData: any) {
-
-  }
+  opened: boolean;
   isCardView!: boolean;
   cardHover = false;
   listHover = false;
@@ -48,13 +33,14 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
     public session: SessionService,
     public dialog: DialogService,
     public el: ElementRef,
-    public route : ActivatedRoute,
-    public http : HttpClient,
-    public messageservice : MessageService,
-    public router : Router,
+    public route: ActivatedRoute,
+    public http: HttpClient,
+    public messageservice: MessageService,
+    public router: Router,
     private cdr: ChangeDetectorRef
-    ){
+  ) {
   }
+  callback?: DefaultComponent | DefaultFormComponent<any>;
 
   ngAfterViewInit() {
     this.message = 'all done loading :)'
@@ -139,12 +125,17 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // getpagesize 
   pagenationSize: number = 100;
-  page:number = 1;
+  page: number = 1;
   totalCount: number = 0;
 
 
   onRefresh() {
     location.reload();
   }
-  
+  close(): void {
+    this.opened = false;
+  }
+  onModalResponse(code: number, data?: any) {
+
+  }
 }

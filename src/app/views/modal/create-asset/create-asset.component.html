@@ -3,8 +3,8 @@
     <clr-icon shape="info"></clr-icon>
     Create New Asset
   </div>
-  <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
   <div class="modal-body body-format">
+    <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
     <form #modalFrom="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
       <div class="clr-form-control select-form">
         <label class="required clr-control-label form-required">TYPE</label>
