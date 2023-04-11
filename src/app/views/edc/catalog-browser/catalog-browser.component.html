@@ -1,6 +1,31 @@
-<div class="container">
+<!-- <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
     <span class="title_text">Catalog Browser</span>
   </div>
-</div>
+  <div class="tool">
+    <div class="search-tool">
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
+        rel="search" />
+         </div>
+  </div>
+  <div class="data_table">
+    <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
+      (clrDgRefresh)="getRequestDefintion()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+      <clr-dg-row *clrDgItems="let defintion of definitionList | filter : searchText  index as i"
+        [clrDgItem]="defintion">
+        <clr-dg-cell>{{i+1}}</clr-dg-cell>
+        <clr-dg-cell>{{defintion.id}}</clr-dg-cell>
+        <clr-dg-cell>{{defintion.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-placeholder>We couldn't find any defintion</clr-dg-placeholder>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} defintion
+          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">defintion per page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div> -->

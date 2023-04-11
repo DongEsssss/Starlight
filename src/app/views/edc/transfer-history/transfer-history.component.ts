@@ -1,55 +1,54 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ClrDatagrid} from '@clr/angular';
 import { DefaultComponent } from 'src/app/components/default.component';
-import {transhistory} from 'src/app/models/transferhistory';
-
+import { Transferhistory } from 'src/app/models/transferhistory';
 @Component({
   selector: 'app-transfer-history',
   templateUrl: './transfer-history.component.html',
   styleUrls: ['./transfer-history.component.css']
 })
 export class TransferHistoryComponent extends DefaultComponent implements OnInit {
-
-  @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
   cDataLoading: boolean = false;
   cSelection?: any;
   currentFilteredType: number = 0; // all projects
   projectName: string = '';
-  historyList: transhistory[] = [];
+  historyList: Transferhistory[] = [];
   searchText !: string;
 
   columnDefs = [
-    {headerName: 'ID', field: 'noNm'},
-    {headerName: 'AssetID', field: 'assetid'},
-    {headerName: 'PolicyID', field: 'policyid'},
-    {headerName: 'ConnectorID', field: 'connectorid'},
-    {headerName: 'State', field: 'state'},
-    {headerName: 'Last Updated', field: 'lastupdate'},
-    {headerName: 'CreateDate', field: 'createdate'},
+    {headerName: 'ID'},
+    {headerName: 'type'},
+    {headerName: 'Asset ID'},
+    {headerName: 'ConnectorID'},
+    {headerName: 'ContractID'},
+    {headerName: 'State'},
+    {headerName : 'StateTimestamp'},
+    {headerName: 'Last Updated'},
+    {headerName: 'CreateDate'},
   ];
 
-  getField(history: transhistory, key: string) {
-    return history[key as keyof transhistory];
+  getField(history: Transferhistory, key: string) {
+    return history[key as keyof Transferhistory];
   }
 
   refresh() {
     location.reload();
   }
 
+  @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
   async gettransfer() {
-    // if (this.cDataLoading) return;
-    // this.cDataLoading = false;
-    // this.historyList.length = 0;
-    // await this.restService.gettransfer().subscribe((resp: any) => {
-    //   this.totalCount = parseInt(resp.totalCount!)
-    //   this.historyList = resp;
-    //   this.cDataGrid.dataChanged();
-    //   this.cDataLoading = false;
-    // },
-    //   (err) => {
-    //     this.cDataLoading = false;
-    //     console.log(err);
-    //   }
-    // );
+    if (this.cDataLoading) return;
+    this.cDataLoading = false;
+    await this.restService.gettransfer().subscribe((resp: any) => {
+      this.historyList = resp;
+      this.totalCount = parseInt(resp.totalCount!)
+      this.cDataLoading = false;
+      console.log(resp)
+    },
+      (err) => {
+        this.cDataLoading = false;
+        console.log(err);
+      }
+    );
   }
 }

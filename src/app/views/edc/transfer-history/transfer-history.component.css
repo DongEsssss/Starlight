@@ -1,24 +1,13 @@
-clr-icon {
-  width: 40px;
-}
 .container_title{
   width: 100%;
 }
-.refresh {
-  display: flex;
-  justify-content:space-between;
-  margin-bottom: 5px;
-  align-items: center;
-}
 .onrefresh {
-  margin-top: 5px;
   border-radius: 10px;
   width: 120px;
   height: 40px;
   background-color: #333543;
   color: #eee;
 }
-
 .refresh:hover {
   opacity: 0.7;
 }

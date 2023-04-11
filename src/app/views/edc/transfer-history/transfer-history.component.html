@@ -16,13 +16,15 @@
     [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
     <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
     <clr-dg-row *ngFor="let item of historyList;  index as i" [clrDgItem]="item">
-      <clr-dg-cell>{{item.AssetID}}</clr-dg-cell>
-      <clr-dg-cell>{{item.ConnectorID}}</clr-dg-cell>
-      <clr-dg-cell>{{item.ContractID}}</clr-dg-cell>
-      <clr-dg-cell>{{item.ID}}</clr-dg-cell>
-      <clr-dg-cell>{{item.LastUpdated}}</clr-dg-cell>
-      <clr-dg-cell>{{item.State}}</clr-dg-cell>
-      <clr-dg-cell>{{item.Create| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      <clr-dg-cell>{{item.id}}</clr-dg-cell>
+      <clr-dg-cell>{{item.type}}</clr-dg-cell>
+      <clr-dg-cell>{{item.dataRequest.assetId}}</clr-dg-cell>
+      <clr-dg-cell>{{item.dataRequest.connectorId}}</clr-dg-cell>
+      <clr-dg-cell>{{item.dataRequest.contractId}}</clr-dg-cell>
+      <clr-dg-cell>{{item.state}}</clr-dg-cell>
+      <clr-dg-cell>{{item.stateTimestamp | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      <clr-dg-cell>{{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      <clr-dg-cell>{{item.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
     </clr-dg-row>
     <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
     <clr-dg-footer>
