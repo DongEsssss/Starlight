@@ -1,7 +1,6 @@
-import {Component, ViewChild, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
-import {CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR} from 'src/app/utils/shared.utils';
-import {ClrDatagrid} from '@clr/angular';
+import { ClrDatagrid } from '@clr/angular';
 import { catalog } from 'src/app/models/catalog';
 
 @Component({
@@ -9,19 +8,20 @@ import { catalog } from 'src/app/models/catalog';
   templateUrl: './catalog-browser.component.html',
   styleUrls: ['./catalog-browser.component.css']
 })
-export class CatalogBrowserComponent extends DefaultComponent implements OnInit{
+export class CatalogBrowserComponent extends DefaultComponent implements OnInit {
   @ViewChild('cDataGrid', { static: true }) cDataGrid !: ClrDatagrid;
   cDataLoading: boolean = false;
-  cSelection ?: any;
+  cSelection?: any;
   searchText: any;
-  catalogList : catalog[] = [];
+  catalogList: catalog[] = [];
 
   columnDefs = [
-    { headerName: 'No'},
-    { headerName: 'Message'},
-    { headerName: 'Type'},
-    { headerName: 'Path'},
-    { headerName: 'InvaildValue'}
+    { headerName: 'ID' },
+    { headerName: 'Protocol' },
+    { headerName: 'Type' },
+    { headerName: 'State' },
+    { headerName: 'Create Date' },
+    { headerName: 'Update Date' }
   ];
 
   async getRequestCatalog() {

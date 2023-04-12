@@ -1,9 +1,10 @@
 .search-tool {
-    margin-top: 20px;
+    margin-top: 19px;
 }
 .cardgrid clr-icon{
     margin-top: 20px;
 }
 .card{
-    width: 49%;
+    min-width: 550px;
+    width: 32.5%;
 }

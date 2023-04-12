@@ -33,11 +33,11 @@
         <clr-dg-cell>{{defintion.id}}</clr-dg-cell>
         <clr-dg-cell>{{defintion.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
       </clr-dg-row>
-      <clr-dg-placeholder>We couldn't find any defintion</clr-dg-placeholder>
+      <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
-          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} defintion
-          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">defintion per page</clr-dg-page-size>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
+          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Policy page</clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>

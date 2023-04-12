@@ -1,38 +1,82 @@
 <div class="container">
   <div class="container_title">
-    <div class="container_title">
-      <div class="title_icon"></div>
-      <span class="title_text"> Transfer History </span>
+    <div class="title_icon"></div>
+    <span class="title_text">Transfer Process</span>
+  </div>
+  <div class="tool">
+    <div class="search-tool">
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Transfer Process"
+        rel="search" />
     </div>
-    <div class="refresh">
-      <button (click)="refresh()" class="onrefresh">
-        <clr-icon shape="refresh"></clr-icon>
-        Reload
-      </button>
+    <div class="cardgrid">
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+      </span>
+      <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
+        (mouseleave)="mouseLeave('card')">
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
+      </span>
+      <span class="filter-divider"></span>
+      <span class="refresh-btn" (click)="onRefresh()"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
     </div>
   </div>
+</div>
+<div class="data-area" *ngIf="!isCardView">
   <div class="datatable">
-    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="gettransfer()"
-    [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
-    <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-    <clr-dg-row *ngFor="let item of historyList;  index as i" [clrDgItem]="item">
-      <clr-dg-cell>{{item.id}}</clr-dg-cell>
-      <clr-dg-cell>{{item.type}}</clr-dg-cell>
-      <clr-dg-cell>{{item.dataRequest.assetId}}</clr-dg-cell>
-      <clr-dg-cell>{{item.dataRequest.connectorId}}</clr-dg-cell>
-      <clr-dg-cell>{{item.dataRequest.contractId}}</clr-dg-cell>
-      <clr-dg-cell>{{item.state}}</clr-dg-cell>
-      <clr-dg-cell>{{item.stateTimestamp | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-      <clr-dg-cell>{{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-      <clr-dg-cell>{{item.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-    </clr-dg-row>
-    <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
-    <clr-dg-footer>
-      <clr-dg-pagination #pagination [clrDgPageSize]="10">
-        <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Policy per page</clr-dg-page-size>
-        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
-      </clr-dg-pagination>
-    </clr-dg-footer>
-  </clr-datagrid>
+    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="gettransfer()" [clrDgRowSelection]="true"
+      [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
+      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+      <clr-dg-row *clrDgItems="let item of historyList;  index as i" [clrDgItem]="item">
+        <clr-dg-cell>{{item.id}}</clr-dg-cell>
+        <clr-dg-cell>{{item.type}}</clr-dg-cell>
+        <clr-dg-cell>{{item.dataRequest.assetId}}</clr-dg-cell>
+        <clr-dg-cell>{{item.dataRequest.connectorId}}</clr-dg-cell>
+        <clr-dg-cell>{{item.dataRequest.contractId}}</clr-dg-cell>
+        <clr-dg-cell>{{item.state}}</clr-dg-cell>
+        <clr-dg-cell>{{item.stateTimestamp | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+        <clr-dg-cell>{{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+        <clr-dg-cell>{{item.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-placeholder>We couldn't find any History</clr-dg-placeholder>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">History page</clr-dg-page-size>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} History
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div>
+<div *ngIf="isCardView">
+  <div class="dataarea">
+    <div class="card" *ngFor="let item of historyList">
+      <h3 class="card-header">ID : {{item.id}}</h3>
+      <div class="card-block">
+        <div class="card-media-block">
+          <div class="clr-row">
+            <div class="clr-col-12"><span>Type : {{item.type}}</span></div>
+            <div class="clr-col-5"><span>State : {{item.state}}</span></div>
+            <div class="clr-col-7"><span>StateTimestamp : {{item.stateTimestamp |date : 'yyyy/mm/dd h:mm:ss a'}}</span>
+            </div>
+            <h4>Data Request</h4>
+            <div class="clr-col-12"><span>ID : {{item.dataRequest.id}}</span></div>
+            <div class="clr-col-12"><span>ContractID : {{item.dataRequest.contractId}}</span></div>
+            <div class="clr-col-6"><span>AssetID : {{item.dataRequest.assetId}}</span></div>
+            <div class="clr-col-6"><span>ConnectorID : {{item.dataRequest.connectorId}}</span></div>
+            <h4>Data Destination</h4>
+            <div class="clr-col-12"><span>BaseURL : {{item.dataDestination.properties.baseUrl}}</span></div>
+            <div class="clr-col-4"><span>AuthKey : {{item.dataDestination.properties.authKey}}</span></div>
+            <div class="clr-col-4"><span>AuthCode : {{item.dataDestination.properties.authCode}}</span></div>
+            <div class="clr-col-4"><span>Type : {{item.dataDestination.properties.type}}</span></div>
+            <h4>ErrorDetail</h4> <span  class="clr-col-12">{{item.errorDetail}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <label>Create Date : {{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
+        <label>Update Date : {{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
+      </div>
+    </div>
   </div>
 </div>

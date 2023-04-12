@@ -16,8 +16,8 @@ const httpOptions = {
   }),
 };
 
-const API_URL = 'http://192.168.0.5:8182/api/v1/management';
-const API_URL2 = 'http://192.168.0.5:9192/api/v1/management';
+const API_URL = 'http://192.168.0.5:8182/api/v1/management';        //consumer
+const API_URL2 = 'http://192.168.0.5:9192/api/v1/management';       //provider
 
 const URL_ASSET_REQUEST = '/assets/request';                        //데이터 불러오기 post
 const URL_ASSET_ADD = '/assets/';                                   //데이터 추가하기 post
@@ -31,10 +31,11 @@ const URL_POLICY_DELETE = '/policydefinitions/'
 
 const URL_DEFINITION_REQUEST = '/contractdefinitions/request'
 const URL_DEFINITION_ADD = '/contractdefinitions/'
-const URL_GET_DEFINITION = '/contractdefinitions/'
 const URL_DEFINITION_DELETE = '/contractdefinitions/'
 
 const URL_AGREEMENT_REQUEST = '/contractnegotiations/request'
+
+const URL_CATALOG_REQUEST = '/catalog/request'
 
 @Injectable({
   providedIn: 'root',
@@ -55,8 +56,7 @@ export class RestService {
       console.error('An error occurred:', error.error.message);
     } else {
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}, ` +`body was: ${error.error}`);
     }
     return throwError(() => 'Something bad happened; please try again later.');
   }
@@ -140,7 +140,7 @@ export class RestService {
 
   // =================== Contract Agreement ===================
   getRequestagreement(): Observable<any> {
-    const url = API_URL + URL_DEFINITION_REQUEST;
+    const url = API_URL2 + URL_AGREEMENT_REQUEST;
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
@@ -149,7 +149,7 @@ export class RestService {
   // =================== Transfer History ===================
 
   gettransfer(): Observable<any> {
-    const url = ' http://192.168.0.5:9192/api/v1/management/transferprocess/request'
+    const url = 'http://192.168.0.5:9192/api/v1/management/transferprocess/request'
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
@@ -157,7 +157,7 @@ export class RestService {
 
   // =================== Catalog Browser ===================
   getRequestCatalog(): Observable<any> {
-    const url = API_URL2 + URL_AGREEMENT_REQUEST;
+    const url = 'http://192.168.0.5:9192/api/v1/management/catalog/request';
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }

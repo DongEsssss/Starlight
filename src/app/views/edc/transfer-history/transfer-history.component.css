@@ -1,13 +1,14 @@
-.container_title{
-  width: 100%;
+.search-tool {
+  margin-top: 19px;
 }
-.onrefresh {
-  border-radius: 10px;
-  width: 120px;
-  height: 40px;
-  background-color: #333543;
-  color: #eee;
+.cardgrid clr-icon{
+  margin-top: 20px;
 }
-.refresh:hover {
-  opacity: 0.7;
+.card{
+  min-width: 550px;
+  width: 32.5%;
+}
+h4{
+  margin-bottom: 5px;
+  font-weight: bold;
 }

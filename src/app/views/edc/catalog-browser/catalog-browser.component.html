@@ -1,31 +1,56 @@
-<!-- <div class="container">
+<div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
-    <span class="title_text">Catalog Browser</span>
+    <span class="title_text"> Catalog Browser </span>
   </div>
   <div class="tool">
     <div class="search-tool">
-      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser"
-        rel="search" />
-         </div>
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Catalog Browser" rel="search"/>
+    </div>
+    <div class="cardgrid">
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
+      </span>
+      <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
+        (mouseleave)="mouseLeave('card')">
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
+      </span>
+      <span class="filter-divider"></span>
+      <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onRefresh()"></clr-icon></span>
+    </div>
   </div>
+</div>
+<div *ngIf="!isCardView">
   <div class="data_table">
     <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
-      (clrDgRefresh)="getRequestDefintion()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+      (clrDgRefresh)="getRequestCatalog()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let defintion of definitionList | filter : searchText  index as i"
-        [clrDgItem]="defintion">
-        <clr-dg-cell>{{i+1}}</clr-dg-cell>
-        <clr-dg-cell>{{defintion.id}}</clr-dg-cell>
-        <clr-dg-cell>{{defintion.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      <clr-dg-row *clrDgItems="let item of catalogList | filter : searchText  index as i"
+        [clrDgItem]="item">
+        
       </clr-dg-row>
-      <clr-dg-placeholder>We couldn't find any defintion</clr-dg-placeholder>
+      <clr-dg-placeholder>We couldn't find any Catalog Browser</clr-dg-placeholder>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
-          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} defintion
-          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">defintion per page</clr-dg-page-size>
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Catalog Browser
+          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Catalog Browser page</clr-dg-page-size>
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
   </div>
-</div> -->
+</div>
+<div *ngIf="isCardView">
+  <!-- <div class="dataarea" *ngFor="let item of catalogList">
+    <div class="card" >
+      <h3 class="card-header">{{item.id}}</h3>
+      <div class="card-block">
+        <div class="card-media-block">
+        </div>
+      </div>
+      <div class="card-footer">
+      
+      </div>
+    </div>
+  </div> -->
+</div>

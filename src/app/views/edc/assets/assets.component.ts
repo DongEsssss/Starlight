@@ -20,8 +20,6 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   cSelection: any;
   keyword?: string;
   searchText : string = '';
-  id: 'test11';
-
   /** datagrid */
   columnDefs = [
     { headerName: 'No' },
@@ -108,10 +106,8 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
       this.close();
     }
   }
-  detailasset(id): void {
-    this.DetailModal.callback =  this;
+  detailasset(): void {
     this.DetailModal.open()
-    console.log(id)
   }
 
   //getassetaddress
@@ -122,7 +118,6 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
       this.assetList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
-      console.log(resp)
     },
       (err) => {
         this.cDataLoading = false;

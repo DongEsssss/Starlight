@@ -23,10 +23,10 @@ export class ContractAgreementComponent extends DefaultComponent implements OnIn
     { headerName: 'CreatedAt'}
   ];
 
-  async getRequestCatalog() {
+  async getRequestagreement() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    await this.restService.getRequestCatalog().subscribe((resp: any) => {
+    await this.restService.getRequestagreement().subscribe((resp: any) => {
       this.agreementList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
