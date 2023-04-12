@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DefaultComponent } from 'src/app/components/default.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
+import { DefaultComponent } from 'src/app/components/default.component';
 import { catalog } from 'src/app/models/catalog';
 
 @Component({

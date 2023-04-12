@@ -21,34 +21,34 @@ export class AssetDetailComponent extends DefaultFormComponent<asset_post> imple
     return asset[key as keyof asset_post];
   }
 
-  // async getassetaddress(){
-  //   let id;
-  //   console.log(id)
-  //   if (this.cDataLoading) return;
-  //   this.cDataLoading = false;
-  //   this.assetList.length = 0;
-  //   await this.restService.getassetaddress(id).subscribe((resp: any) => {
-  //     this.assetList = resp;
-  //     this.totalCount = parseInt(resp.totalCount!)
-  //     this.cDataLoading = false;
-  //     console.log(resp)
-  //   },
-  //     (err) => {
-  //       this.cDataLoading = false;
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+  async getassetaddress(){
+    let id;
+    console.log(id)
+    if (this.cDataLoading) return;
+    this.cDataLoading = false;
+    this.assetList.length = 0;
+    await this.restService.getassetaddress(id).subscribe((resp: any) => {
+      this.assetList = resp;
+      this.totalCount = parseInt(resp.totalCount!)
+      this.cDataLoading = false;
+      console.log(resp)
+    },
+      (err) => {
+        this.cDataLoading = false;
+        console.log(err);
+      }
+    );
+  }
 
-  // deleteAsset(id : any){
-  //   this.restService.deleteAssets(id).subscribe({
-  //     next: () => {
-  //       this.getassetaddress();
-  //     },
-  //     error: (e) => {
-  //       console.log(e);
-  //     },
-  //     complete: () => console.info(`Asset ID : ${id} Delete Complete`)
-  //   });
-  // }
+  deleteAsset(id : any){
+    this.restService.deleteAssets(id).subscribe({
+      next: () => {
+        this.getassetaddress();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => console.info(`Asset ID : ${id} Delete Complete`)
+    });
+  }
 }

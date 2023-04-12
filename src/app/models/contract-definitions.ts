@@ -6,12 +6,11 @@ export class definitions extends ObjectLoader {
   id: string
   accessPolicyId: string
   contractPolicyId: string
-  criteria: [
+  criteria: 
     {
       operandLeft: string
       operandRight: string
       operator: string
     }
-  ]
 }
 

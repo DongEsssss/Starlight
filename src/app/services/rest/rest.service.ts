@@ -37,20 +37,16 @@ const URL_AGREEMENT_REQUEST = '/contractnegotiations/request'
 
 const URL_CATALOG_REQUEST = '/catalog/request'
 
+const URL_HISTORY_REQUEST ='/transferprocess/request'
+
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
-  log: any;
   constructor(
     private http: HttpClient,
   ) { }
-
-  private extractData(res: Response): any {
-    const body = res;
-    return body || {};
-  }
-
+  
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
@@ -87,9 +83,12 @@ export class RestService {
       .pipe(tap(_ => this.log(`fetched asset id= ${id}`)),
         catchError(this.handleError));
   }
+  log(arg0: string): void {
+    throw new Error('Method not implemented.');
+  }
 
   getassetaddress(id: any): Observable<any> {
-    const url = API_URL + URL_GET_ASSETS + 'test11' + URL_GET_ASSETS_DATAADDRESS;
+    const url = API_URL + URL_GET_ASSETS + id + URL_GET_ASSETS_DATAADDRESS;
     return this.http.get<asset_post>(url, httpOptions)
       .pipe(catchError(this.handleError))
   }
@@ -149,7 +148,7 @@ export class RestService {
   // =================== Transfer History ===================
 
   gettransfer(): Observable<any> {
-    const url = 'http://192.168.0.5:9192/api/v1/management/transferprocess/request'
+    const url = API_URL2 + URL_HISTORY_REQUEST
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
@@ -157,7 +156,7 @@ export class RestService {
 
   // =================== Catalog Browser ===================
   getRequestCatalog(): Observable<any> {
-    const url = 'http://192.168.0.5:9192/api/v1/management/catalog/request';
+    const url = API_URL2 + URL_CATALOG_REQUEST
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }

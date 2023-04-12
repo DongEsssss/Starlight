@@ -5,22 +5,20 @@ export class catalog extends ObjectLoader {
     contractOffers: {
         id: string
         policy: {
-            permissions: [
-                {
-                    edctype: string
-                    uid: string
-                    target: string
-                    action: {
-                        type: string
-                        includedIn: string
-                        constraint: string
-                    },
-                    assignee: string
-                    assigner: string
-                    constraints: string
-                    duties: string
-                }
-            ],
+            permissions: {
+                edctype: string
+                uid: string
+                target: string
+                action: {
+                    type: string
+                    includedIn: string
+                    constraint: string
+                },
+                assignee: string
+                assigner: string
+                constraints: string
+                duties: string
+            },
             prohibitions: string
             obligations: string
             extensibleProperties: string
@@ -48,5 +46,4 @@ export class catalog extends ObjectLoader {
         contractStart: string
         contractEnd: string
     }
-
 }

@@ -32,7 +32,7 @@
       data-detail-view="true" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
       <clr-dg-row *clrDgItems="let item of assetList | filter : searchText  index as i" [clrDgItem]="item"
-        (click)="detailasset()">
+        (click)="detailasset(item.id)">
         <clr-dg-cell>{{i+1}}</clr-dg-cell>
         <clr-dg-cell>{{item.id}}</clr-dg-cell>
         <clr-dg-cell>{{item.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>

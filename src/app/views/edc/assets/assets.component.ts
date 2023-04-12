@@ -106,25 +106,14 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
       this.close();
     }
   }
-  detailasset(): void {
+  
+  detailasset(id:string){
+    this.restService.getassetaddress(id).subscribe()
     this.DetailModal.open()
+    console.log(id)
   }
 
-  //getassetaddress
-  async getassetaddress(id : any){
-    if (this.cDataLoading) return;
-    this.cDataLoading = false;
-    await this.restService.getassetaddress(id).subscribe((resp: any) => {
-      this.assetList = resp;
-      this.totalCount = parseInt(resp.totalCount!)
-      this.cDataLoading = false;
-    },
-      (err) => {
-        this.cDataLoading = false;
-        console.log(err);
-      }
-    );
-  }
+  
 
   //delete
   delete(id: any):void{

@@ -1,8 +1,8 @@
-<!-- <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
     <div class="modal-title" *ngIf="assetList">
      <h3>header(asset:prop:id)</h3> 
     </div>
-    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getassetaddress()">
+    <clr-datagrid class="customgrid sengee" #cDataGrid >
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
       <clr-dg-row *clrDgItems="let asset of assetList" [clrDgItem]="asset" >
         <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell>
@@ -12,4 +12,4 @@
     <div class="modal-footer">
       <button class="btn btn-sm btn-danger" (click)="deleteAsset(assetList)">Delete</button>
     </div>
-</clr-modal> -->
+</clr-modal>

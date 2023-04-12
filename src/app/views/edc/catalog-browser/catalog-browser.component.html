@@ -23,12 +23,11 @@
 </div>
 <div *ngIf="!isCardView">
   <div class="data_table">
-    <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
-      (clrDgRefresh)="getRequestCatalog()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getRequestCatalog()"
+            [clrDgLoading]="cDataLoading" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
       <clr-dg-row *clrDgItems="let item of catalogList | filter : searchText  index as i"
         [clrDgItem]="item">
-        
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't find any Catalog Browser</clr-dg-placeholder>
       <clr-dg-footer>
