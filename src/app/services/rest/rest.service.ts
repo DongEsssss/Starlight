@@ -36,9 +36,9 @@ const URL_DEFINITION_DELETE = '/contractdefinitions/'
 const URL_AGREEMENT_REQUEST = '/contractnegotiations/request'
 
 const URL_CATALOG_REQUEST = '/catalog/request'
+const providerUrl = "http://192.168.0.5:8282/api/v1/ids/data"
 
 const URL_HISTORY_REQUEST ='/transferprocess/request'
-
 @Injectable({
   providedIn: 'root',
 })
@@ -145,19 +145,21 @@ export class RestService {
   }
 
 
-  // =================== Transfer History ===================
 
+
+
+  
+  // =================== Transfer History ===================
   gettransfer(): Observable<any> {
     const url = API_URL2 + URL_HISTORY_REQUEST
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-
   // =================== Catalog Browser ===================
-  getRequestCatalog(): Observable<any> {
+  getRequestCatalog(providerUrl): Observable<any> {
     const url = API_URL2 + URL_CATALOG_REQUEST
-    return this.http.post(url, null, httpOptions)
+    return this.http.post(url, providerUrl, httpOptions)
       .pipe(catchError(this.handleError));
   }
 }

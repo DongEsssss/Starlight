@@ -5,7 +5,8 @@
     </div>
     <div class="tool">
         <div class="search-tool">
-            <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Contract Agreement" rel="search" />
+            <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="Search Contract Agreement"
+                rel="search" />
         </div>
         <div class="cardgrid">
             <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
@@ -36,10 +37,10 @@
             <clr-dg-placeholder>We couldn't load any Agreement</clr-dg-placeholder>
             <clr-dg-footer>
                 <clr-dg-pagination #pagination [clrDgPageSize]="10">
-                  <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Agreement per page</clr-dg-page-size>
-                  {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Agreement
+                    <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Agreement per page</clr-dg-page-size>
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Agreement
                 </clr-dg-pagination>
-              </clr-dg-footer>
+            </clr-dg-footer>
         </clr-datagrid>
     </div>
 </div>
@@ -48,15 +49,15 @@
         <div class="card" *ngFor="let item of agreementList">
             <h3 class="card-header">ID : {{item.id}}</h3>
             <div class="card-block">
-                <div class="card-media-block">
-                    <div class="clr-row">
-                        <div class="clr-col-6"><span>Protocol : {{item.protocol}}</span></div>
-                        <div class="clr-col-6"><span>Type : {{item.type}}</span></div>
-                        <div class="clr-col-12"><span>CounterPartyAddress : {{item.counterPartyAddress}}</span></div>
-                        <div class="clr-col-12"><span>State : {{item.state}}</span></div>
-                        <br>
-                        <div class="clr-col-12"><span>ErrorDetail : {{item.errorDetail}}</span></div>
-                    </div>
+                <div class="clr-row">
+                    <h4>Contract Agreement Info</h4>
+                    <div class="clr-col-12"><span>CounterPartyAddress : {{item.counterPartyAddress}}</span></div>
+                    <div class="clr-col-6"><span>Protocol : {{item.protocol}}</span></div>
+                    <div class="clr-col-6"><span>Type : {{item.type}}</span></div>
+                    <div class="clr-col-12"><span>State : {{item.state}}</span></div>
+                    <br>
+                    <h4>ErrorDetail</h4>
+                    <div class="clr-col-12"><span>{{item.errorDetail}}</span></div>
                 </div>
             </div>
             <div class="card-footer">

@@ -1,6 +1,6 @@
 <app-create-asset #createasset></app-create-asset>
 <app-cancel #deletemodal></app-cancel>
-<app-asset-detail #assetdetail></app-asset-detail>
+<app-asset-detail #assetdetail [item]="item" [id]="id"></app-asset-detail>
 <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
@@ -52,11 +52,9 @@
     <div class="card" *ngFor="let item of assetList">
       <h3 class="card-header">{{item.id}}</h3>
       <div class="card-block">
-        <div class="card-media-block" *ngFor="let item of assettype">
-          {{item.properties[0].operandLeft}}
-          {{item.properties[0].operator}}
-          {{item.properties[0].operandRight}}
-        </div>
+        {{item.dataaddress.properties.filename}}
+        {{item.dataaddress.properties.type}}
+        {{item.dataaddress.properties.path}}
       </div>
       <div class="card-footer">
         <label>{{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>

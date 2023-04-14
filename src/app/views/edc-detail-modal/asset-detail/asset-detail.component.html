@@ -1,15 +1,11 @@
-<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
-    <div class="modal-title" *ngIf="assetList">
-     <h3>header(asset:prop:id)</h3> 
-    </div>
-    <clr-datagrid class="customgrid sengee" #cDataGrid >
-      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let asset of assetList" [clrDgItem]="asset" >
-        <clr-dg-cell *ngFor="let header of columnDefs">{{getField(asset, header.field)}}</clr-dg-cell>
-      </clr-dg-row>
-      <clr-dg-placeholder>We couldn't find any Asset</clr-dg-placeholder>
-    </clr-datagrid>
-    <div class="modal-footer">
-      <button class="btn btn-sm btn-danger" (click)="deleteAsset(assetList)">Delete</button>
-    </div>
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" *ngIf="assetList[0]">
+  <h3 class="modal-title">{{assetList[0].id}}</h3>
+  <div class="modal-body">
+    <p>{{path}}</p>
+    <p>{{filename}}</p>
+    <p>{{type}}</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-danger" (click)="deleteAsset(assetList)">Delete</button>
+  </div>
 </clr-modal>

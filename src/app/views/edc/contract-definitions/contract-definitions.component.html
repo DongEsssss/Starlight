@@ -43,48 +43,48 @@
     </clr-datagrid>
   </div>
 </div>
-<div class="dataarea" *ngIf="isCardView">
-  <div class="card" *ngFor="let item of definitionList | filter : searchText">
-    <div class="card-block">
-      <h3 class="card-title">{{item.id}}</h3>
-      <div class="card-text">
-        <h4>Definitions ID</h4>
+<div *ngIf="isCardView">
+  <div class="dataarea">
+    <div class="card" *ngFor="let item of definitionList | filter : searchText">
+      <h3 class="card-header">{{item.id}}</h3>
+      <div class="card-block">
         <div class="id-list">
           <div class="clr-row">
-            <div class="clr-col-6">
-              <span>{{item.accessPolicyId}}</span>
+            <h4>Definitions ID</h4>
+            <div class="clr-col-12">
+              <span>accessPolicyId : {{item.accessPolicyId}}</span>
             </div>
-            <div class="clr-col-6">
-              <span>{{item.contractPolicyId}}</span>
+            <div class="clr-col-12">
+              <span>contractPolicyId : {{item.contractPolicyId}}</span>
             </div>
+            <h4>Validity</h4>
+            <div class="clr-col-12 validity">
+              <span>Validity : {{item.validity | date : 'yyyy/MM/dd'}}</span>
+            </div>
+            <h4>Criteria</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>operandLeft</th>
+                  <th>operator</th>
+                  <th>operandRight</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{item.criteria[0].operandLeft}}</td>
+                  <td>{{item.criteria[0].operator}}</td>
+                  <td>{{item.criteria[0].operandRight}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <h4>Validity</h4>
-        <div class="validity">
-          <span>{{item.validity | date : 'yyyy/MM/dd'}}</span>
-        </div>
-        <h4>Criteria</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>operandLeft</th>
-              <th>operator</th>
-              <th>operandRight</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{item.criteria[0].operandLeft}}</td>
-              <td>{{item.criteria[0].operator}}</td>
-              <td>{{item.criteria[0].operandRight}}</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
-    </div>
-    <div class="card-footer">
-      <label>{{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
-      <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Delete</button>
+      <div class="card-footer">
+        <label>{{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
+        <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Delete</button>
+      </div>  
     </div>
   </div>
 </div>

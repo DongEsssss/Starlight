@@ -171,14 +171,14 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
 
   create() {
     let tempData = this.modalForm.value;
-    if (!tempData == null) {
-      tempData = null
+    if (!tempData.item == null) {
+      tempData.item = null
     }
     let policyformdata = {
       "id": tempData.id,
       "policy": {
         "uid": tempData.uid,
-        "permissions": [
+        "permissions":
           {
             "edctype": "dataspaceconnector:permission",
             "uid": tempData.uid,
@@ -192,8 +192,7 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
             "assigner": tempData.assigner,
             "constraints": tempData.constraints,
             "duties": tempData.duties
-          }
-        ],
+          },
         "prohibitions": [],
         "obligations": [],
         "extensibleProperties": {},

@@ -12,8 +12,8 @@ export class CatalogBrowserComponent extends DefaultComponent implements OnInit 
   @ViewChild('cDataGrid', { static: true }) cDataGrid !: ClrDatagrid;
   cDataLoading: boolean = false;
   cSelection?: any;
-  searchText: any;
   catalogList: catalog[] = [];
+  searchText: any;
 
   columnDefs = [
     { headerName: 'ID' },
@@ -27,7 +27,11 @@ export class CatalogBrowserComponent extends DefaultComponent implements OnInit 
   async getRequestCatalog() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    await this.restService.getRequestCatalog().subscribe((resp: any) => {
+    const providerUrl = {
+      // "providerUrl":"http://192.168.0.5:8282/api/v1/ids/data"
+    }
+    
+    await this.restService.getRequestCatalog(providerUrl).subscribe((resp: any) => {
       this.catalogList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;

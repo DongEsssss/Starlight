@@ -1,24 +1,33 @@
 import { ObjectLoader } from "../utils/objectloader";
 
 export class policyList extends ObjectLoader {
-    createdAt: Date;
-    id?: any;
-    policy : {
-        uid: any,
+    createdAt: number
+    id: string
+    policy: {
         permissions:
         {
-            edctype : string;
-            uid : any;
-            target : any;
-            action : {
-                type : any;
-                includedIn : any;
-                constraint : any;
+            edctype: string
+            uid: string
+            target: string
+            action: {
+                type: string
+                includedIn: string
+                constraint: string
             },
-            assignee : any
-            assigner : any
-            constraints : any
-            duties : any
+            assignee: string
+            assigner: string
+            constraints: []
+            duties: []
+        }
+        prohibitions: []
+        obligations: []
+        extensibleProperties: {}
+        inheritsFrom: string
+        assigner: string
+        assignee: string
+        target: string
+        '@type': {
+            '@policytype': string
         }
     }
 }

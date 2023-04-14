@@ -25,46 +25,46 @@
   <div *ngIf="!isCardView">
     <div class="data_table">
       <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
-      (clrDgRefresh)="getRequestPolicy()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
-      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let defintion of policy | filter : searchText  index as i"
-        [clrDgItem]="defintion">
-        <clr-dg-cell>{{i+1}}</clr-dg-cell>
-        <clr-dg-cell>{{defintion.id}}</clr-dg-cell>
-        <clr-dg-cell>{{defintion.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-      </clr-dg-row>
-      <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
-      <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="10">
-          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
-          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Policy page</clr-dg-page-size>
-        </clr-dg-pagination>
-      </clr-dg-footer>
-    </clr-datagrid>
+        (clrDgRefresh)="getRequestPolicy()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+        <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+        <clr-dg-row *clrDgItems="let defintion of policy | filter : searchText  index as i" [clrDgItem]="defintion">
+          <clr-dg-cell>{{i+1}}</clr-dg-cell>
+          <clr-dg-cell>{{defintion.id}}</clr-dg-cell>
+          <clr-dg-cell>{{defintion.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
+        <clr-dg-footer>
+          <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Policy
+            <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Policy page</clr-dg-page-size>
+          </clr-dg-pagination>
+        </clr-dg-footer>
+      </clr-datagrid>
     </div>
   </div>
 </div>
-  <div class="dataarea" *ngIf="isCardView">
-    <div class="clr-row card" *ngFor="let item of policy">
+<div *ngIf="isCardView">
+  <div class="dataarea">
+    <div class=" card" *ngFor="let item of policy">
+      <h3 class="card-header">{{item.id}}</h3>
       <div class="card-block">
-        <h3 class="card-title">{{item.id}}</h3>
         <div class="card-text">
           <div class="clr-row policy-info">
+              <h4>Policy Info</h4>
             <div class="clr-col-12 type">
               <span>Policy Type : {{item.policy.permissions[0].edctype}}</span>
             </div>
-            <h3 class="clr-col-12">Policy Content</h3>
+            <h4>Policy Content</h4>
+            <span class="clr-col-12">Uid: {{item.policy.permissions[0].uid}}</span>
+            <span class="clr-col-12">Target : {{item.policy.permissions[0].target}}</span>
             <span class="clr-col-6">Assginee : {{item.policy.permissions[0].assignee}}</span>
             <span class="clr-col-6">Assginer : {{item.policy.permissions[0].assigner}}</span>
-            <span class="clr-col-6">Target : {{item.policy.permissions[0].target}}</span>
-            <span class="clr-col-6">Uid: {{item.policy.permissions[0].uid}}</span>
-            <br>
-            <h3 class="clr-col-12">Policy Action</h3>
-            <span class="clr-col-6">Type : {{item.policy.permissions[0].assignee}}</span>
-            <span class="clr-col-6">Constraint: {{item.policy.permissions[0].assigner}}</span>
-            <span class="clr-col-12">IncludeIn : {{item.policy.permissions[0].target}}</span>
+            <h4>Policy Action</h4>
+            <span class="clr-col-12">IncludeIn : {{item.policy.permissions[0].action.includedIn}}</span>
+            <span class="clr-col-6">Type : {{item.policy.permissions[0].action.type}}</span>
+            <span class="clr-col-6">Constraint: {{item.policy.permissions[0].action.constraint}}</span>
+            <h4>Selector Expression</h4>
           </div>
-          <h4>Selector Expression</h4>
           <div class="expression">
             <clr-accordion>
               <clr-accordion-panel>
@@ -89,70 +89,71 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Wizzard -->
-  <clr-wizard #wizardmd [(clrWizardOpen)]="mdOpen" clrWizardSize="lg">
-    <clr-wizard-title>STEP</clr-wizard-title>
-    <clr-wizard-button [type]="'cancel'">Close</clr-wizard-button>
-    <clr-wizard-button [type]="'previous'">Previous</clr-wizard-button>
-    <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-    <clr-wizard-button [type]="'finish'" (click)="create()">Create</clr-wizard-button>
-    <clr-wizard-page>
-      <ng-template clrPageTitle>Create New Policy</ng-template>
-      <form #modalFrom="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
-        <div class="clr-form-control" *ngFor="let item of newForm">
-          <label class="required clr-control-label"
-            [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
-          <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
-            <div class="clr-input-wrapper">
-              <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
-                [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!"
-                (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
-                [readOnly]="item.readonly == true" [required]="item.require">
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
-              <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
-                Input Your {{item.text}}
-                <ng-template [ngIf]="item?.placeholder !== undefined">
-                  ( ex : {{item.placeholder}})
-                </ng-template>
-              </clr-control-error>
-            </div>
+<!-- Wizzard -->
+<clr-wizard #wizardmd [(clrWizardOpen)]="mdOpen" clrWizardSize="lg">
+  <clr-wizard-title>STEP</clr-wizard-title>
+  <clr-wizard-button [type]="'cancel'">Close</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Previous</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'" (click)="create()">Create</clr-wizard-button>
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Create New Policy</ng-template>
+    <form #modalFrom="ngForm" class="clr-form clr-form-horizontal" (valuechange)="formValueChange($event)">
+      <div class="clr-form-control" *ngFor="let item of newForm">
+        <label class="required clr-control-label"
+          [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+              Input Your {{item.text}}
+              <ng-template [ngIf]="item?.placeholder !== undefined">
+                ( ex : {{item.placeholder}})
+              </ng-template>
+            </clr-control-error>
           </div>
         </div>
-        <h3>action</h3>
-        <div class="clr-form-control" *ngFor="let item of actionForm">
-          <label class="required clr-control-label"
-            [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
-          <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
-            <div class="clr-input-wrapper">
-              <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
-                [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!"
-                (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
-                [readOnly]="item.readonly == true" [required]="item.require">
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
-              <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
-                Input Your {{item.text}}
-                <ng-template [ngIf]="item?.placeholder !== undefined">
-                  ( ex : {{item.placeholder}})
-                </ng-template>
-              </clr-control-error>
-            </div>
+      </div>
+      <h3>action</h3>
+      <div class="clr-form-control" *ngFor="let item of actionForm">
+        <label class="required clr-control-label"
+          [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+              Input Your {{item.text}}
+              <ng-template [ngIf]="item?.placeholder !== undefined">
+                ( ex : {{item.placeholder}})
+              </ng-template>
+            </clr-control-error>
           </div>
         </div>
-      </form>
-    </clr-wizard-page>
-    <clr-wizard-page *ngFor="let policy of textform">
-      <ng-template clrPageTitle>{{policy.text}}</ng-template>
-      <ng-template clrPageNavTitle>
-        {{policy.text}}
-      </ng-template>
-      <form #modalFrom="ngForm" class="clr-form clr-form-horizontal">
-        <section class="form-block">
-          <textarea clrTextarea type="text" class="clr-input enrollment-input" required [pattern]="policy.regex!"
-            [maxlength]="policy.max!" #usernameInput="ngModel" [name]="policy.name!"
-            [ngModel]="getFormModel(policy.name!)" [id]="policy.name!" (input)='handleValidation(policy.name! , false) '
-            [readOnly]="policy.readonly == true"></textarea>
-        </section>
-      </form>
-    </clr-wizard-page>
-  </clr-wizard>
+      </div>
+    </form>
+  </clr-wizard-page>
+  <clr-wizard-page *ngFor="let policy of textform">
+    <ng-template clrPageTitle>{{policy.text}}</ng-template>
+    <ng-template clrPageNavTitle>
+      {{policy.text}}
+    </ng-template>
+    <form #modalFrom="ngForm" class="clr-form clr-form-horizontal">
+      <section class="form-block">
+        <textarea clrTextarea type="text" class="clr-input enrollment-input" required [pattern]="policy.regex!"
+          [maxlength]="policy.max!" #usernameInput="ngModel" [name]="policy.name!"
+          [ngModel]="getFormModel(policy.name!)" [id]="policy.name!" (input)='handleValidation(policy.name! , false) '
+          [readOnly]="policy.readonly == true"></textarea>
+      </section>
+    </form>
+  </clr-wizard-page>
+</clr-wizard>

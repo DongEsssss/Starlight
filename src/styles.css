@@ -215,3 +215,7 @@ button {
 th, td{
   background-color: #333543;
 }
+.clr-row{
+  position: relative;
+  top: -20px;
+}
