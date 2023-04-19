@@ -24,6 +24,8 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   isInit: boolean = false;
   courses?: any;
   message: string = 'loading :(';
+  item: any;
+  id: any;
 
   constructor(
     public cd: ChangeDetectorRef,

@@ -34,9 +34,7 @@ export class catalog extends ObjectLoader {
             id: string
             createdAt: string
             properties: {
-                "asset:prop:byteSize": string
                 "asset:prop:id": string
-                "asset:prop:fileName": string
             }
         },
         provider: string

@@ -1,1 +1,39 @@
-<p>policy-detail works!</p>
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalSize]="'lg'" *ngIf="policyList[0] | keyvalue">
+    <h3 class="modal-title">{{id}}</h3>
+    <div class="modal-body">
+      <div class="clr-row policy_Info">
+        <h4>Policy Info</h4>
+        <span class="clr-col-12">Policy Type : {{policyList[0].policy.permissions[0].edctype}}</span>
+        <h4>Policy Content</h4>
+        <span class="clr-col-12">Uid : {{policyList[0].policy.permissions[0].uid}}</span>
+        <span class="clr-col-12">Target : {{policyList[0].policy.permissions[0].target}}</span>
+        <span class="clr-col-6">Assignee : {{policyList[0].policy.permissions[0].assignee}}</span> 
+        <span class="clr-col-6">Assigner : {{policyList[0].policy.permissions[0].assigner}}</span>
+        <h4>Policy Action</h4>
+        <span class="clr-col-12">Uid : {{policyList[0].policy.permissions[0].action.includedIn}}</span>
+        <span class="clr-col-6">Target : {{policyList[0].policy.permissions[0].action.type}}</span>
+        <span class="clr-col-6">Constraint : {{policyList[0].policy.permissions[0].action.constraint}}</span>
+        <h4>Policy Expression</h4>
+        <div class="clr-col-12 expression">
+          <clr-accordion>
+            <clr-accordion-panel>
+              <clr-accordion-title>Duties</clr-accordion-title>
+              <clr-accordion-content *clrIfExpanded>
+                {{policyList[0].policy.permissions.duties}}
+              </clr-accordion-content>
+            </clr-accordion-panel>
+            <clr-accordion-panel>
+              <clr-accordion-title>Constraints</clr-accordion-title>
+              <clr-accordion-content *clrIfExpanded>
+                <span>{{constraints}}</span>
+              </clr-accordion-content>
+            </clr-accordion-panel>
+          </clr-accordion>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Delete</button>
+    </div>
+  </clr-modal>
+  

@@ -4,6 +4,7 @@ import { DefaultFormComponent } from 'src/app/components/default.form.component'
 import { FormField, } from 'src/app/models/common';
 import { policyList } from 'src/app/models/policies';
 import { ClrDatagrid } from '@clr/angular';
+import { PolicyDetailComponent } from '../../edc-detail-modal/policy-detail/policy-detail.component';
 
 @Component({
   selector: 'app-policies',
@@ -20,7 +21,7 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
   progress: number = 0;
   actionForm: Array<FormField> = [];
   textform: Array<FormField> = [];
-  policy: policyList[] = [];
+  policyList: policyList[] = [];
   cSelection: any;
   totalCount: number = 0;
   cDataLoading: boolean = false;
@@ -63,10 +64,15 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
       this.resetWizard();
     }
   }
-  // have to define doCancel because page will prevent doCancel from working
-  // if the page had a previous button, you would need to call
-  // this.wizard.previous() manually as well...
 
+  @ViewChild('policydetail', { static: false }) DetailModal!: PolicyDetailComponent;
+  detailpolicy(id : string){
+    this.id = id;
+    this.restService.getpolicy(id).subscribe((resp: any) => {
+      this.item = resp
+    })
+    this.DetailModal.open()
+  }
 
   override ngOnInit(): void {
     super.ngOnInit();
@@ -135,7 +141,7 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
     if (this.cDataLoading) return;
     this.cDataLoading = false;
     await this.restService.getRequestPolicy().subscribe((resp: any) => {
-      this.policy = resp;
+      this.policyList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
       console.log(resp)
@@ -175,34 +181,35 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
       tempData.item = null
     }
     let policyformdata = {
-      "id": tempData.id,
+      "id" : tempData.id,
       "policy": {
-        "uid": tempData.uid,
-        "permissions":
-          {
-            "edctype": "dataspaceconnector:permission",
-            "uid": tempData.uid,
-            "target": tempData.target,
-            "action": {
-              "type": tempData.type,
-              "includedIn": tempData.includedIn,
-              "Constraint": tempData.constraint
-            },
-            "assignee": tempData.assignee,
-            "assigner": tempData.assigner,
-            "constraints": tempData.constraints,
-            "duties": tempData.duties
-          },
-        "prohibitions": [],
-        "obligations": [],
-        "extensibleProperties": {},
-        "inheritsFrom": null,
-        "assigner": null,
-        "assignee": null,
-        "target": null,
-        "@type": {
-          "@policytype": "set"
-        }
+          "uid": tempData.uid,
+          "permissions": [
+              {
+                  "edctype": "dataspaceconnector:permission",
+                  "uid": tempData.uid,
+                  "target": tempData.target,
+                  "action": {
+                      "type": tempData.type,
+                      "includedIn": tempData.includedIn,
+                      "constraint": tempData.constraint,
+                  },
+                  "assignee": tempData.assignee,
+                  "assigner": tempData.assigner,
+                  "constraints": tempData.constraints,
+                  "duties": tempData.duties
+              }
+          ],
+          "prohibitions": [],
+          "obligations": [],
+          "extensibleProperties": {},
+          "inheritsFrom": null,
+          "assigner": null,
+          "assignee": null,
+          "target": null,
+          "@type": {
+              "@policytype": "set"
+          }
       }
     }  
     this.restService.createpolicy(policyformdata).subscribe((res: any) => {

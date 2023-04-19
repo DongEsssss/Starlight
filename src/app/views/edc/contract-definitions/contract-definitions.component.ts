@@ -3,6 +3,7 @@ import { definitions } from 'src/app/models/contract-definitions';
 import { CreateDefinitionsComponent } from '../../modal/create-definitions/create-definitions.component';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { ClrDatagrid } from '@clr/angular';
+import { DetailDefintionComponent } from '../../edc-detail-modal/detail-defintion/detail-defintion.component';
 
 @Component({
   selector: 'app-contract-definitions',
@@ -38,10 +39,9 @@ export class ContractDefinitionsComponent extends DefaultComponent implements On
     if (this.cDataLoading) return;
     this.cDataLoading = false;
     await this.restService.getRequestDefintion().subscribe((resp: any) => {
-      this.definitionList = resp;
+      this.definitionList = resp;      
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
-      console.log(resp)
     },
       (err) => {
         this.cDataLoading = false;
@@ -55,6 +55,7 @@ export class ContractDefinitionsComponent extends DefaultComponent implements On
   createbtn() {
     this.definitions.open();
   }
+
   delete(id: any):void{
     this.restService.deleteDefinition(id).subscribe({
       next: () => {
@@ -66,4 +67,14 @@ export class ContractDefinitionsComponent extends DefaultComponent implements On
       complete: () => console.info(`Definition ID : ${id} Delete Complete`)
     });
   }
+
+    /** detail */
+    @ViewChild('detaildefintion', { static: false }) DetailModal!: DetailDefintionComponent;
+    detaildefintions(id: string) {
+      this.id = id;
+      this.restService.getdefintion(id).subscribe((resp: any) => {
+        this.item = resp
+      })
+      this.DetailModal.open()
+    }
 }

@@ -1,3 +1,4 @@
+<app-policy-detail #policydetail [item]="item" [id]="id"></app-policy-detail>
 <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
@@ -26,11 +27,12 @@
     <div class="data_table">
       <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
         (clrDgRefresh)="getRequestPolicy()" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
-        <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-        <clr-dg-row *clrDgItems="let defintion of policy | filter : searchText  index as i" [clrDgItem]="defintion">
+        <clr-dg-column *ngFor="let header of columnDefs" >{{header.headerName}}</clr-dg-column>
+        <clr-dg-row *clrDgItems="let item of policyList | filter : searchText  index as i" 
+        [clrDgItem]="item" (click)="detailpolicy(item.id)">
           <clr-dg-cell>{{i+1}}</clr-dg-cell>
-          <clr-dg-cell>{{defintion.id}}</clr-dg-cell>
-          <clr-dg-cell>{{defintion.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+          <clr-dg-cell>{{item.id}}</clr-dg-cell>
+          <clr-dg-cell>{{item.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
         </clr-dg-row>
         <clr-dg-placeholder>We couldn't find any Policy</clr-dg-placeholder>
         <clr-dg-footer>
@@ -45,7 +47,7 @@
 </div>
 <div *ngIf="isCardView">
   <div class="dataarea">
-    <div class=" card" *ngFor="let item of policy">
+    <div class=" card" *ngFor="let item of policyList">
       <h3 class="card-header">{{item.id}}</h3>
       <div class="card-block">
         <div class="card-text">
@@ -85,7 +87,7 @@
       </div>
       <div class="card-footer">
         <label>{{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
-        <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Delete</button>
+        <button class="btn btn-sm btn-danger" (click)="delete(policyList)">Delete</button>
       </div>
     </div>
   </div>

@@ -39,6 +39,8 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   editForm: Array<FormField> = [];
   isEditable = false;
   datatype: any;
+  id: any;
+  item : any;
 
   @ViewChild('modalFrom', { static: true })
   modalForm !: NgForm;

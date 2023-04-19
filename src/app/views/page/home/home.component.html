@@ -15,9 +15,8 @@
         <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
           <div clrDropdownItem (click)="userinfo()">User Profile</div>
           <div clrDropdownItem (click)="noticeboard()">Notice</div>
-
           <hr>
-          <div clrDropdownItem>Logout</div>
+          <div clrDropdownItem routerLinkActive="active-link" routerLink="sign-in">Logout</div>
         </clr-dropdown-menu>
       </clr-dropdown>
     </div>

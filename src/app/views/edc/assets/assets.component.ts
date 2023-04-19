@@ -38,27 +38,6 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
     minWidth: 100,
   };
 
-  @Input() set setMultiSelect(enable: boolean) {
-    this.isMultipleSelect = enable;
-  }
-  isMultipleSelect: boolean = true;
-
-  getField(asset: asset_post, key: any) {
-    return asset[key as keyof asset_post];
-  }
-
-  //request Asset Data
-  override ngOnCommonInit(): void {
-    super.ngOnCommonInit();
-    this.assetList = this.commonService.getRequestAsset();
-    this.onRefresh();
-  }
-
-  override onRefresh(): void {
-    this.page = 1;
-    this.getRequestAsset();
-  }
-
   async getRequestAsset() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
@@ -78,7 +57,6 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
         console.log(err);
       }
     );
-
   }
 
   // create asset data
@@ -105,15 +83,6 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
   }
 
   /** detail */
-  onSelection() {
-    if (this.callback != undefined) {
-      this.callback.onModalResponse(MODAL_RES_COMMON_SELECT, this.isMultipleSelect ? this.cSelection : this.cSelection);
-      this.close();
-    }
-  }
-
-  item: any;
-  id: any;
   detailasset(id: string) {
     this.id = id;
     this.restService.getassetaddress(id).subscribe((resp: any) => {
@@ -121,8 +90,6 @@ export class AssetsComponent extends DefaultComponent implements OnInit {
     })
     this.DetailModal.open()
   }
-
-
 
   //delete
   delete(id: any): void {

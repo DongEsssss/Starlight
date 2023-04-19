@@ -16,7 +16,7 @@ export class policyList extends ObjectLoader {
             },
             assignee: string
             assigner: string
-            constraints: []
+            constraints: JSON
             duties: []
         }
         prohibitions: []

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -31,6 +32,7 @@ import { RestService } from '../services/rest/rest.service';
     MatSlideToggleModule,
     TagInputModule,
     DialogModule,
+    CommonModule
   ],
   providers: [
     SessionService,

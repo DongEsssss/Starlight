@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { ClrDatagrid } from '@clr/angular';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
+import {ClrDatagrid} from '@clr/angular';
 import { catalog } from 'src/app/models/catalog';
 
 @Component({
@@ -8,30 +8,25 @@ import { catalog } from 'src/app/models/catalog';
   templateUrl: './catalog-browser.component.html',
   styleUrls: ['./catalog-browser.component.css']
 })
-export class CatalogBrowserComponent extends DefaultComponent implements OnInit {
+export class CatalogBrowserComponent extends DefaultComponent implements OnInit{
   @ViewChild('cDataGrid', { static: true }) cDataGrid !: ClrDatagrid;
   cDataLoading: boolean = false;
-  cSelection?: any;
-  catalogList: catalog[] = [];
+  cSelection ?: any;
   searchText: any;
+  catalogList :  catalog[] = [];
 
   columnDefs = [
-    { headerName: 'ID' },
-    { headerName: 'Protocol' },
-    { headerName: 'Type' },
-    { headerName: 'State' },
-    { headerName: 'Create Date' },
-    { headerName: 'Update Date' }
+    { headerName: 'ID'},
+    { headerName: 'Type'},
+    { headerName: 'State'},
+    { headerName: 'UpdatedAt'},
+    { headerName: 'CreatedAt'}
   ];
 
   async getRequestCatalog() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    const providerUrl = {
-      // "providerUrl":"http://192.168.0.5:8282/api/v1/ids/data"
-    }
-    
-    await this.restService.getRequestCatalog(providerUrl).subscribe((resp: any) => {
+    await this.restService.getRequestCatalog().subscribe((resp: any) => {
       this.catalogList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;

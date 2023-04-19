@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { DefaultFormComponent } from 'src/app/components/default.form.component';
 import { asset_post } from 'src/app/models/asset_post';
 
@@ -9,20 +9,9 @@ import { asset_post } from 'src/app/models/asset_post';
 })
 export class AssetDetailComponent extends DefaultFormComponent<asset_post>{
   assetList: asset_post[] = [];
-  totalCount: number = 0;
-  columnDefs = [
-    { headerName: 'Content Type', field: 'type' },
-    { headerName: 'Filename', field: 'filename' },
-    { headerName: 'Path', field: 'path' },
-  ];
-  cDataLoading: any;
 
-  getField(asset: asset_post, key: string) {
-    return asset[key as keyof asset_post];
-  }
-
-  @Input() item: any;
-  @Input() id: any;
+  @Input() override item: any;
+  @Input() override id: any;
 
   filename: any;
   type: any;
@@ -42,7 +31,6 @@ export class AssetDetailComponent extends DefaultFormComponent<asset_post>{
         contentNo: null,
         contentNM: null
       }]
-
       this.filename = this.assetList[0].dataaddress.properties.filename
       this.type = this.assetList[0].dataaddress.properties.type
       this.path = this.assetList[0].dataaddress.properties.path
@@ -59,5 +47,6 @@ export class AssetDetailComponent extends DefaultFormComponent<asset_post>{
       },
       complete: () => console.info(`Asset ID : ${id} Delete Complete`)
     });
+    this.close();
   }
 }

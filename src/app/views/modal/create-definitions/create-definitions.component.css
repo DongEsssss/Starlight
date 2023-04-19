@@ -1,0 +1,10 @@
+form{
+    margin: auto;
+}
+.clr-form {
+    justify-content: center;
+    display: grid;
+}
+clr-modal{
+    height: 500px;
+}

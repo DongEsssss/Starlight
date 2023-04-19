@@ -1,3 +1,6 @@
+.clr-form-horizontal .clr-form-control>.clr-control-label{
+  color: white;
+}
 // datagrid
 .datagrid{
   width: 100%;
@@ -43,8 +46,8 @@
 }
 //wizard
 .clr-wizard.wizard-lg .modal-dialog {
-  min-height: 31rem;
-  max-height: 32rem;
+  min-height: 33rem;
+  max-height: 35rem;
 }
 .clr-wizard 
 .clr-wizard-page:not([aria-hidden=true]){
@@ -73,6 +76,7 @@
 clr-accordion {
   background-color: #333543;
   border: #eee;
+  word-break: normal;
 }
 
 .table th {
@@ -88,4 +92,7 @@ clr-accordion {
 }
 h3.card-header{
   font-weight: bolder;
+}
+.modal-footer {
+  padding:0 0 0 0;
 }

@@ -22,23 +22,24 @@ const API_URL2 = 'http://192.168.0.5:9192/api/v1/management';       //provider
 const URL_ASSET_REQUEST = '/assets/request';                        //데이터 불러오기 post
 const URL_ASSET_ADD = '/assets/';                                   //데이터 추가하기 post
 const URL_GET_ASSETS = '/assets/'                                   //특정 id를 가진 asset 검색
-const URL_GET_ASSETS_DATAADDRESS = '/address'                       //특정 id를 가진 address 검색
+const URL_GET_ASSETS_DATAADDRESS = '/address' ;                     //특정 id를 가진 address 검색
 const URL_ASSET_DELETE = "/assets/";                                //특정 id를 가진 asset 삭제
 
 const URL_POLICY_REQUEST = '/policydefinitions/request';
-const URL_POLICY_ADD = '/policydefinitions/'
-const URL_POLICY_DELETE = '/policydefinitions/'
+const URL_POLICY_ADD = '/policydefinitions';
+const URL_POLICY_DELETE = '/policydefinitions/';
+const URL_GET_POLICY = '/policydefinitions/';
 
-const URL_DEFINITION_REQUEST = '/contractdefinitions/request'
-const URL_DEFINITION_ADD = '/contractdefinitions/'
-const URL_DEFINITION_DELETE = '/contractdefinitions/'
+const URL_DEFINITION_REQUEST = '/contractdefinitions/request';
+const URL_DEFINITION_ADD = '/contractdefinitions/';
+const URL_DEFINITION_DELETE = '/contractdefinitions/';
+const URL_GET_DEFINTION ='/contractdefinitions/';
 
-const URL_AGREEMENT_REQUEST = '/contractnegotiations/request'
+const URL_AGREEMENT_REQUEST = '/contractnegotiations/request';
 
-const URL_CATALOG_REQUEST = '/catalog/request'
-const providerUrl = "http://192.168.0.5:8282/api/v1/ids/data"
+const URL_CATALOG_REQUEST = '/catalog/request';
 
-const URL_HISTORY_REQUEST ='/transferprocess/request'
+const URL_HISTORY_REQUEST ='/transferprocess/request';
 @Injectable({
   providedIn: 'root',
 })
@@ -80,13 +81,8 @@ export class RestService {
   getasset(id: string): Observable<any> {
     const url = API_URL + URL_GET_ASSETS + id;
     return this.http.get<asset_post>(url, httpOptions)
-      .pipe(tap(_ => this.log(`fetched asset id= ${id}`)),
-        catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
-  log(arg0: string): void {
-    throw new Error('Method not implemented.');
-  }
-
   getassetaddress(id: any): Observable<any> {
     const url = API_URL + URL_GET_ASSETS + id + URL_GET_ASSETS_DATAADDRESS;
     return this.http.get<asset_post>(url, httpOptions)
@@ -118,6 +114,13 @@ export class RestService {
       .pipe(catchError(this.handleError));
   }
 
+  getpolicy(id: string): Observable<any> {
+    const url = API_URL + URL_GET_POLICY + id;
+    return this.http.get<policyList>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  
+
   // =================== Contract Definition ===================
   getRequestDefintion(): Observable<any> {
     const url = API_URL + URL_DEFINITION_REQUEST;
@@ -137,6 +140,11 @@ export class RestService {
       .pipe(catchError(this.handleError));
   }
 
+  getdefintion(id: any): Observable<any> {
+    const url = API_URL + URL_GET_DEFINTION + id;
+    return this.http.get<definitions>(url, httpOptions)
+      .pipe(catchError(this.handleError))
+  }
   // =================== Contract Agreement ===================
   getRequestagreement(): Observable<any> {
     const url = API_URL2 + URL_AGREEMENT_REQUEST;
@@ -144,11 +152,6 @@ export class RestService {
       .pipe(catchError(this.handleError));
   }
 
-
-
-
-
-  
   // =================== Transfer History ===================
   gettransfer(): Observable<any> {
     const url = API_URL2 + URL_HISTORY_REQUEST
@@ -157,9 +160,9 @@ export class RestService {
   }
 
   // =================== Catalog Browser ===================
-  getRequestCatalog(providerUrl): Observable<any> {
+  getRequestCatalog(): Observable<any> {
     const url = API_URL2 + URL_CATALOG_REQUEST
-    return this.http.post(url, providerUrl, httpOptions)
+    return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
 }

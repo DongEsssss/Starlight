@@ -1,7 +1,7 @@
-.policy_Info{
-    margin-top: 20px;
+.defintionInfo span{
+    display: block;
 }
-.expression{
+.table{
     margin-top: 5px;
 }
 .modal-footer{

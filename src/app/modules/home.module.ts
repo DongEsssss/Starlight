@@ -29,6 +29,7 @@ import { CancelComponent } from '../views/modal/cancel/cancel.component';
 /** edc-detail-modal */
 import { AssetDetailComponent } from '../views/edc-detail-modal/asset-detail/asset-detail.component';
 import { PolicyDetailComponent } from '../views/edc-detail-modal/policy-detail/policy-detail.component';
+import { DetailDefintionComponent } from '../views/edc-detail-modal/detail-defintion/detail-defintion.component';
 
 /** configuration */
 import { SettingComponent } from '../views/configuration/setting/setting.component';
@@ -70,7 +71,8 @@ import { SharedModule } from './shared.module';
     CompanyInfoComponent,
     UserEditComponent,
     AssetDetailComponent,
-    PolicyDetailComponent
+    PolicyDetailComponent,
+    DetailDefintionComponent
   ],
   providers: [CommonServiceService],
   imports: [HomeRoutingModule, SharedModule, ClarityModule],
