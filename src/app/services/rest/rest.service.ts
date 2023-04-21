@@ -5,7 +5,8 @@ import { catchError, map, retry, tap } from 'rxjs/operators';
 import { asset_post } from 'src/app/models/asset_post';
 import { policyList } from 'src/app/models/policies';
 import { definitions } from 'src/app/models/contract-definitions';
-
+import { agreement } from 'src/app/models/contract-agreement';
+import { Transferhistory } from 'src/app/models/transferhistory'
 
 // import { SERVER_URL } from 'src/app/utils/shared.utils';
 
@@ -36,10 +37,14 @@ const URL_DEFINITION_DELETE = '/contractdefinitions/';
 const URL_GET_DEFINTION ='/contractdefinitions/';
 
 const URL_AGREEMENT_REQUEST = '/contractnegotiations/request';
+const contractnegotiations  = '/contractnegotiations/'
+const URL_AGREEMENT_CANCEL = '/cancel'
 
 const URL_CATALOG_REQUEST = '/catalog/request';
+const providerUrl = "http://192.168.0.5:8282/api/v1/ids/data"
 
 const URL_HISTORY_REQUEST ='/transferprocess/request';
+const URL_GET_HISTORY ='/transferprocess/';
 @Injectable({
   providedIn: 'root',
 })
@@ -152,17 +157,33 @@ export class RestService {
       .pipe(catchError(this.handleError));
   }
 
+  getagreement(id : any) : Observable<any> {
+    const url =API_URL2 + contractnegotiations + id;
+    return this.http.get<agreement>(url, httpOptions)
+    .pipe(catchError(this.handleError))
+  }
+    
+  cancelagreement(id: any) : Observable<any>{
+    const url = API_URL2 + contractnegotiations + id + URL_AGREEMENT_CANCEL
+    return this.http.post(url, id, httpOptions)
+    .pipe(catchError(this.handleError))
+  }
   // =================== Transfer History ===================
-  gettransfer(): Observable<any> {
+  getRequesthistory(): Observable<any> {
     const url = API_URL2 + URL_HISTORY_REQUEST
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
+  gethistory(id : any) : Observable<any> {
+    const url =API_URL2 + URL_GET_HISTORY + id;
+    return this.http.get<Transferhistory>(url, httpOptions)
+    .pipe(catchError(this.handleError))
+  }
   // =================== Catalog Browser ===================
-  getRequestCatalog(): Observable<any> {
-    const url = API_URL2 + URL_CATALOG_REQUEST
-    return this.http.post(url, null, httpOptions)
+
+  getRequestCatalog(providerUrl): Observable<any> {
+    const url =  API_URL2 + URL_CATALOG_REQUEST
+    return this.http.post(url, providerUrl, httpOptions)
       .pipe(catchError(this.handleError));
   }
 }

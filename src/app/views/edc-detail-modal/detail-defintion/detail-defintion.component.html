@@ -1,36 +1,30 @@
-<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" *ngIf="definitionsList[0]">
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalSize]="'lg'" *ngIf="definitionsList[0]">
   <h3 class="modal-title">{{id}}</h3>
-  <div class="modal-body">
-    <div class="defintionInfo">
-      <h4>Definitions ID</h4>
-      <div class="clr-col-12">
-        <span>AccessPolicyId : {{definitionsList[0].accessPolicyId}}</span>
-      </div>
-      <div class="clr-col-12">
-        <span>contractPolicyId : {{definitionsList[0].contractPolicyId}}</span>
-      </div>
+  <div class="clr-row modal-body">
+    <h4 class="clr-col-12">Definitions ID</h4>
+    <span class="clr-col-6">AccessPolicyId : {{definitionsList[0].accessPolicyId}}</span>
+    <span class="clr-col-6">contractPolicyId : {{definitionsList[0].contractPolicyId}}</span>
+    <div class="clr-col-12 validity">
       <h4>Validity</h4>
-      <div class="clr-col-12 validity">
-        <span>Validity : {{item.validity | date : 'yyyy/MM/dd'}}</span>
-      </div>
-      <h4>Criteria</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>operandLeft</th>
-            <th>operator</th>
-            <th>operandRight</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span>{{definitionsList[0].criteria[0].operandLeft}}</span></td>
-            <td><span>{{operator}}</span></td>
-            <td><span>{{definitionsList[0].criteria[0].operandRight}}</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <span>Validity : {{item.validity | date : 'yyyy/MM/dd'}}</span>
     </div>
+    <h4>Criteria</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>operandLeft</th>
+          <th>operator</th>
+          <th>operandRight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>{{definitionsList[0].criteria[0].operandLeft}}</span></td>
+          <td><span>{{operator}}</span></td>
+          <td><span>{{definitionsList[0].criteria[0].operandRight}}</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="modal-footer">
     <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Delete</button>

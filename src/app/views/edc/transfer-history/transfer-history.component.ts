@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ClrDatagrid} from '@clr/angular';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { Transferhistory } from 'src/app/models/transferhistory';
+import { DetailHistoryComponent } from '../../edc-detail-modal/detail-history/detail-history.component';
 @Component({
   selector: 'app-transfer-history',
   templateUrl: './transfer-history.component.html',
@@ -19,11 +20,9 @@ export class TransferHistoryComponent extends DefaultComponent implements OnInit
     {headerName: 'ID'},
     {headerName: 'type'},
     {headerName: 'Asset ID'},
-    {headerName: 'ConnectorID'},
     {headerName: 'ContractID'},
     {headerName: 'State'},
     {headerName : 'StateTimestamp'},
-    {headerName: 'Last Updated'},
     {headerName: 'CreateDate'},
   ];
 
@@ -36,10 +35,10 @@ export class TransferHistoryComponent extends DefaultComponent implements OnInit
   }
 
   @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
-  async gettransfer() {
+  async getRequesthistory() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    await this.restService.gettransfer().subscribe((resp: any) => {
+    await this.restService.getRequesthistory().subscribe((resp: any) => {
       this.historyList = resp;
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
@@ -50,5 +49,14 @@ export class TransferHistoryComponent extends DefaultComponent implements OnInit
         console.log(err);
       }
     );
+  }
+
+  @ViewChild('historydetail', { static: false }) DetailModal!: DetailHistoryComponent;
+  detailhistory(id: any){
+    this.id = id;
+    this.restService.gethistory(id).subscribe((resp: any) => {
+      this.item = resp
+    })
+    this.DetailModal.open()
   }
 }

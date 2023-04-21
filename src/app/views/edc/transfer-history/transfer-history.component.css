@@ -4,3 +4,9 @@
 .cardgrid clr-icon{
   margin-top: 20px;
 }
+.card{
+  min-width: 600px;
+}
+.clr-row{
+  margin-top: 10px;
+}

@@ -86,8 +86,7 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
     ];
     this.actionForm = [
       { name: 'type', text: 'type', require: true, type: 'string', placeholder: "USE" },
-      { name: 'includedIn', text: 'IncludeIn', type: 'string', require: true, placeholder: "test" },
-      { name: 'Constraint', text: 'Constraint', type: 'string', },
+      { name: 'includedIn', text: 'IncludeIn', type: 'string', require: true, placeholder: "test" }
     ];
     this.textform = [
       { name: 'constraints', text: 'Constraints', type: 'string' },
@@ -101,7 +100,6 @@ export class PoliciesComponent extends DefaultFormComponent<policyList> implemen
       "target": true,
       "assignee": true,
       "assigner": true,
-      "constraint": true,
       "duties": true,
       "Constraint" : true
     };

@@ -1,0 +1,25 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalSize]="'lg'" *ngIf="agreementList[0]">
+    <h3 class="modal-title">{{id}}</h3>
+    <div class="modal-body">
+        <div class="clr-row agreementInfo">
+            <h4>Contract Agreement Info</h4>
+            <div class="clr-col-12"><span>CounterPartyAddress : {{agreementList[0].counterPartyAddress}}</span></div>
+            <div class="clr-col-4"><span>Protocol : {{agreementList[0].protocol}}</span></div>
+            <div class="clr-col-4"><span>Type : {{agreementList[0].type}}</span></div>
+            <div class="clr-col-4"><span>State : {{agreementList[0].state}}</span></div>
+            <br>
+            <h4>ErrorDetail</h4>
+            <div class="clr-col-12"><span>{{agreementList[0].errorDetail}}</span></div>
+            <br>
+            <h4>ErrorDetail</h4>
+            <div class="clr-col-12 modal-footer">
+                <label class="clr-col-6">Create Date : {{agreementList[0].createdAt | date : 'yyyy/MM/dd h:mm:ssa'}}</label>
+                <label class="clr-col-6">Update Date : {{agreementList[0].updatedAt | date : 'yyyy/MM/dd h:mm:ssa'}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="cancel btn btn-danger" (click)="cancelagreement(item.id)">Agreement Cancel</button>
+        <button class="cancel btn btn-primary" (click)="close()">Close</button>
+    </div>
+</clr-modal>

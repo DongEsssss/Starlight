@@ -30,6 +30,8 @@ import { CancelComponent } from '../views/modal/cancel/cancel.component';
 import { AssetDetailComponent } from '../views/edc-detail-modal/asset-detail/asset-detail.component';
 import { PolicyDetailComponent } from '../views/edc-detail-modal/policy-detail/policy-detail.component';
 import { DetailDefintionComponent } from '../views/edc-detail-modal/detail-defintion/detail-defintion.component';
+import { DetailAgreementComponent } from '../views/edc-detail-modal/detail-agreement/detail-agreement.component';
+import { DetailHistoryComponent } from '../views/edc-detail-modal/detail-history/detail-history.component';
 
 /** configuration */
 import { SettingComponent } from '../views/configuration/setting/setting.component';
@@ -72,7 +74,9 @@ import { SharedModule } from './shared.module';
     UserEditComponent,
     AssetDetailComponent,
     PolicyDetailComponent,
-    DetailDefintionComponent
+    DetailDefintionComponent,
+    DetailAgreementComponent,
+    DetailHistoryComponent
   ],
   providers: [CommonServiceService],
   imports: [HomeRoutingModule, SharedModule, ClarityModule],

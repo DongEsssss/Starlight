@@ -1,9 +1,13 @@
-.defintionInfo span{
-    display: block;
+h4 {
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
 .table{
     margin-top: 5px;
 }
-.modal-footer{
-    margin-top: 15px;
+.modal-footer span{
+    display: block;
+}
+.clr-row{
+    margin-top: 20px;
 }

@@ -1,3 +1,4 @@
+
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { asset_post } from 'src/app/models/asset_post';

@@ -1,3 +1,4 @@
+<app-detail-history #historydetail  [item]="item" [id]="id"></app-detail-history>
 <div class="container">
   <div class="container_title">
     <div class="title_icon"></div>
@@ -24,18 +25,17 @@
 </div>
 <div class="data-area" *ngIf="!isCardView">
   <div class="datatable">
-    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="gettransfer()" [clrDgRowSelection]="true"
+    <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getRequesthistory()" [clrDgRowSelection]="true"
       [(clrDgSingleSelected)]="cSelection" cDataLoading="true">
       <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-      <clr-dg-row *clrDgItems="let item of historyList;  index as i" [clrDgItem]="item">
+      <clr-dg-row *clrDgItems="let item of historyList;  index as i" [clrDgItem]="item"
+      (click)="detailhistory(item.id)">
         <clr-dg-cell>{{item.id}}</clr-dg-cell>
         <clr-dg-cell>{{item.type}}</clr-dg-cell>
         <clr-dg-cell>{{item.dataRequest.assetId}}</clr-dg-cell>
-        <clr-dg-cell>{{item.dataRequest.connectorId}}</clr-dg-cell>
         <clr-dg-cell>{{item.dataRequest.contractId}}</clr-dg-cell>
         <clr-dg-cell>{{item.state}}</clr-dg-cell>
         <clr-dg-cell>{{item.stateTimestamp | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
-        <clr-dg-cell>{{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
         <clr-dg-cell>{{item.createdAt| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
       </clr-dg-row>
       <clr-dg-placeholder>We couldn't find any History</clr-dg-placeholder>

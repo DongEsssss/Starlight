@@ -219,3 +219,9 @@ th, td{
   position: relative;
   top: -20px;
 }
+.table{
+  margin-top: 5px;
+}
+h4 {
+  font-weight: bold;
+}

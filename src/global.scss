@@ -86,13 +86,18 @@ clr-accordion {
 .clr-row{
   margin: 0px 0px;
 }
-.clr-row h4, h4{
-  margin-bottom: 5px;
+.clr-row h4, h4 {
   font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 6px;
 }
-h3.card-header{
+h3 .card-header{
   font-weight: bolder;
 }
 .modal-footer {
   padding:0 0 0 0;
+}
+.modal-header .modal-title:not([cds-text]), .modal-header--accessible .modal-title:not([cds-text]) {
+  margin-bottom: 10px;
+  font-weight: bold;
 }

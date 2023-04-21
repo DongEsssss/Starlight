@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { agreement } from 'src/app/models/contract-agreement';
+import { DetailAgreementComponent } from '../../edc-detail-modal/detail-agreement/detail-agreement.component';
 
 @Component({
   selector: 'app-contract-agreement',
@@ -17,10 +18,10 @@ export class ContractAgreementComponent extends DefaultComponent implements OnIn
 
   columnDefs = [
     { headerName: 'ID'},
-    { headerName: 'Type'},
     { headerName: 'State'},
+    { headerName: 'Type'},
     { headerName: 'UpdatedAt'},
-    { headerName: 'CreatedAt'}
+    { headerName: 'CreatedAt'},
   ];
 
   async getRequestagreement() {
@@ -37,5 +38,20 @@ export class ContractAgreementComponent extends DefaultComponent implements OnIn
         console.log(err);
       }
     );
+  }
+
+  cancelagreement(id : any){
+    this.id = id;
+    console.log(id)
+  }
+
+  @ViewChild('agreementdetail', { static: true }) DetailModal !: DetailAgreementComponent;
+  detailagreement(id: string) {
+    this.id = id;
+    this.restService.getagreement(id).subscribe((resp: any) => {
+      this.item = resp
+      console.log(resp)
+    })
+    this.DetailModal.open()
   }
 }

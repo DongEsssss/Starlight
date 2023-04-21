@@ -78,3 +78,4 @@ export class ContractDefinitionsComponent extends DefaultComponent implements On
       this.DetailModal.open()
     }
 }
+

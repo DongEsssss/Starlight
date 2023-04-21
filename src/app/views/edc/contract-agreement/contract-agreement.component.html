@@ -1,3 +1,4 @@
+<app-detail-agreement #agreementdetail [item]="item" [id]="id"></app-detail-agreement>
 <div class="container">
     <div class="container_title">
         <div class="title_icon"></div>
@@ -18,7 +19,7 @@
                 <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
             </span>
             <span class="filter-divider"></span>
-            <span class="refresh-btn"><clr-icon class="refresh" shape="refresh"></clr-icon></span>
+            <span class="refresh-btn"><clr-icon class="refresh" shape="refresh" (click)="onRefresh()"></clr-icon></span>
         </div>
     </div>
 </div>
@@ -27,7 +28,8 @@
         <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getRequestagreement()"
             [clrDgLoading]="cDataLoading" [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
             <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
-            <clr-dg-row *clrDgItems="let item of agreementList | filter:searchText" [clrDgItem]="item">
+            <clr-dg-row *clrDgItems="let item of agreementList | filter : searchText  index as i" [clrDgItem]="item"
+            (click)="detailagreement(item.id)">
                 <clr-dg-cell>{{item.id}}</clr-dg-cell>
                 <clr-dg-cell>{{item.state}}</clr-dg-cell>
                 <clr-dg-cell>{{item.type}}</clr-dg-cell>
@@ -54,6 +56,8 @@
                     <div class="clr-col-12"><span>CounterPartyAddress : {{item.counterPartyAddress}}</span></div>
                     <div class="clr-col-6"><span>Protocol : {{item.protocol}}</span></div>
                     <div class="clr-col-6"><span>Type : {{item.type}}</span></div>
+                    <br>
+                    <h4>Contract Agreement State</h4>
                     <div class="clr-col-12"><span>State : {{item.state}}</span></div>
                     <br>
                     <h4>ErrorDetail</h4>
