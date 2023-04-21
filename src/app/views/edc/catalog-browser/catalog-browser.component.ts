@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
 import { DefaultComponent } from 'src/app/components/default.component';
 import { catalog } from 'src/app/models/catalog';
@@ -17,22 +17,20 @@ export class CatalogBrowserComponent extends DefaultComponent implements OnInit 
 
   columnDefs = [
     { headerName: 'ID' },
-    { headerName: 'State' },
-    { headerName: 'Protocol' },
-    { headerName: 'Type' },
-    { headerName: 'Create Date' },
-    { headerName: 'Update Date' }
+    { headerName: 'Asset ID' },
+    { headerName: 'Consumer' }
   ];
 
   async getRequestCatalog() {
     if (this.cDataLoading) return;
     this.cDataLoading = false;
-    const providerUrl = {providerUrl:"http://192.168.0.5:8282/api/v1/ids/data"}
-    this.restService.getRequestCatalog(providerUrl).subscribe((resp: any) => {
-      this.catalogList = resp;
+    const providerUrl = { providerUrl: "http://192.168.0.5:8282/api/v1/ids/data" }
+    await this.restService.getRequestCatalog(providerUrl).subscribe((resp) => {
+      this.catalogList = Array(resp)
+      console.log(this.catalogList);
       this.totalCount = parseInt(resp.totalCount!)
       this.cDataLoading = false;
-      console.log(resp)},
+    },
       (err) => {
         this.cDataLoading = false;
         console.log(err);

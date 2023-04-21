@@ -172,8 +172,7 @@ export class RestService {
 
   // =================== Catalog Browser ===================
   getRequestCatalog(providerUrl): Observable<any> {
-    const url =  API_URL2 + URL_CATALOG_REQUEST
-    console.log(url)
+    const url =  API_URL2 + URL_CATALOG_REQUEST;
     return this.http.post(url, providerUrl, httpOptions)
       .pipe(catchError(this.handleError));
   }

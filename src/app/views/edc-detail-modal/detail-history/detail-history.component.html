@@ -3,8 +3,8 @@
     <div class="clr-row modal-body">
         <h4>Data Info</h4>
         <div class="clr-col-12"><span>Type : {{historyList[0].type}}</span></div>
-        <div class="clr-col-5"><span>State : {{historyList[0].state}}</span></div>
-        <div class="clr-col-7"><span>StateTimestamp : {{historyList[0].stateTimestamp |date : 'yyyy/mm/dd h:mm:ss a'}}</span>
+        <div class="clr-col-6"><span>State : {{historyList[0].state}}</span></div>
+        <div class="clr-col-6"><span>StateTimestamp : {{historyList[0].stateTimestamp |date : 'yyyy/mm/dd h:mm:ss a'}}</span>
         </div>
         <h4>Data Request</h4>
         <div class="clr-col-12"><span>ID : {{historyList[0].dataRequest.id}}</span></div>
@@ -18,8 +18,9 @@
         <div class="clr-col-4"><span>Type : {{historyList[0].dataDestination.properties.type}}</span></div>
         <h4>ErrorDetail</h4> <span class="clr-col-12">{{historyList[0].errorDetail}}</span>
     </div>
-    <div class="modal-footer">
-        <label>Create Date : {{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
-        <label>Update Date : {{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
+    <div class="clr-row modal-footer">
+        <h4 class="clr-col-12">Date</h4>
+        <label class="clr-col-6">Create Date : {{item.createdAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
+        <label class="clr-col-6">Update Date : {{item.updatedAt | date : 'yyyy/MM/dd h:mm:ss a'}}</label>
     </div>
 </clr-modal>

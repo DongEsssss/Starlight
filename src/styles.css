@@ -217,11 +217,14 @@ th, td{
 }
 .clr-row{
   position: relative;
-  top: -20px;
+  top: -10px;
 }
 .table{
   margin-top: 5px;
 }
 h4 {
   font-weight: bold;
+}
+.dataarea .card .card-header {
+  font-weight: bolder;
 }
