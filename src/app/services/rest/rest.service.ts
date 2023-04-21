@@ -7,6 +7,7 @@ import { policyList } from 'src/app/models/policies';
 import { definitions } from 'src/app/models/contract-definitions';
 import { agreement } from 'src/app/models/contract-agreement';
 import { Transferhistory } from 'src/app/models/transferhistory'
+import { catalog } from 'src/app/models/catalog';
 
 // import { SERVER_URL } from 'src/app/utils/shared.utils';
 
@@ -76,13 +77,11 @@ export class RestService {
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   createAsset(asset: any): Observable<any> {
     const url = API_URL + URL_ASSET_ADD;
     return this.http.post<asset_post>(url, asset, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   getasset(id: string): Observable<any> {
     const url = API_URL + URL_GET_ASSETS + id;
     return this.http.get<asset_post>(url, httpOptions)
@@ -93,7 +92,6 @@ export class RestService {
     return this.http.get<asset_post>(url, httpOptions)
       .pipe(catchError(this.handleError))
   }
-
   deleteAssets(id: any): Observable<any> {
     const url = API_URL + URL_ASSET_DELETE + id;
     return this.http.delete<asset_post>(url, httpOptions)
@@ -106,25 +104,21 @@ export class RestService {
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   createpolicy(policy: any): Observable<any> {
     const url = API_URL + URL_POLICY_ADD;
     return this.http.post<policyList>(url, policy, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   deletepolicy(id: any): Observable<any> {
     const url = API_URL + URL_POLICY_DELETE + id;
     return this.http.delete<policyList>(url, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   getpolicy(id: string): Observable<any> {
     const url = API_URL + URL_GET_POLICY + id;
     return this.http.get<policyList>(url, httpOptions)
       .pipe(catchError(this.handleError));
   }
-  
 
   // =================== Contract Definition ===================
   getRequestDefintion(): Observable<any> {
@@ -132,19 +126,16 @@ export class RestService {
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   createDefinition(definitions: any): Observable<any> {
     const url = API_URL + URL_DEFINITION_ADD;
     return this.http.post<definitions>(url, definitions, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   deleteDefinition(id: any): Observable<any> {
     const url = API_URL + URL_DEFINITION_DELETE + id;
     return this.http.delete<definitions>(url, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   getdefintion(id: any): Observable<any> {
     const url = API_URL + URL_GET_DEFINTION + id;
     return this.http.get<definitions>(url, httpOptions)
@@ -156,18 +147,17 @@ export class RestService {
     return this.http.post(url, null, httpOptions)
       .pipe(catchError(this.handleError));
   }
-
   getagreement(id : any) : Observable<any> {
     const url =API_URL2 + contractnegotiations + id;
     return this.http.get<agreement>(url, httpOptions)
     .pipe(catchError(this.handleError))
   }
-    
   cancelagreement(id: any) : Observable<any>{
     const url = API_URL2 + contractnegotiations + id + URL_AGREEMENT_CANCEL
     return this.http.post(url, id, httpOptions)
     .pipe(catchError(this.handleError))
   }
+
   // =================== Transfer History ===================
   getRequesthistory(): Observable<any> {
     const url = API_URL2 + URL_HISTORY_REQUEST
@@ -179,10 +169,11 @@ export class RestService {
     return this.http.get<Transferhistory>(url, httpOptions)
     .pipe(catchError(this.handleError))
   }
-  // =================== Catalog Browser ===================
 
+  // =================== Catalog Browser ===================
   getRequestCatalog(providerUrl): Observable<any> {
     const url =  API_URL2 + URL_CATALOG_REQUEST
+    console.log(url)
     return this.http.post(url, providerUrl, httpOptions)
       .pipe(catchError(this.handleError));
   }
