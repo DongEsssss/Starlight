@@ -12,6 +12,16 @@ export class User extends ObjectLoader {
   userNm?: string;
   email?: string;
   phone?: string;
-  auth?: string;
-  apiKey?: string;
+  brith? : string;
+  npassword?:string;
 }
+export const user=[{
+  name : "별빛이닿을때",
+  email : "abrerop@naver.com",
+  phone : "010-4148-5316",
+  address: "서울 동작구 흑석동",
+  birth : "98-09-06",
+  tag: "탐험가"
+}
+]
+

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+}
+.addbtn {
+  width: 50px;
+  height: 40px;
+  margin-left: 10px;
+  margin-top: 0px;
+}
+.addinput {
+  width: 300px;
+  height: 40px;
+}

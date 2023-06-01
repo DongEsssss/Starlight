@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="container_title">
+    <div class="title_icon"></div>
+    <span class="title_text"> 스캠 이벤트 </span>
+  </div>
+  <div class="tool">
+    <div class="search-tool">
+      <input class="search_input" type="search" [(ngModel)]="searchText" placeholder="찾는 이벤트를 검색하시오" rel="search" />
+    </div>
+    <div class="cardgrid">
+      <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
+        (mouseleave)="mouseLeave('list')">
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="play"></clr-icon>
+      </span>
+      <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
+        (mouseleave)="mouseLeave('card')">
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="pause"></clr-icon>
+      </span>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isCardView">
+  <app-proceeding />
+</div>
+<div *ngIf="isCardView">
+  <app-end />
+</div>

@@ -7,8 +7,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
 
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import { HttpClientModule } from '@angular/common/http';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {AngularResizeEventModule} from 'angular-resize-event'
+import { NgImageSliderModule } from 'ng-image-slider';
+import { BrowserModule } from '@angular/platform-browser';
+import { IMaskModule } from 'angular-imask';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -17,7 +22,12 @@ import {AngularResizeEventModule} from 'angular-resize-event'
     ClarityModule,
     FormsModule,
     Ng2SearchPipeModule,
-    AngularResizeEventModule
+    NgImageSliderModule,
+    AngularResizeEventModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    IMaskModule,
+    ScrollingModule
   ],
   declarations: [],
   exports: [
@@ -26,7 +36,12 @@ import {AngularResizeEventModule} from 'angular-resize-event'
     ClarityModule,
     FormsModule,
     Ng2SearchPipeModule,
+    NgImageSliderModule,
     AngularResizeEventModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    IMaskModule,
+    ScrollingModule
   ],
   providers: []
 })
@@ -34,16 +49,20 @@ export class SharedModule {
 }
 @NgModule({
   imports: [
+    BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
     HttpClientTestingModule,
     RouterTestingModule,
+    HttpClientModule,
   ],
   exports: [
+    BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
     HttpClientTestingModule,
     RouterTestingModule,
+    HttpClientModule,
   ],
   providers: []
 })

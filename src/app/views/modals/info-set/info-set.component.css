@@ -1,0 +1,22 @@
+.clr-input:not([readonly]),
+clr-control-error {
+  width: 350px;
+  margin-left: 50px;
+}
+.password-content {
+  margin-top: 20px;
+}
+label,
+clr-icon {
+  color: black;
+  fill: rgb(0, 146, 146);
+}
+.clr-form {
+  position: relative;
+  margin-left: 10px;
+}
+.btext {
+  font-weight: bold;
+  color: black;
+  font-size: 15px;
+}

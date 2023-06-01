@@ -1,0 +1,75 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="true">
+  <div class="modal-title">
+    <div class="container_title">
+      <span class="title_text">유저 프로필 수정</span>
+    </div>
+  </div>
+  <div class="modal-body">
+    <p class="btext">새롭게 업데이트 할 프로필 정보를 입력하시오.</p>
+    <form clrForm clrLayout="horizontal" class="clr-form clr-form-horizontal">
+      <div class="clr-form-control">
+        <label class="required clr-control-label">*이름</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input class="clr-input pwd-input" type="text" required value="임동균" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label class="required clr-control-label">*생년월일</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input class="clr-input pwd-input" value="1998-09-06" disabled required>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label class="required clr-control-label">*전화번호</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input class="clr-input pwd-input" type="text" required value="01041485136" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label class="required clr-control-label">*닉네임</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input class="clr-input pwd-input" type="text" required>
+          </div>
+          <clr-control-error>
+            새로운 닉네임을 입력하시오.
+          </clr-control-error>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label class="required clr-control-label">*이메일</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input class="clr-input pwd-input" type="email" required>
+          </div>
+          <clr-control-error>
+            새로운 이메일을 입력하시오.
+          </clr-control-error>
+        </div>
+      </div>
+
+      <div class="clr-form-control">
+        <label class="required clr-control-label">*주소</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input class="clr-input pwd-input" type="text" required>
+          </div>
+          <clr-control-error>
+            새로운 주소를 입력하시오.
+          </clr-control-error>
+        </div>
+      </div>
+
+    </form>
+    <div class="modal-footer">
+      <button class="btn btn-primaryoutline" (click)="close1()">수정</button>
+      <button class="btn btn-outlinee" (click)="close()">닫기</button>
+    </div>
+  </div>
+</clr-modal>

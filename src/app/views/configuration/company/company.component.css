@@ -1,4 +1,7 @@
-
 .config_tabs button {
   font-size: 15px;
+}
+.container {
+  width: 80%;
+  margin: auto;
 }

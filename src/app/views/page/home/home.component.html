@@ -1,9 +1,9 @@
-<app-user-info #userprofilemodal></app-user-info>
-<app-notice-board #noticeboardmodal></app-notice-board>
+<app-info #userprofilemodal></app-info>
+<app-notice #noticeboardmodal></app-notice>
 <clr-main-container>
   <clr-header class="header">
     <div class="logo"></div>
-    <span class="logo-title">VCP-X</span>
+    <span class="logo-title">Starlightcamping</span>
     <div class="header-actions header-actions-overflow">
       <span class="welcome-text">환영합니다! (admin)님</span>
       <clr-dropdown>
@@ -12,9 +12,9 @@
           <span>Admin</span>
           <div class="icon"></div>
         </button>
-        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-          <div clrDropdownItem (click)="userinfo()">User Profile</div>
-          <div clrDropdownItem (click)="noticeboard()">Notice</div>
+        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+          <div clrDropdownItem (click)="myinfo()">User Profile</div>
+          <div clrDropdownItem (click)="notice()">Notice</div>
           <hr>
           <div clrDropdownItem routerLinkActive="active-link" routerLink="sign-in">Logout</div>
         </clr-dropdown-menu>
@@ -25,57 +25,49 @@
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
       <a clrVerticalNavLink routerLinkActive="active" routerLink="mainhome">
         <clr-icon shape="home" clrVerticalNavIcon></clr-icon>
-        Home
+        메인 홈페이지
       </a>
-      <a clrVerticalNavLink routerLinkActive="active" routerLink="monitoring">
-        <clr-icon shape="video-camera" clrVerticalNavIcon></clr-icon>
-        Monitoring
+      <a clrVerticalNavLink routerLinkActive="active" routerLink="event">
+        <clr-icon shape="event" clrVerticalNavIcon></clr-icon>
+        이벤트
+      </a>
+      <a clrVerticalNavLink routerLinkActive="active" routerLink="asd">
+        <clr-icon shape="tablet" clrVerticalNavIcon></clr-icon>
+        스캠카페
       </a>
       <clr-vertical-nav-group routerLinkActive="active">
         <clr-icon shape="cloud" size="16" clrVerticalNavIcon></clr-icon>
-        <span>EDC</span>
+        <span>캠핑</span>
         <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink routerLink="assets" routerLinkActive="active">
+          <a clrVerticalNavLink routerLink="reserve" routerLinkActive="active">
             <clr-icon shape="folder" clrVerticalNavIcon></clr-icon>
-            Assets
+            캠핑 가이드
           </a>
-          <a clrVerticalNavLink routerLink="policies" routerLinkActive="active">
+          <a clrVerticalNavLink routerLink="search" routerLinkActive="active">
             <clr-icon shape="scroll" clrVerticalNavIcon></clr-icon>
-            Policies
+            캠핑장 검색
           </a>
-          <a clrVerticalNavLink routerLink="contractdefinitions" routerLinkActive="active">
-            <clr-icon shape="view-list" clrVerticalNavIcon></clr-icon>
-            Contract Definitions
-          </a>
-          <a clrVerticalNavLink routerLink="contracts-agreement" routerLinkActive="active">
-            <clr-icon shape="paperclip" clrVerticalNavIcon></clr-icon>
-            Contracts Agreement
-          </a>
-          <a clrVerticalNavLink routerLink="catalogbrowser" routerLinkActive="active">
-            <clr-icon shape="file" clrVerticalNavIcon></clr-icon>
-            Catalog Browser
-          </a>
-          <a clrVerticalNavLink routerLink="transferhistory" routerLinkActive="active">
-            <clr-icon shape="file-group" clrVerticalNavIcon></clr-icon>
-            Transfer Process
+          <a clrVerticalNavLink routerLink="reserve" routerLinkActive="active">
+            <clr-icon shape="folder" clrVerticalNavIcon></clr-icon>
+            캠핑장 예약 조회
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
+      <a clrVerticalNavLink routerLink="user" routerLinkActive="active">
+        <clr-icon shape="certificate" clrVerticalNavIcon></clr-icon>
+        나의 페이지
+      </a>
       <clr-vertical-nav-group routerLinkActive="active">
-        <clr-icon shape="cog" clrVerticalNavIcon></clr-icon>
-        <span>Configuration</span>
+        <clr-icon shape="building" size="16" clrVerticalNavIcon></clr-icon>
+        <span>이용안내</span>
         <clr-vertical-nav-group-children>
           <a clrVerticalNavLink routerLink="company" routerLinkActive="active">
-            <clr-icon shape="host" clrVerticalNavIcon></clr-icon>
-            Company
+            <clr-icon shape="building" clrVerticalNavIcon></clr-icon>
+            회사정보
           </a>
-          <a clrVerticalNavLink routerLink="user" routerLinkActive="active">
-            <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
-            User
-          </a>
-          <a clrVerticalNavLink routerLink="setting" routerLinkActive="active">
-            <clr-icon shape="help-info" clrVerticalNavIcon></clr-icon>
-            Settings
+          <a clrVerticalNavLink routerLink="call" routerLinkActive="active">
+            <clr-icon shape="phone-handset" clrVerticalNavIcon></clr-icon>
+            FAQ
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>

@@ -1,0 +1,30 @@
+<app-dudwnwmd1 #tnwmd1></app-dudwnwmd1>
+<app-dudtnwmd2 #tnwmd2></app-dudtnwmd2>
+<div class="container">
+  <h3>나의 결제 내역</h3>
+  <clr-datagrid>
+    <clr-dg-column>캠핑장 이름</clr-dg-column>
+    <clr-dg-column>날짜</clr-dg-column>
+    <clr-dg-column>결제 상태</clr-dg-column>
+    <clr-dg-column>가격</clr-dg-column>
+
+    <clr-dg-row (click)="dudwnwmd1()">
+      <clr-dg-cell>목동군 캠핑장</clr-dg-cell>
+      <clr-dg-cell>23-05-05</clr-dg-cell>
+      <clr-dg-cell>만나서 결제</clr-dg-cell>
+      <clr-dg-cell>130,000</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-row (click)="dudwnwmd2()">
+      <clr-dg-cell>별빛 캠핑장</clr-dg-cell>
+      <clr-dg-cell>23-05-05</clr-dg-cell>
+      <clr-dg-cell>결제 완료</clr-dg-cell>
+      <clr-dg-cell>160,000</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]="3">
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} users
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>

@@ -1,0 +1,30 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false">
+  <h3 class="modal-title">결제수단 변경</h3>
+  <div class="modal-body" style="height :330px">
+    <h4 for="">카드 안에 정보를 정확하게 기입해주시길 바랍니다.</h4><br>
+    <div id="front" class="card" [class.flipped]="flipped">
+      <select class="selectcard" name="" id="">
+        <option value="KB">KB</option>
+        <option value="WR">Woori</option>
+        <option value="KEB">KEB</option>
+        <option value="NH">NH</option>
+        <option value="TOSS">Toss</option>
+      </select>
+      <input type="text" id="card-number" placeholder="card-number" [(ngModel)]="cardNumber" [maxlength]="maxLength"
+        (keyup)="validate()" [imask]="imask" [unmask]="true" />
+      <input type="text" id="name" [(ngModel)]="name" placeholder="cardholder name" />
+      <input type="text" id="validity-date" placeholder="00/00" [imask]="{mask:'00/00'}" />
+      <img *ngIf="validationRes?.card" [src]="getIssuerIcon()">
+    </div>
+    <div id="back" class="card" [class.flipped]="flipped">
+      <input type="text" id="name-signature" readonly [(ngModel)]="name" tabindex="-1" />
+      <input type="text" id="cvv" (focus)="onFocusCVV()" [(ngModel)]="cvv" (blur)="onBlurCVV()"
+        [maxlength]="maxCvvLength" placeholder="CVV NUMBER" />
+    </div>
+
+  </div>
+  <div class="modal-footer" style="position:relative;">
+    <button type="button" class="btn btn-primary" (click)="close()">변경</button>
+    <button type="button" class="btn btn-primary" (click)="opened = false">닫기</button>
+  </div>
+</clr-modal>

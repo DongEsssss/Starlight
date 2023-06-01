@@ -1,0 +1,21 @@
+.completed {
+  text-decoration: line-through;
+}
+
+.mid-item {
+  justify-content: flex-start;
+  margin-right: auto;
+  margin-left: 10px;
+}
+.list {
+  display: flex;
+  align-items: center;
+  margin: 0px 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.mid-item .item-span {
+  margin-top: -5px;
+  margin-left: 30px;
+  font-size: 1.5em;
+}

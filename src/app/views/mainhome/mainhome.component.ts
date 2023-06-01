@@ -1,10 +1,50 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
+import { events } from 'src/app/models/Eventboard';
+import { notices } from 'src/app/models/Noticeboard';
+
 @Component({
   selector: 'app-mainhome',
   templateUrl: './mainhome.component.html',
   styleUrls: ['./mainhome.component.css']
 })
 export class MainhomeComponent {
+  notices = notices;
+  event = events
+
+  constructor(
+    private router: Router
+  ) { }
+
+  name = '스캠에 온걸 환영해~!';
+
+  imageObject = [{
+    thumbImage: 'http://kor.theasian.asia/wp-content/uploads/2021/04/%EB%8C%80%EC%83%81%EC%A3%BC-%EC%B2%AD%EC%A0%95%EC%9B%90-%ED%91%B8%EB%A5%B8%EB%B4%84%EC%97%90-%EC%A0%95%EC%9B%90%EC%BA%A0%ED%95%91-%EC%9D%B4%EB%B2%A4%ED%8A%B8.jpg',
+    title: '초보 캠퍼들을 위한 가이드'
+}, {
+    thumbImage: 'https://www.10wallpaper.com/wallpaper/2560x1600/1607/Tent_camping_mountains_sunset-High_Quality_HD_Wallpaper_2560x1600.jpg',
+    title: '여름에 시원한 캠핑 어때?'
+}, {
+    thumbImage: 'https://mblogthumb-phinf.pstatic.net/MjAxODAxMjRfMTM0/MDAxNTE2NzY4MTM1OTE2.Qf3WKMbkL6gz_Fuh0JwCsPvufzaZj6YLMWFuytLmQi0g.BNaEdr4ceHdHU3_1qTj_HdUp3h7NlnFGYWJN4KqBywMg.JPEG.kooni/%EB%A0%9B%EC%B8%A0%EA%B3%A0%EC%BA%A0%ED%95%91%EC%9E%A5.jpg?type=w800',
+    title: '[캠핑 이벤트] 코오롱스포츠 캠핑파크 렛츠고 캠핑장 무료 캠핑'
+},{
+    thumbImage: 'data:image/jpeg;base64,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',
+    title: 'IT 기자의 캠핑 이야기'
+}, {
+    thumbImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTfHZ37egrxmsQGsbzs0qh8Wt1IdHQDlt0Kw&usqp=CAU',
+    title: 'Eco-Safe Camping School'
+},
+{
+  thumbImage: 'https://p4.wallpaperbetter.com/wallpaper/730/267/668/tent-camping-mountains-landscape-wallpaper-preview.jpg',
+  title: '이런 배경화면은 어때?'
+}
+
+];
+
+imageClickHandler(title) {
+  this.router.navigateByUrl('starlightcamping/home/mainhome');
+  console.log(title)
+}
 
 }
 

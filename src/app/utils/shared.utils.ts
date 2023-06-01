@@ -7,7 +7,7 @@ export const STA_SERVER_URL = '';
 
 export const SERVER_URL = DEV_MODE?DEV_SERVER_URL:STA_SERVER_URL;
 
-export const APP_NAME = 'vcpx';
+export const APP_NAME = 'starlightcamping';
 export const APP_ROOT = (APP_NAME.length > 0 ? '/' : '') + APP_NAME;
 
 export const HTTP_CODE_SUCCESS = 200;

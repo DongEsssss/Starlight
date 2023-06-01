@@ -1,0 +1,10 @@
+<div class="container">
+  <div [formGroup]="todoForm">
+    <input class=" addinput" type="input" formControlName="todo" />
+  </div>
+  <div>
+    <button class="btn btn-primary addbtn" [disabled]="todoForm.invalid" (click)="addTasks()">
+      Add
+    </button>
+  </div>
+</div>

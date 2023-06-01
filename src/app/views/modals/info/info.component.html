@@ -1,0 +1,33 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="true">
+  <div class="modal-title">
+    <clr-icon shape="user"></clr-icon>
+    <span>나의 정보</span>
+  </div>
+  <div class="modal-body body-format">
+    <div class="clr-row user-info">
+      <div class="clr-col-sm-12 clr-col-md-6">
+        <div class="user">
+          <clr-icon shape="users"></clr-icon>
+        </div>
+      </div>
+      <div class="clr-col-sm-12 clr-col-md-6">
+        <div class="my-info-title">
+          <h3 class="title">별빛님의 정보</h3>
+          <div class="info" *ngFor="let info of infos">
+            <span><label for="">이름 : </label>임동균</span>
+            <span><label for="">닉네임 : </label>{{info.name}}</span>
+            <span><label for="">이메일 : </label>{{info.email}}</span>
+            <span><label for="">전화번호 : </label>{{info.phone}}</span>
+            <span><label for=""> 주소 : </label>{{info.address}}</span>
+            <span><label for="">생년월일 : </label>{{info.birth}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="opened = false">
+      Close
+    </button>
+  </div>
+</clr-modal>

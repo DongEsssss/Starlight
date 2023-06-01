@@ -1,0 +1,16 @@
+<div class="list" style="display:flex;justify-content: space-around; "
+  *ngFor="let todo of todos | async; let i = index">
+  <div>
+    <input type="checkbox" (change)="completeTask($event.target, i)" />
+  </div>
+
+  <div class="mid-item">
+    <span class="item-span" [ngClass]="{ completed: todo.completed }">{{ todo.value }}</span>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-danger" (click)="deleteTask(todo.id)">
+      Delete
+    </button>
+  </div>
+</div>

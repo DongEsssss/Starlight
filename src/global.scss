@@ -1,33 +1,117 @@
-.clr-form-horizontal .clr-form-control>.clr-control-label{
+.login-wrapper .login {
+  background: rgba(22, 193, 22, 0.716);
+}
+.login-wrapper .login .login-group .btn {
+  margin: 0 0 0 0;
+  background-color: rgb(20, 212, 255);
+  border: none;
   color: white;
 }
-// datagrid
-.datagrid{
-  width: 100%;
-  overflow-y: hidden;
+.login-wrapper .login .login-group {
+  padding: 10px 0 0 0;
 }
-.datagrid .datagrid-cell{
-  line-height: 21.5px;
+.clr-checkbox-wrapper .clr-control-label {
+  color: white;
 }
-.datagrid-detail-caret.datagrid-cell {
-  background: #333543;
+.login-wrapper .login .login-group .clr-control-container .clr-input-wrapper,
+.login-wrapper
+  .login
+  .login-group
+  .clr-control-container
+  .clr-input-wrapper
+  > .clr-input,
+.clr-input-group .clr-input {
+  background-color: white;
+  margin-top: 0px;
+  color: black;
 }
-.datagrid-detail-pane-content {
-  background: #232323;
-  height: 100%;
-  top: 0px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+input::placeholder {
+  color: black;
 }
-.datagrid-table .datagrid-placeholder .datagrid-placeholder-image {
-  margin-top: 150px;
+.title {
+  font-weight: bolder;
 }
-// verical nav
-.main-container header, .main-container .header,
-.clr-vertical-nav, .clr-vertical-nav .nav-trigger ,
+
+//mainhome
+clr-header .header {
+  background-color: aquamarine;
+}
+//accordion
+.clr-accordion:not(.clr-stepper-forms) .clr-accordion-header-button {
+  font-size: .6rem;
+  font-size: var(--clr-accordion-header-button-font-size, 0.6rem);
+  padding: 0.3rem 0.6rem;
+  background: #eee;
+  border: #eee;
+  word-break: normal;
+  line-height: 50px;
+}
+.clr-accordion:not(.clr-stepper-forms) .clr-accordion-inner-content {
+  padding: 0.3rem 1.75rem;
+  background-color: white;
+  padding: 20px 30px;
+}
+//vertical nav
+.main-container header,
+.main-container .header,
+.clr-vertical-nav,
+.clr-vertical-nav .nav-trigger,
+.clr-vertical-nav .nav-trigger:hover,
 .clr-vertical-nav .nav-trigger + .nav-content {
-  background-color: #333543;
-  border-top-color: #333543;
+  background-color: #26c000;
+  border-top-color: rgba(22, 193, 22, 0.716);
+  border: none;
+  outline: none;
+}
+
+.clr-vertical-nav .nav-link.active {
+  color: #fff;
+  background-color: lightgreen;
+  position: relative;
+}
+svg {
+  display: block;
+  color: white;
+}
+
+
+
+
+h4:not([cds-text]) {
+  text-align: start;
+  line-height: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-weight: bolder;
+}
+
+.drop-btn,
+.drop-btn span {
+  margin-right: 20px;
+  color: white;
+}
+
+.clr-vertical-nav .nav-group-text, .clr-vertical-nav .nav-text {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
+
+//tabs
+.nav .nav-link:hover, .nav .nav-link.active {
+  box-shadow: none;
+  box-shadow: 0 -0.15rem 0 var(--clr-nav-active-box-shadow-color, hsl(140, 100%, 33%)) inset;
+  color: #131313;
+  border: none;
+  outline: none;
+  font-weight: bolder;
+  font-size: 18px;
+}
+.clr-col-12 {
+  padding: 0px 0px ;
+  margin : 0px 0px;
 }
 
 // button
@@ -41,15 +125,15 @@
   background-color: #131313;
 }
 .modal-header, .modal-header--accessible {
-   border-bottom: none; 
-   padding: 0 0 0 0; 
+   border-bottom: none;
+   padding: 0 0 0 0;
 }
 //wizard
 .clr-wizard.wizard-lg .modal-dialog {
   min-height: 33rem;
   max-height: 35rem;
 }
-.clr-wizard 
+.clr-wizard
 .clr-wizard-page:not([aria-hidden=true]){
   display: flex;
   justify-content: center;
@@ -100,4 +184,75 @@ h3 .card-header{
 .modal-header .modal-title:not([cds-text]), .modal-header--accessible .modal-title:not([cds-text]) {
   margin-bottom: 10px;
   font-weight: bold;
+}
+
+clr-icon {
+  display: inline-block;
+  outline: none;
+  margin: 0;
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+  fill: #eee;
+  color: black;
+}
+clr-icon.is-highlight
+clr-icon.is-highlight:active {
+  fill: #007cbb;
+  background-color: black;
+}
+//datagrid
+.datagrid-table .datagrid-placeholder.datagrid-empty {
+  background: white;
+}
+.datagrid-table .datagrid-column {
+  background: white;
+  color: black;
+}
+.datagrid-table .datagrid-column .datagrid-column-title {
+  color: black;
+}
+.table{
+  margin: 0px;
+  border: none;
+}
+.table th, .table td{
+  padding-left: 20px;
+  background-color: white;
+  height: 30px;
+  color: #131313;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.table thead th{
+  font-size: 1.1em;
+}
+
+td{
+  border-top: 0.5px solid #131313;
+}
+
+body p:not([cds-text]) {
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+.modal-dialog .modal-content {
+  background-color: #eee;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.modal-footer {
+  margin-top: 10px;
+  outline: none;
+  display: flex;
+  justify-content: center;
+}
+button{
+  outline: none;
+}
+.btext {
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
 }

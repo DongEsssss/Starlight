@@ -1,14 +1,16 @@
-.header, header-actions {
+.header,
+header-actions {
   position: flex;
   align-items: center;
 }
 
 .logo {
   margin-left: 10px;
-  width: 50px;
-  height: 50px;
-  background: url('src/static/images/EDClogo.png') no-repeat 50% 50%;
+  width: 40px;
+  height: 40px;
+  background: url("src/static/images/tree-line.svg") no-repeat 50% 50%;
   background-size: contain;
+  color: white;
 }
 
 .logo-title {
@@ -44,10 +46,11 @@
 .icon {
   width: 10px;
   height: 10px;
-  background: url('src/static/images/icon_arrow_down_white.svg') no-repeat 50% 50%;
+  background: url("src/static/images/icon_arrow_down_white.svg") no-repeat 50%
+    50%;
   background-size: contain;
   margin-left: 5px;
 }
-.content-area{
-  background-color: black;
+.content-area {
+  background-color: white;
 }

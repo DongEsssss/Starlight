@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AssetsComponent } from '../views/edc/assets/assets.component';
-import { CatalogBrowserComponent } from '../views/edc/catalog-browser/catalog-browser.component';
-import { ContractDefinitionsComponent } from '../views/edc/contract-definitions/contract-definitions.component';
-import { ContractAgreementComponent } from '../views/edc/contract-agreement/contract-agreement.component';
-import { PoliciesComponent } from '../views/edc/policies/policies.component';
-import { TransferHistoryComponent } from '../views/edc/transfer-history/transfer-history.component';
-
-import { MonitoringComponent } from '../views/monitoring/monitoring.component';
 import { HomeComponent } from '../views/page/home/home.component';
 import { MainhomeComponent } from '../views/mainhome/mainhome.component';
 import { CompanyComponent } from '../views/configuration/company/company.component';
 import { SettingComponent } from '../views/configuration/setting/setting.component';
 import { UserComponent } from '../views/configuration/user/user.component';
+
+import { EventComponent } from '../views/event/event.component';
+import { CallComponent } from '../views/configuration/call/call.component';
 
 const routes: Routes = [{
   path: '',
@@ -24,36 +19,8 @@ const routes: Routes = [{
       component: MainhomeComponent
     },
     {
-      path: 'catalogbrowser',
-      component: CatalogBrowserComponent
-    },
-    {
-      path: 'contracts-agreement',
-      component: ContractAgreementComponent
-    },
-    {
-      path: 'transferhistory',
-      component: TransferHistoryComponent
-    },
-    {
-      path: 'monitoring',
-      component: MonitoringComponent
-    },
-    {
-      path: 'policies',
-      component: PoliciesComponent
-    },
-    {
-      path: 'assets',
-      component: AssetsComponent
-    },
-    {
-      path: 'monitoring',
-      component: MonitoringComponent
-    },
-    {
-      path: 'contractdefinitions',
-      component: ContractDefinitionsComponent
+      path: 'event',
+      component: EventComponent
     },
     {
       path: 'company',
@@ -66,6 +33,11 @@ const routes: Routes = [{
     {
       path: 'user',
       component: UserComponent
+    }
+    ,
+    {
+      path: 'call',
+      component: CallComponent
     }
   ]
 }];

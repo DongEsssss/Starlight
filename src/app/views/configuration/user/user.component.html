@@ -1,31 +1,51 @@
-<app-user-edit #useredit></app-user-edit>
+<app-password #passwordchange></app-password>
+<app-info-set #infochange></app-info-set>
+<app-card #card></app-card>
+<app-likecamp #like></app-likecamp>
 <div class="container">
   <div class="container_title">
-    <div class="title_icon"></div>
-    <span class="title">User Information</span>
+    <clr-icon shape="users" class="title_icon"></clr-icon>
+    <span class="title_text"> 나의 페이지 </span>
   </div>
-  <div style="background-color:#333543; border-radius:10px; padding: 10px 10px; margin-top: 6px;">
-    <div class="user_high">
-      <span class="title">My Profile</span>
-      <button class="btn btn-inverse" (click)="onEdit()">Edit</button>
-    </div>
-    <hr>
-    <div class="clr-row">
-      <div class="clr-col-6">
-        <div class="user_img"></div>
-        <span class="name"> User-Name</span>
+  <div class="clr-row">
+    <div class="clr-col-12 my-info " *ngFor="let info of infos">
+      <div class="clr-col-3 my-info-img">
+        <clr-icon class="my-img" shape="user"></clr-icon>
       </div>
-      <div class="clr-col-6">
-        <span class="title">User-info</span>
-        <div class="clr-row">
-          <div class="clr-col-4">
-            <label>User-info(1/7)</label>
-          </div>
-          <div class="clr-col-8">
-            <label>User-info-data(1/7)</label>
+      <div class="clr-col-3">
+        <div class="my-info-title">
+          <h3 class="title">별빛님의 정보</h3>
+          <div class="info">
+            <span><label for="">이름 : </label>임동균</span>
+            <span><label for="">닉네임 : </label>{{info.name}}</span>
+            <span><label for="">이메일 : </label>{{info.email}}</span>
+            <span><label for="">전화번호 : </label>{{info.phone}}</span>
+            <span><label for="">주소 : </label>{{info.address}}</span>
+            <span><label for="">생년월일 : </label>{{info.birth}}</span>
           </div>
         </div>
       </div>
+      <div class="clr-col-3 ach">
+        <p class="tag_1">글램핑 마스터</p>
+        <p class="tag_2">바다 점령</p>
+        <p class="tag_3">산 점령</p>
+        <p class="tag_4">같이 놀기 마스터</p>
+        <p class="tag_5">인싸</p>
+        <p class="tag_6">누구든 들어와라</p>
+      </div>
+      <div class="clr-col-3 message">
+        <button class="button" (click)="likecamp()"><clr-icon shape="heart"></clr-icon><span>찜 목록</span></button>
+        <button class="button" (click)="creditcard()"><clr-icon shape="credit-card"></clr-icon>결제수단</button>
+        <button class="button" (click)="infoedit()"><clr-icon shape="cog"></clr-icon>정보 변경</button>
+        <button class="button" (click)="password()"><clr-icon shape="logout"></clr-icon>비밀번호 변경</button>
+      </div>
+    </div>
+    <div class="todolist">
+      <h3>내가 할일 </h3>
+      <app-todo></app-todo>
+    </div>
+    <div class="usecard">
+      <app-usecard></app-usecard>
     </div>
   </div>
 </div>

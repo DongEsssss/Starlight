@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { CommonServiceService } from '../services/common/common.service.service';
 import { DialogService } from '../services/dialog';
 import { EventService } from '../services/event/event.service';
 import { RestService } from '../services/rest/rest.service';
 import { SessionService } from '../services/session/session.service';
-import { FormField } from '../models/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { InlineAlertComponent } from './inline-alert/inline-alert.component';
@@ -21,7 +19,6 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   constructor(
     public formbulider: FormBuilder,
     public restService: RestService,
-    public commonService: CommonServiceService,
     public eventService: EventService,
     public session: SessionService,
     public dialog: DialogService,
@@ -29,14 +26,14 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     public router: Router,
     private cdr: ChangeDetectorRef
   ) { }
+  ngOnInit(): void {
+  }
 
   parentComponent?: DefaultComponent;
   opened: boolean = false;
   isInit: boolean = false;
   onGoing: boolean = false;
   formData!: T;
-  newForm: Array<FormField> = [];
-  editForm: Array<FormField> = [];
   isEditable = false;
   datatype: any;
   id: any;
@@ -52,15 +49,6 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     this.opened = true;
   }
 
-  ngOnInit(): void {
-    this.eventService.LoadCommonDataEvent.subscribe(() => {
-      this.ngOnCommonInit();
-    });
-
-    if (this.commonService.isComplete && !this.isInit) {
-      this.ngOnCommonInit();
-    }
-  }
 
   ngOnCommonInit(): void {
     this.isInit = true;
@@ -74,7 +62,7 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
 
   onCloseModal() {
   }
-  
+
   onRefresh() {
     location.reload();
   }
@@ -138,16 +126,9 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
       this.validationStateMap[key] = true;
     }
   }
-
   public get isValid(): boolean {
     if (this.modalForm == undefined) return false;
     var v = true;
-
-    for(var field of this.isEditable?this.editForm:this.newForm){
-        if (field.require && this.modalForm.controls[field.name!]?.value == undefined) {
-            v = false;
-        }
-    }
     return v;
 }
 

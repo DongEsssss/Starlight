@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130.86" height="138.735" viewBox="0 0 130.86 138.735">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00a8eb"/>
+      <stop offset="1" stop-color="#00f2ae"/>
+    </linearGradient>
+  </defs>
+  <g id="그룹_3205" data-name="그룹 3205" transform="translate(-22.738 -41.505)">
+    <g id="그룹_3202" data-name="그룹 3202" transform="translate(22.738 41.505)" style="mix-blend-mode: multiply;isolation: isolate">
+      <circle id="타원_68" data-name="타원 68" cx="46.266" cy="46.266" r="46.266" transform="translate(0 73.305) rotate(-45)" fill="#fff"/>
+      <circle id="타원_69" data-name="타원 69" cx="46.266" cy="46.266" r="46.266" transform="translate(0 72.93) rotate(-45)" fill="#fefefe"/>
+      <circle id="타원_70" data-name="타원 70" cx="46.266" cy="46.266" r="46.266" transform="translate(0 72.555) rotate(-45)" fill="#fdfdfd"/>
+      <circle id="타원_71" data-name="타원 71" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 25.914)" fill="#fcfcfc"/>
+      <circle id="타원_72" data-name="타원 72" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 25.539)" fill="#fbfbfb"/>
+      <circle id="타원_73" data-name="타원 73" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 25.164)" fill="#fafafa"/>
+      <circle id="타원_74" data-name="타원 74" cx="46.266" cy="46.266" r="46.266" transform="translate(0 71.055) rotate(-45)" fill="#f9f9f9"/>
+      <circle id="타원_75" data-name="타원 75" cx="46.266" cy="46.266" r="46.266" transform="translate(0 70.68) rotate(-45)" fill="#f8f8f8"/>
+      <circle id="타원_76" data-name="타원 76" cx="46.266" cy="46.266" r="46.266" transform="translate(0 70.305) rotate(-45)" fill="#f7f7f7"/>
+      <circle id="타원_77" data-name="타원 77" cx="46.266" cy="46.266" r="46.266" transform="translate(0 69.93) rotate(-45)" fill="#f6f6f6"/>
+      <circle id="타원_78" data-name="타원 78" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 23.289)" fill="#f5f5f5"/>
+      <circle id="타원_79" data-name="타원 79" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 22.914)" fill="#f5f5f5"/>
+      <circle id="타원_80" data-name="타원 80" cx="46.266" cy="46.266" r="46.266" transform="translate(0 68.805) rotate(-45)" fill="#f4f4f4"/>
+      <circle id="타원_81" data-name="타원 81" cx="46.266" cy="46.266" r="46.266" transform="translate(0 68.43) rotate(-45)" fill="#f3f3f3"/>
+      <circle id="타원_82" data-name="타원 82" cx="46.266" cy="46.266" r="46.266" transform="translate(0 68.055) rotate(-45)" fill="#f2f2f2"/>
+      <circle id="타원_83" data-name="타원 83" cx="46.266" cy="46.266" r="46.266" transform="translate(0 67.68) rotate(-45)" fill="#f1f1f1"/>
+      <circle id="타원_84" data-name="타원 84" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 21.039)" fill="#f0f0f0"/>
+      <circle id="타원_85" data-name="타원 85" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 20.664)" fill="#efefef"/>
+      <circle id="타원_86" data-name="타원 86" cx="46.266" cy="46.266" r="46.266" transform="translate(19.164 20.289)" fill="#eee"/>
+      <circle id="타원_87" data-name="타원 87" cx="46.266" cy="46.266" r="46.266" transform="translate(0 66.18) rotate(-45)" fill="#ededed"/>
+      <circle id="타원_88" data-name="타원 88" cx="46.266" cy="46.266" r="46.266" transform="translate(0 65.805) rotate(-45)" fill="#ececec"/>
+      <circle id="타원_89" data-name="타원 89" cx="46.266" cy="46.266" r="46.266" transform="translate(0 65.43) rotate(-45)" fill="#ebebeb"/>
+    </g>
+    <circle id="타원_90" data-name="타원 90" cx="46.266" cy="46.266" r="46.266" transform="translate(22.738 106.935) rotate(-45)" fill="#fff"/>
+    <g id="그룹_3203" data-name="그룹 3203" transform="translate(49.139 67.907)">
+      <circle id="타원_91" data-name="타원 91" cx="39.029" cy="39.029" r="39.029" fill="url(#linear-gradient)"/>
+    </g>
+    <g id="그룹_3204" data-name="그룹 3204" transform="translate(63.996 90.522)">
+      <path id="패스_1518" data-name="패스 1518" d="M153.34,207.785,132.15,186.6l6.933-6.933L153.34,193.92l22.428-22.428,6.933,6.933Z" transform="translate(-132.15 -171.491)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

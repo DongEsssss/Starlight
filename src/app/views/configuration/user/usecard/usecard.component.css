@@ -1,0 +1,15 @@
+.container {
+  margin-top: 20px;
+}
+clr-datagrid {
+  margin-top: 10px;
+  height: 400px;
+  color: black;
+}
+clr-dg-footer,
+clr-dg-pagination {
+  color: black;
+}
+h3 {
+  font-weight: bolder;
+}

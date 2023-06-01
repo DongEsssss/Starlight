@@ -1,13 +1,47 @@
-.container {
-  margin: 10px 0px;
-}
-
 .title {
   display: flex;
   align-items: center;
+  font-size: 25px;
+}
+hr {
+  width: 100%;
+}
+.companytable {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.table.table-vertical th:first-child,
+.table.table-vertical td:first-child,
+.clr-accordion-header-button,
+.clr-accordion-inner-content,
+clr-accordion {
+  width: 20%;
+  background-color: #eee;
+  font-size: 13px;
+  padding-top: 15px;
+  line-height: 30px;
+  padding-left: 30px;
+  border-bottom: 1px solid rgb(88, 88, 88);
+}
+table tr {
+  border-bottom: 1px solid rgb(88, 88, 88);
+}
+table {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(88, 88, 88);
+}
+.table.table-vertical td,
+.table.table-vertical th {
+  text-align: left;
+  border-bottom: 0.7px solid rgb(88, 88, 88);
 }
 
-.container_title, .option_btn {
+.table.table-vertical td,
+.table.table-vertical th {
+  padding-top: 20px;
+}
+.container_title,
+.option_btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,26 +49,6 @@
 
 .notice {
   margin-top: 5px;
-}
-
-.company_intro {
-  width: 100%;
-  height: 12rem;
-  margin-bottom: 10px;
-  background: #333543;
-}
-
-.description {
-  overflow-y: auto;
-  width: 100%;
-  height: 12rem;
-  padding: 10px 0px;
-}
-
-.description label {
-  font-size: 20px;
-  font-weight: bold;
-  color: #eeeeee;
 }
 
 button {
@@ -48,11 +62,35 @@ button:hover {
   cursor: pointer;
   opacity: 0.7;
 }
-
-.modify {
-  background: url('src/static/images/icon_modify_white.svg') no-repeat 50% 50% #333543;
+.title_icon {
+  background-image: url("src/static/images/building-line.svg");
 }
-
-.delete {
-  background: url('src/static/images/icon_delete_white.svg') no-repeat 50% 50% #333543;
+.title_icon1 {
+  width: 30px;
+  height: 30px;
+  background-image: url("src/static/images/happy-face-line.svg");
+  background-size: contain;
+  margin-right: 10px;
+}
+.title_text {
+  margin-left: 10px;
+}
+.title_text1 {
+  font-size: 20px;
+  font-weight: bolder;
+  color: black;
+}
+.text {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 10px;
+  width: 100%;
+  height: 200px;
+  background-color: #eee;
+  padding: 20px 30px;
+}
+span {
+  border: none;
+  font-size: 1.1em;
+  color: black;
+  font-weight: bold;
 }

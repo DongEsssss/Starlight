@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="62.917" height="46" viewBox="0 0 62.917 46">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_4118" data-name="사각형 4118" width="62.917" height="46" fill="red"/>
+    </clipPath>
+  </defs>
+  <g id="그룹_3212" data-name="그룹 3212" transform="translate(-77 -279)">
+    <text id="Analytics" transform="translate(108 314)" fill="red" font-size="30" font-family="NotoSansKR-Bold, Noto Sans KR" font-weight="700" letter-spacing="0.03em"><tspan x="-10.005" y="0">P</tspan></text>
+    <g id="그룹_3211" data-name="그룹 3211" transform="translate(77 279)">
+      <g id="그룹_3210" data-name="그룹 3210" clip-path="url(#clip-path)">
+        <path id="패스_1520" data-name="패스 1520" d="M0,46.561c.164-1.193.29-2.393.5-3.579A31,31,0,0,1,5.635,30.543l2.941,2.049c-6.554,10.623-6.562,21.19-.007,31.86-.43.306-.921.66-1.416,1.007s-.973.673-1.565,1.082C4.91,65.391,4.2,64.3,3.6,63.148A30.853,30.853,0,0,1,.1,50.968a3.436,3.436,0,0,0-.1-.474V46.561" transform="translate(0 -25.527)" fill="red"/>
+        <path id="패스_1521" data-name="패스 1521" d="M74.589,0a23,23,0,1,1-23.02,22.948A23,23,0,0,1,74.589,0M55.257,22.988a19.311,19.311,0,1,0,19.306-19.3,19.318,19.318,0,0,0-19.306,19.3" transform="translate(-43.101 0)" fill="red"/>
+        <path id="패스_1522" data-name="패스 1522" d="M333.955,66.737,331.038,64.7c6.543-10.615,6.559-21.179,0-31.86l2.87-2.007c6.848,9.079,8.257,24.329.044,35.9" transform="translate(-276.677 -25.77)" fill="red"/>
+      </g>
+    </g>
+  </g>
+</svg>

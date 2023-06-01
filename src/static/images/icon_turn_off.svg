@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="94" height="28" viewBox="0 0 94 28">
+  <g id="그룹_3024" data-name="그룹 3024" transform="translate(-1114 -400.474)">
+    <path id="사각형_3919" data-name="사각형 3919" d="M14,1A13,13,0,0,0,4.808,23.192,12.915,12.915,0,0,0,14,27H80A13,13,0,0,0,89.192,4.808,12.915,12.915,0,0,0,80,1H14m0-1H80a14,14,0,0,1,0,28H14A14,14,0,0,1,14,0Z" transform="translate(1114 400.474)" fill="#eee"/>
+    <circle id="타원_25" data-name="타원 25" cx="11.536" cy="11.536" r="11.536" transform="translate(1117 403.103)" fill="#eee"/>
+    <path id="타원_25_-_윤곽선" data-name="타원 25 - 윤곽선" d="M11.536,1A10.536,10.536,0,1,0,22.073,11.536,10.548,10.548,0,0,0,11.536,1m0-1A11.536,11.536,0,1,1,0,11.536,11.536,11.536,0,0,1,11.536,0Z" transform="translate(1117 403.103)" fill="#333544"/>
+    <text id="OFF" transform="translate(1154.055 421.474)" fill="#eee" font-size="18" font-family="NotoSansKR-Medium, Noto Sans KR" font-weight="500"><tspan x="0" y="0">OFF</tspan></text>
+  </g>
+</svg>

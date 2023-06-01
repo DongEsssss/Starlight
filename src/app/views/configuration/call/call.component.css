@@ -1,0 +1,21 @@
+.container {
+  width: 80%;
+  margin: auto;
+}
+.title_icon {
+  margin-right: 5px;
+  background: url("src/static/images/phone-handset-line.svg") 50% 50% no-repeat;
+}
+.faq {
+  margin-top: 10px;
+}
+hr {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  border: none;
+}
+
+h3 {
+  font-weight: bolder;
+}

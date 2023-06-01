@@ -1,7 +1,12 @@
-.login-wrapper .login .login-group .btn {
-  margin: 0px 0px 0px 0px;
+.title span {
+  font-weight: bolder;
 }
-
 .login-wrapper {
-  background-color: #88f9c6;
+  background: url("src/static/images/starlightcampinglogo.png") no-repeat #fff;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: right center;
+}
+.login-wrapper .login {
+  min-height: 70vh;
 }

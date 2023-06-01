@@ -1,0 +1,145 @@
+* {
+  --cm1: 57.3px;
+  --mm1: calc(var(--cm1) / 10);
+  --no-print-bleed: calc(3.2 * var(--mm1));
+}
+.selectcard{
+  width: 300px;
+  color: rgba(192, 192, 192, 0.3);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  background-color: transparent;
+  border: none;
+  font-size: 2em;
+  outline: none;
+  margin-left: 40px;
+  filter: uppercase;
+  margin-top: 120px;
+}
+option{
+  color: rgb(76, 76, 76);
+}
+.card {
+  position: absolute;
+  display: inline-block;
+  left: 13px;
+  top:100px;
+  width: calc(85.6 * var(--mm1));
+  height: calc(54 * var(--mm1));
+  border: thin solid rgba(0, 0, 0, 0.2);
+  border-radius: 3mm;
+  backface-visibility: hidden;
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: linear;
+  perspective: 100px;
+  img {
+    position: absolute;
+    top: var(--no-print-bleed);
+    right: var(--no-print-bleed);
+    height: var(--cm1);
+  }
+  input{
+    font-family: "CreditCard";
+    background-color: transparent;
+    border: none;
+    text-transform: uppercase;
+    &::placeholder {
+      color: rgba(192, 192, 192, 0.3);
+    }
+  }
+  &#front {
+    background: rgb(123, 120, 182);
+    background: linear-gradient(
+      315deg,
+      rgba(123, 120, 182, 1) 0%,
+      rgba(10, 10, 83, 1) 27%,
+      rgba(10, 10, 83, 1) 50%,
+      rgba(107, 227, 251, 1) 100%
+    );
+
+    transform: rotate3d(0, 1, 0, 0deg);
+    transform-style: preserve-3d;
+    &.flipped {
+      transform: rotate3d(0, 1, 0, 180deg);
+    }
+    #card-number {
+      font-family: "CreditCard";
+      color: transparentize(
+        $color: lighten($color: rgb(128, 128, 128), $amount: 100),
+        $amount: 0.65
+      );
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+      top: calc(30 * var(--mm1));
+      left: calc(8.5 * var(--mm1));
+      right: calc(8.5 * var(--mm1));
+      position: absolute;
+      line-height: calc(6 * var(--mm1));
+      font-size: calc(4.5 * var(--mm1));
+      width: calc(100% - calc(2 * calc(8.5 * var(--mm1))));
+      outline: none;
+      text-shadow: -2px -2px 2px rgba(192, 192, 192, 0.2),
+        2px 2px 2px rgba(72, 72, 72, 0.2);
+      background-clip: text;
+      border: none;
+    }
+    #name {
+      position: absolute;
+      line-height: calc(5.5 * var(--mm1));
+      font-size: calc(4 * var(--mm1));
+      top: calc(60mm + 1.5rem);
+      left: calc(var(--no-print-bleed) + 2rem);
+      color: transparentize(
+        $color: lighten($color: rgb(128, 128, 128), $amount: 100),
+        $amount: 0.65
+      );
+      outline: none;
+      text-shadow: -2px -2px 2px rgba(192, 192, 192, 0.2),
+        2px 2px 2px rgba(72, 72, 72, 0.2);
+      background-clip: text;
+    }
+    #validity-date {
+      position: absolute;
+      top: calc(calc(46mm + 1.5rem) + 1.5rem);
+      left: calc(50% - 11mm);
+      color: transparentize(
+        $color: lighten($color: rgb(128, 128, 128), $amount: 100),
+        $amount: 0.65
+      );
+      outline: none;
+      text-shadow: -2px -2px 2px rgba(192, 192, 192, 0.2),
+        2px 2px 2px rgba(72, 72, 72, 0.2);
+      background-clip: text;
+    }
+  }
+  &#back {
+    background-color: rgba(0, 255, 128, 1);
+    background: linear-gradient(
+      315deg,
+      rgb(120, 182, 156) 0%,
+      rgb(10, 83, 55) 27%,
+      rgb(10, 83, 65) 50%,
+      rgb(107, 251, 167) 100%
+    );
+
+    transform: rotate3d(0, 1, 0, 180deg);
+    transform-style: preserve-3d;
+    &.flipped {
+      transform: rotate3d(0, 1, 0, 360deg);
+    }
+    #name-signature {
+      font-family: Aletheia;
+      background: white;
+      text-transform: none;
+      font-size: 3.5rem;
+      line-height: 3.5rem;
+      width: 55%;
+      height: var(--cm1);
+      top: var(--no-print-bleed);
+      left: var(--no-print-bleed);
+    }
+    #cvv {
+      outline: none;
+    }
+  }
+}
