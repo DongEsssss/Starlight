@@ -1,0 +1,42 @@
+select {
+  margin-right: 10px;
+  width: 100px;
+  height: 33px;
+  border: 1px solid black;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+.toolbar-btn1 {
+  right: 0;
+}
+.tool {
+  display: flex;
+  justify-content: space-between;
+}
+clr-icon {
+  padding: 0px 0px;
+  margin: 0px 3px;
+}
+clr-icon .refresh {
+  width: 20px;
+  height: 20px;
+}
+.cardgrid {
+  margin-top: 15px;
+}
+.asd {
+  width: 300px;
+  height: 200px;
+}
+clr-datagrid {
+  height: 750px;
+}
+.price p {
+  font-size: 13px;
+  color: black;
+}
+span,
+h5,
+h4 {
+  color: black;
+}

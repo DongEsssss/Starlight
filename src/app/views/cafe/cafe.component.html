@@ -1,0 +1,30 @@
+<app-cafedetail #cafedetail [item]="item" [id]="id"></app-cafedetail>
+<app-sns #addmodal></app-sns>
+<div class="container">
+  <div class="container_title">
+    <clr-icon shape="tablet"></clr-icon>
+    <span class="title_text">Star 카페</span>
+  </div>
+  <div class="search-tool">
+    <input class="search_input" [(ngModel)]="searchText" name="search" type="text" placeholder="캠핑장 이름으로 검색하시오"
+      id="carrier-input">
+    <div class="toolbar-group">
+      <button (click)="createsns()" class="toolbar-btn1"></button>
+    </div>
+  </div>
+  <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getsns()" [clrDgLoading]="cDataLoading"
+    [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+    <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+    <clr-dg-row *clrDgItems="let item of cafeList | filter : searchText;  index as i" [clrDgItem]="item"
+      (click)="detailcafe(item.id)" (clrDgSelectedChange)="onSelectionChanged($event)">
+      <clr-dg-cell>{{i+1}}</clr-dg-cell>
+      <clr-dg-cell>{{item.snstitle}}</clr-dg-cell>
+      <clr-dg-cell>{{item.snswriter}}</clr-dg-cell>
+      <clr-dg-cell>{{item.snscreatedate | date : 'yyyy/MM/dd'}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]=" 20">
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>

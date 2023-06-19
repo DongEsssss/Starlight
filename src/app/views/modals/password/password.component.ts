@@ -9,15 +9,29 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./password.component.css']
 })
 export class PasswordComponent extends DefaultFormComponent<User>{
-  npassword2?:string;
   reg : string = `/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/`;
-  show1 = false;
-  show2 = false;
-  show3 = false;
+  password1 !: string;
+  password2 !: string;
+  password3 !: string;
 
   close1(){
     alert("비밀번호가 변경되었습니다.");
     this.opened = false;
     window.location.reload();
+  }
+
+  override resetFormState(){
+    this.validationStateMap = {
+      "password1": true,
+      "password2": true,
+      "password3": true,
+    };
+  }
+
+  override resetFormModel(): void {
+    super.resetFormModel();
+    this.inlineAlert.close();
+    this.formValueChanged = false;
+    this.formData = new User();
   }
 }

@@ -1,21 +1,19 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="true" [clrModalSize]="'lg'">
-  <h3 class="modal-title">내가 가고싶은 캠핑장 목록</h3>
-  <div class="modal-body">
-    <div class="favorite-item">
-      <div>
-        <div class="clr-row list" *ngFor="let item of item">
-          <img [src]="item.avatar" class="list-img" />
-          <span class="list-text">
-            <h3>{{ item.name }}</h3>
-            <span class="address">{{item.address}}</span> <br>
-            <span class="text">{{item.text}}</span>
-          </span>
-          <button class="deletebtn">💔좋아요 취소</button>
-        </div>
-      </div>
-    </div>
-
+  <div class="modal-title">
+    <div class="icon"></div>
+    <span class="modal-text">내가 찜한 캠핑장 목록</span>
   </div>
-  <div class="modal-footer">
+  <div class="modal-body">
+    <p class="btext">새롭게 업데이트 할 프로필 정보를 입력하시오.</p>
+    <div class="list" *ngFor="let item of item">
+      <img [src]="item.avatar" class="list-img" />
+      <span class="list-text">
+        <div class="top">
+          <h3>{{ item.name }}</h3> <button class="deletebtn">💔좋아요 취소</button>
+        </div>
+        <span class="address">{{item.address}}</span> <br>
+        <span class="text">{{item.text}}</span>
+      </span>
+    </div>
   </div>
 </clr-modal>

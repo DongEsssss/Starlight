@@ -1,17 +1,17 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'sm'">
-  <h3 class="modal-title">영수증</h3>
-  <h4>목동군 캠핑장</h4>
+  <div class="modal-title">
+    <clr-icon shape="won"></clr-icon>
+    <span class="modal-text">영수증</span>
+  </div>
   <div class="modal-body">
+    <h4>동군 캠핑장</h4>
     <pre>
-      캠핑 자리비 70,000원
-      장작 10,000원
-      놀이기구 10,000원
-      텐트 대여비 40,000원
-      총합 130,000원
+      캠핑 자리비 160,000원
+      총합 160,000원
       (결제완료)
     </pre>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="close()">닫기</button>
+    <button type="button" class="btn btn-outline" (click)="close()">닫기</button>
   </div>
 </clr-modal>

@@ -1,0 +1,179 @@
+select {
+  margin-right: 10px;
+  width: 100px;
+  height: 35px;
+  border: 1px solid black;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+.tool {
+  display: flex;
+  justify-content: space-between;
+}
+clr-icon {
+  padding: 0px 0px;
+  margin: 0px 3px;
+}
+clr-icon .refresh {
+  width: 20px;
+  height: 20px;
+}
+.cardgrid {
+  margin-top: 15px;
+}
+.asd {
+  width: 300px;
+  height: 200px;
+}
+button {
+  width: 150px;
+  height: 50px;
+  outline: none;
+}
+
+.price p {
+  font-size: 13px;
+  color: black;
+}
+span,
+h5,
+h4,
+p {
+  font-weight: bold;
+  color: black;
+}
+.span {
+  display: flex;
+}
+.span p {
+  color: red;
+}
+.wizard {
+  overflow-y: scroll;
+}
+clr-wizard {
+  margin: 0px 0px;
+  padding: 0px 0px;
+  min-height: 600px;
+  height: 800px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.clr-wizard-page > :first-child {
+  margin-top: 10px;
+}
+.wizardimg {
+  position: relative;
+  top: -100px;
+  height: 450px;
+}
+.wizardimg,
+.wizardtext,
+.wizardcarimg,
+h5,
+h4 {
+  position: relative;
+  top: -100px;
+  width: 750px;
+  border: none;
+}
+.wizardtext1 {
+  border: none;
+}
+.wizardcarimg {
+  width: 800px;
+  height: 500px;
+}
+.bttn {
+  display: block;
+  width: 100px;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+.asd123 {
+  font-weight: bold;
+}
+.info,
+.etcinfo {
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 780px;
+  height: 100px;
+}
+.etcinfo {
+  height: 200px;
+}
+td {
+  height: 48px;
+  width: 156px;
+  font-size: 1.1em;
+  text-align: center;
+  background-color: #eee;
+  border: 0.5px solid #777;
+}
+
+.subtitle {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.subtitle h3 {
+  margin-top: 0px;
+  align-items: center;
+}
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+hr {
+  width: 100%;
+}
+.companytable {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.table.table-vertical th:first-child,
+.table.table-vertical td:first-child,
+.clr-accordion-header-button,
+.clr-accordion-inner-content,
+clr-accordion {
+  width: 25%;
+  background-color: #eee;
+  font-size: 13px;
+  padding-top: 15px;
+  line-height: 30px;
+  padding-left: 30px;
+  border-bottom: 1px solid rgb(88, 88, 88);
+}
+table tr {
+  border-bottom: 1px solid rgb(88, 88, 88);
+}
+table {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(88, 88, 88);
+}
+.table.table-vertical td,
+.table.table-vertical th {
+  text-align: left;
+  border-bottom: 0.7px solid rgb(88, 88, 88);
+}
+
+.table.table-vertical td,
+.table.table-vertical th {
+  padding-top: 20px;
+}
+
+.addmessage {
+  width: 400px;
+  height: 35px;
+}
+.postasd {
+  display: flex;
+  justify-content: space-between;
+}
+.postplus {
+  background-color: rgba(22, 193, 22, 0.716);
+  border-radius: 4px;
+  height: 35px;
+}

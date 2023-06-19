@@ -3,6 +3,11 @@
   --mm1: calc(var(--cm1) / 10);
   --no-print-bleed: calc(3.2 * var(--mm1));
 }
+.btext {
+  font-weight: bold;
+  color: black;
+  font-size: 15px;
+}
 .selectcard{
   width: 300px;
   color: rgba(192, 192, 192, 0.3);
@@ -14,7 +19,7 @@
   outline: none;
   margin-left: 40px;
   filter: uppercase;
-  margin-top: 120px;
+  margin-top: 80px;
 }
 option{
   color: rgb(76, 76, 76);
@@ -22,9 +27,9 @@ option{
 .card {
   position: absolute;
   display: inline-block;
-  left: 13px;
-  top:100px;
-  width: calc(85.6 * var(--mm1));
+  left: 40px;
+  top: 90px;
+  width: 500px;
   height: calc(54 * var(--mm1));
   border: thin solid rgba(0, 0, 0, 0.2);
   border-radius: 3mm;

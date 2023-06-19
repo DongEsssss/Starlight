@@ -1,35 +1,49 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false" [clrModalClosable]="true" [clrModalSize]="'xl'">
   <div class="modal-title">
     <div class="container_title">
-      <div class="title_icon"></div>
-      <span class="title_text"> 스캠 공지사항</span>
+      <clr-icon shape="note"></clr-icon>
+      <span class="title_text">스캠 공지사항</span>
     </div>
   </div>
   <div class="modal-body">
     <div class="datatable">
-      <clr-datagrid class="customgrid sengee" #cDataGrid [(clrDgSingleSelected)]="cSelection" [clrDgRowSelection]="true"
-        [clrDgLoading]="cDataLoading">
-        <clr-dg-column>주제</clr-dg-column>
-        <clr-dg-column style="min-width: 600px;">글 제목</clr-dg-column>
-        <clr-dg-column>파일</clr-dg-column>
+      <clr-datagrid #cDataGrid [clrDgLoading]="cDataLoading">
+        <clr-dg-column style="min-width: 700px;">글 제목</clr-dg-column>
+        <clr-dg-column style="width: 50px;">주제</clr-dg-column>
         <clr-dg-column>작성자</clr-dg-column>
         <clr-dg-column>날짜</clr-dg-column>
-        <clr-dg-row *ngFor="let notices of notices" [clrDgItem]="noticeList">
-          <clr-dg-cell>{{notices.title}}</clr-dg-cell>
-          <clr-dg-cell style="min-width: 600px;">{{notices.content}}</clr-dg-cell>
-          <clr-dg-cell>null</clr-dg-cell>
-          <clr-dg-cell>{{notices.writer}}</clr-dg-cell>
-          <clr-dg-cell>{{notices.create}}</clr-dg-cell>
+        <clr-dg-row *clrDgItems="let item of notices | filter : searchText  index as i" [clrDgItem]="item">
+          <clr-dg-cell style="min-width: 700px;">{{item.content}}</clr-dg-cell>
+          <clr-dg-cell style="width: 50px;">{{item.title}}</clr-dg-cell>
+          <clr-dg-cell>{{item.writer}}</clr-dg-cell>
+          <clr-dg-cell>{{item.create}}</clr-dg-cell>
         </clr-dg-row>
+        <clr-dg-detail *clrIfDetail="let item">
+          <clr-dg-detail-header>
+            <h3>{{item.title}} &nbsp; {{item.content}}</h3>
+            <hr>
+          </clr-dg-detail-header>
+          <div class="content">
+            <h4>{{item.eventtitle}}</h4>
+            <div class="img">
+              <img src="{{item.File}}" alt="">
+            </div>
+            <span>{{item.eventtext}}</span>
+            <div class="footer">
+              <h5>작성자 : {{item.writer}}</h5>
+              <h5>작성일 : {{item.create}}</h5>
+            </div>
+          </div>
+        </clr-dg-detail>
         <clr-dg-placeholder>공지사항이 없어여~!</clr-dg-placeholder>
         <clr-dg-footer>
-          <clr-dg-pagination #pagination [(clrDgPage)]="page" [clrDgPageSize]="pagenationSize"
-            [clrDgTotalItems]="totalCount">
-            {{((page - 1) * pagenationSize) + 1}} - {{(page - 1) * pagenationSize + 1 + pagenationSize}}
-            of more [total {{totalCount}}]
+          <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} 공지사항
+            <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Total page</clr-dg-page-size>
           </clr-dg-pagination>
         </clr-dg-footer>
       </clr-datagrid>
+
     </div>
   </div>
 </clr-modal>

@@ -1,0 +1,40 @@
+form {
+  margin-top: -20px;
+}
+.clr-input {
+  width: 300px;
+}
+
+textarea {
+  margin-top: -10px;
+  padding: 10px 10px;
+  width: 500px;
+  height: 150px;
+  resize: none;
+}
+span,
+p,
+label .clr-input {
+  color: black;
+}
+.clr-control-label {
+  display: block;
+  color: black;
+  color: var(--clr-forms-label-color, #454545);
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-weight: var(--clr-forms-label-font-weight, 600);
+  line-height: 0.9rem;
+}
+.modal-footer {
+  margin-top: 15px;
+}
+.textarealabel {
+  margin-top: 50px;
+}
+
+.textarealabel textarea {
+  margin-top: 15px;
+  resize: none;
+  height: 150px;
+}

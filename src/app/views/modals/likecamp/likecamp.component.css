@@ -1,42 +1,28 @@
-.deletebtn {
-  width: 120px;
-  height: 50px;
-  border: 2px solid black;
-  border-radius: 15px;
-  background-color: #eee;
-  color: #131313;
-  display: flex;
-  right: 5px;
-  bottom: 5px;
-  padding-left: 5px;
-  position: absolute;
-  align-items: center;
-  text-align: center;
-  outline: none;
-}
-.deletebtn:hover {
-  opacity: 0.7;
-}
 .list {
   display: flex;
+  margin-top: 10px;
   align-items: start;
   border: 3px solid black;
   border-radius: 15px;
   margin-bottom: 10px;
   flex-wrap: inherit;
+  height: 255px;
+}
+.modal-body {
+  overflow-y: scroll;
+  height: 100%;
 }
 .list-text {
-  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 1.1em;
-}
-.favorite-item {
-  margin-top: 20px;
 }
 .list-img {
   width: 330px;
-  height: 300px;
+  height: 250px;
   border-top-left-radius: 13px;
   border-bottom-left-radius: 13px;
+  background-size: contain;
 }
 span {
   color: black;
@@ -46,12 +32,36 @@ span {
   font-size: 1.2em;
   margin-bottom: 20px;
 }
-.text {
-  top: 10px;
-  position: relative;
-}
 h3 {
   font-weight: bolder;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: black;
+  background: url("src/static/images/tent.svg") no-repeat 50% 50%;
+  background-size: contain;
+}
+.btext {
+  font-weight: bold;
+  color: black;
+  font-size: 15px;
+}
+.deletebtn {
+  align-items: center;
+  width: 150px;
+  height: 30px;
+  border: 2px solid black;
+  justify-content: end;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border-radius: 15px;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

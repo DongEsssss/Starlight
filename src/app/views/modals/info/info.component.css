@@ -1,5 +1,4 @@
 .user {
-  margin-top: 50px;
   margin-left: 20px;
   width: 200px;
   height: 200px;
@@ -15,14 +14,21 @@ clr-icon {
   width: 150px;
   height: 150px;
 }
+.my-info-title {
+  margin-top: -20px;
+}
 .info span {
   display: block;
   font-size: 1.1em;
   font-weight: bold;
   color: black;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .title {
-  margin-top: 40px;
   font-weight: bolder;
+}
+.modal-footer {
+  justify-content: end;
+  margin-top: 20px;
+  margin-right: 5px;
 }

@@ -1,8 +1,7 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="true">
   <div class="modal-title">
-    <div class="container_title">
-      <span class="title_text">유저 프로필 수정</span>
-    </div>
+    <clr-icon shape="user"></clr-icon>
+    <span class="modal-text">유저 정보 수정</span>
   </div>
   <div class="modal-body">
     <p class="btext">새롭게 업데이트 할 프로필 정보를 입력하시오.</p>
@@ -69,7 +68,7 @@
     </form>
     <div class="modal-footer">
       <button class="btn btn-primaryoutline" (click)="close1()">수정</button>
-      <button class="btn btn-outlinee" (click)="close()">닫기</button>
+      <button class="btn btn-danger-outline" (click)="close()">닫기</button>
     </div>
   </div>
 </clr-modal>

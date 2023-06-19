@@ -10,7 +10,7 @@ header-actions {
   height: 40px;
   background: url("src/static/images/tree-line.svg") no-repeat 50% 50%;
   background-size: contain;
-  color: white;
+  fill: white;
 }
 
 .logo-title {
@@ -52,5 +52,11 @@ header-actions {
   margin-left: 5px;
 }
 .content-area {
+  margin: 0px 0px;
   background-color: white;
+  overflow-x: hidden;
+}
+
+clr-icon {
+  fill: #fff;
 }

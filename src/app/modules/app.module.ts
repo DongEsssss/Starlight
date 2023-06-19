@@ -23,7 +23,6 @@ import { IMaskModule} from 'angular-imask';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
-
 @NgModule({
   declarations: [
     AppComponent

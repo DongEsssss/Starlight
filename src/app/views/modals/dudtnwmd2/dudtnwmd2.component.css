@@ -1,3 +1,20 @@
 pre {
   padding-top: 30px;
 }
+clr-icon {
+  width: 30px;
+  height: 30px;
+}
+pre {
+  padding: 15px 0px 0px 0px;
+  margin: 0px 0px;
+  text-align: start;
+  border: 1px solid black;
+  font-weight: bolder;
+}
+.modal-footer {
+  margin-top: 15px;
+}
+.modal-footer button {
+  outline: none;
+}

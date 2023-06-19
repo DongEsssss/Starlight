@@ -1,9 +1,7 @@
 import {Component, Input, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {Observable} from "rxjs";
 import {DefaultComponent} from "./default.component";
-import {AngularEditorConfig} from "@kolkov/angular-editor";
-import { DefaultFormComponent } from "./default.form.component";
+
 
 @Component({
   template: ''

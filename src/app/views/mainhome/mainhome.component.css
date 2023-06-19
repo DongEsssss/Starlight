@@ -47,3 +47,21 @@ a {
 table {
   margin-top: 0px;
 }
+.icon {
+  width: 40px;
+  height: 40px;
+  fill: black;
+  background: url("src/static/images/tent.svg") no-repeat 50% 50%;
+  background-size: contain;
+}
+.intro {
+  display: flex;
+  align-items: center;
+}
+h1 {
+  margin-left: 5px;
+}
+clr-datagrid {
+  height: 340px;
+  border: none;
+}

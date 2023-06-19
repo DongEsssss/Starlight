@@ -31,12 +31,14 @@ svg {
   color: #191919;
   font-size: 30px;
 }
-
+.modal-text {
+  align-items: center;
+}
 .title_icon,
 .dataset_icon,
 .modal_icon {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
 }
 
 .title_icon,
@@ -52,15 +54,15 @@ svg {
 }
 
 .search_input {
-  background: url("src/static/images/icon_search_white.svg") #eee no-repeat 4%
+  background: url("src/static/images/icon_search_white.svg") #fff no-repeat 4%
     50%;
   outline: none;
   border: none;
   text-indent: 40px;
   width: 400px;
   border-radius: 5px;
-  height: 45px;
-  border: 2px black solid;
+  height: 35px;
+  border: 1px black solid;
 }
 
 .createbtn,
@@ -111,6 +113,15 @@ button {
 }
 
 /*modal*/
+.modal-title {
+  display: flex;
+  align-items: center;
+}
+.modal-text,
+label {
+  color: black;
+  font-weight: bold;
+}
 .modal-title clr-icon {
   width: 40px;
   height: 40px;
@@ -146,6 +157,7 @@ button {
   border-width: 0px;
   border-color: #eeeeee;
   margin-top: 0px;
+  overflow-x: hidden;
 }
 
 .customgrid.sengee .datagrid-row-sticky {
@@ -179,10 +191,6 @@ button {
 th,
 td {
   background-color: #333543;
-}
-.clr-row {
-  position: relative;
-  top: -10px;
 }
 .table {
   margin-top: 5px;
@@ -276,4 +284,57 @@ h4 {
 }
 .title_text {
   font-weight: bolder;
+}
+
+.container {
+  width: 70%;
+  margin: auto;
+}
+.modal-title clr-icon {
+  fill: black;
+  margin-right: 5px;
+}
+pre {
+  padding-left: 10px;
+  color: black;
+  white-space: pre-wrap;
+}
+
+.search-tool {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 25px;
+}
+.toolbar-input {
+  width: 300px;
+  border-radius: 5px;
+  height: 20px;
+  padding: 15px 10px;
+}
+.toolbar-btn1,
+.toolbar-btn {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 1px solid #131313;
+  outline: none;
+  border-radius: 5px;
+}
+button:hover {
+  opacity: 0.7;
+}
+.toolbar-btn {
+  background: url("src/static/images/icon_delete_white.svg") no-repeat #eee 50%
+    50%;
+}
+.toolbar-btn1 {
+  background: url("src/static/images/icon_modify_white.svg") no-repeat #eee 50%
+    50%;
+  right: 40px;
+}
+.textarea {
+  resize: none;
 }

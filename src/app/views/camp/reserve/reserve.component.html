@@ -1,0 +1,91 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false" [clrModalSize]="'lg'">
+  <div class="modal-title">
+    <clr-icon shape="bubble-exclamation"></clr-icon>
+    <span class="modal-text">예약하기</span>
+  </div>
+  <div class="modal-body body-format">
+    <h4>캠핑장 예약 정보</h4>
+    <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
+    <form #modalFrom="ngForm" class="clr-form clr-form-horizontal">
+      <span class="rent">예약자 정보</span>
+      <div class="clr-form-control name" *ngFor="let item of newForm">
+        <label class="required clr-control-label"
+          [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require" class="dateinputa">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+              Input Your {{item.text}}
+              <ng-template [ngIf]="item?.placeholder !== undefined">
+                ( ex : {{item.placeholder}})
+              </ng-template>
+            </clr-control-error>
+          </div>
+        </div>
+      </div>
+      <span class="rent">캠핑 기간</span>
+      <div class="clr-row date">
+        <div class="clr-col-6 clr-form-control" *ngFor="let item of dateForm1">
+          <label class="textlabel">{{item.text}}
+            <input [type]="item.type" #usernameInput="ngModel" [name]="item.name!" class="dateinput"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+          </label>
+        </div>
+        <div class="clr-col-6 clr-form-control" *ngFor="let item of dateForm2">
+          <label class="textlabel">{{item.text}}
+            <input [type]="item.type" #usernameInput="ngModel" [name]="item.name!" class="dateinput"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+          </label>
+        </div>
+      </div>
+      <div class="clr-row play">
+        <span class="clr-col-12 rent">대여 및 장작 구매 선택</span>
+        <div class="clr-form-control clr-col-4" *ngFor="let item of checkForm1">
+          <label class="textlabel">
+            <input [type]="item.type" #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+              [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+            {{item.text}}</label>
+        </div>
+        <div class="clr-form-control clr-col-4" *ngFor="let item of checkForm2">
+          <label class="textlabel">
+            <input [type]="item.type" #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+              [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+            {{item.text}}</label>
+        </div>
+        <div class="clr-form-control clr-col-4" *ngFor="let item of checkForm3">
+          <label class="textlabel">
+            <input [type]="item.type" #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+              [placeholder]="item.placeholder" [id]="item.name!" size="30" [value]="item.name"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+            {{item.text}}</label>
+        </div>
+      </div>
+
+      <label class="request">요청사항</label>
+      <div class="clr-form-control" *ngFor="let item of textForm">
+        <textarea #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+          [placeholder]="item.placeholder" [id]="item.name!" size="30" (input)='handleValidation(item.name! , false) '
+          (blur)='handleValidation(item.name!, true)' [readOnly]="item.readonly == true"
+          [required]="item.require"></textarea>
+      </div>
+      <span class="rent">결제는 현장에서 이루어집니다.</span>
+    </form>
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="create()">예약하기</button>
+      <button class="btn btn-warning-outline" (click)="close()">취소</button>
+    </div>
+  </div>
+</clr-modal>

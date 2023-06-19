@@ -1,7 +1,7 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="true">
   <div class="modal-title">
     <clr-icon shape="user"></clr-icon>
-    <span>나의 정보</span>
+    <span class="modal-text">나의 정보</span>
   </div>
   <div class="modal-body body-format">
     <div class="clr-row user-info">
@@ -26,8 +26,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="opened = false">
-      Close
-    </button>
+    <button class="btn btn-danger-outline" (click)="close()">닫기</button>
   </div>
 </clr-modal>

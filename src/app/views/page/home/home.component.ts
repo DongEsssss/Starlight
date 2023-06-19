@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import { NoticeComponent } from '../../modals/notice/notice.component';
-import { DefaultComponent } from 'src/app/components/default.component';
-import { InfoComponent } from '../../modals/info/info.component';
+import { UserComponent } from '../../configuration/user/user.component';
 
 
 @Component({
@@ -9,17 +8,18 @@ import { InfoComponent } from '../../modals/info/info.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent extends DefaultComponent{
+export class HomeComponent {
   collapsed: boolean = true;
-  @ViewChild('userprofilemodal', {static: false}) UserProfile !: InfoComponent
+  @ViewChild('userprofilemodal', {static: false}) UserProfile !: UserComponent
   @ViewChild('noticeboardmodal', {static: false}) NoticeBoard !: NoticeComponent
 
-  myinfo() {
+  userinfo() {
     this.UserProfile.open();
   }
 
-  notice() {
+  noticeboard() {
     this.NoticeBoard.open();
   }
+
 
 }

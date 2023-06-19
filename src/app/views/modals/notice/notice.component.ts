@@ -2,14 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { ClrDatagrid } from '@clr/angular';
 import { DefaultModalComponent } from 'src/app/components/default.modal.component';
 import { Noticeboard, notices } from 'src/app/models/Noticeboard';
-
 @Component({
   selector: 'app-notice',
   templateUrl: './notice.component.html',
-  styleUrls: ['./notice.component.css']
+  styleUrls: ['./notice.component.css'],
 })
 export class NoticeComponent extends DefaultModalComponent<Noticeboard> {
-  @ViewChild('cDataGrid', {static: true}) cDataGrid !: ClrDatagrid;
+  @ViewChild('cDataGrid', { static: true }) cDataGrid!: ClrDatagrid;
   cDataLoading: boolean = false;
   page: number = 1;
   totalCount: number = 0;
@@ -18,9 +17,8 @@ export class NoticeComponent extends DefaultModalComponent<Noticeboard> {
   currentFilteredType: number = 0; // all projects
   projectName: string = '';
   noticeList: Noticeboard[] = [];
-  searchText !: string;
-  notices = notices
-
+  searchText!: string;
+  notices = notices;
 
   // notices = notices
   // selected: any[]=[];
@@ -34,12 +32,11 @@ export class NoticeComponent extends DefaultModalComponent<Noticeboard> {
   // }
 
   columnDefs = [
-    {headerName: '공지' },
-    {headerName: '글 제목',field:'noticeMessage',  type:'text', minWidth: 500},
-    {headerName: '파일',field:'noticeFile', type:'download', width:50 },
-    {headerName: '작성자'},
-    {headerName: '날짜' },
-  ]
+    { headerName: '공지' },
+    { headerName: '글 제목', field: 'noticeMessage', type: 'text', width: 500 },
+    { headerName: '작성자' },
+    { headerName: '날짜' },
+  ];
 
   getField(notices: Noticeboard, key: string) {
     return notices[key as keyof Noticeboard];

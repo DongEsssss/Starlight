@@ -4,6 +4,68 @@
 .cardgrid clr-icon {
   margin-top: 20px;
 }
+.btn {
+  display: flex;
+  justify-content: end;
+}
 .card {
-  min-width: 800px;
+  margin-top: 0px;
+  width: 628px;
+  height: 250px;
+  padding: 5px 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+hr {
+  width: 99.5%;
+  height: 3px;
+  background-color: #6b6b6b;
+  margin: 5px 0px;
+}
+img {
+  width: 185px;
+  height: 185px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.event-info {
+  padding-right: 10px;
+}
+.event-info span {
+  text-overflow: ellipsis;
+}
+.clr-col-8 {
+  flex: 0 0 66.6666666667%;
+  max-width: 66.6666666667%;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+.card-header,
+.card-block,
+.card-footer {
+  padding: 0px 0px;
+}
+
+.card-footer span {
+  font-weight: bolder;
+  padding: 8px 20px;
+  margin-top: 0px;
+}
+.detail {
+  float: right;
+  position: absolute;
+  top: 148px;
+  right: 0px;
+  outline: none;
+  font-weight: bolder;
+}
+.container1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+clr-datagrid {
+  height: 700px;
+}
+span {
+  color: black;
 }

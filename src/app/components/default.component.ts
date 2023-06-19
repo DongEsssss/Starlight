@@ -29,7 +29,7 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     public cd: ChangeDetectorRef,
-    public restService: RestService,
+    public restService : RestService,
     public eventService: EventService,
     public session: SessionService,
     public dialog: DialogService,
@@ -47,6 +47,7 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
 
   }
+  parentComponent?: DefaultComponent;
   callback?: DefaultComponent | DefaultFormComponent<any>;
 
   ngAfterViewInit() {
@@ -129,10 +130,16 @@ export class DefaultComponent implements OnInit, OnDestroy, AfterViewInit {
   onRefresh() {
     location.reload();
   }
-  close(): void {
-    this.opened = false;
-  }
+
   onModalResponse(code: number, data?: any) {
 
+  }
+
+  open(): void {
+    this.opened = true;
+  }
+
+  close(): void {
+    this.opened = false;
   }
 }

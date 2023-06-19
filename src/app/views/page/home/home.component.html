@@ -5,18 +5,18 @@
     <div class="logo"></div>
     <span class="logo-title">Starlightcamping</span>
     <div class="header-actions header-actions-overflow">
-      <span class="welcome-text">환영합니다! (admin)님</span>
+      <span class="welcome-text">환영합니다! (임동균)님</span>
       <clr-dropdown>
         <button class="dropbtn" clrDropdownTrigger>
           <clr-icon shape="user"></clr-icon>
-          <span>Admin</span>
+          <span>임동균</span>
           <div class="icon"></div>
         </button>
         <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-          <div clrDropdownItem (click)="myinfo()">User Profile</div>
-          <div clrDropdownItem (click)="notice()">Notice</div>
+          <div clrDropdownItem (click)="userinfo()">유저 정보</div>
+          <div clrDropdownItem (click)="noticeboard()">공지사항</div>
           <hr>
-          <div clrDropdownItem routerLinkActive="active-link" routerLink="sign-in">Logout</div>
+          <div clrDropdownItem routerLinkActive="active-link" routerLink="sign-in">로그아웃</div>
         </clr-dropdown-menu>
       </clr-dropdown>
     </div>
@@ -31,7 +31,7 @@
         <clr-icon shape="event" clrVerticalNavIcon></clr-icon>
         이벤트
       </a>
-      <a clrVerticalNavLink routerLinkActive="active" routerLink="asd">
+      <a clrVerticalNavLink routerLinkActive="active" routerLink="cafe">
         <clr-icon shape="tablet" clrVerticalNavIcon></clr-icon>
         스캠카페
       </a>
@@ -39,7 +39,7 @@
         <clr-icon shape="cloud" size="16" clrVerticalNavIcon></clr-icon>
         <span>캠핑</span>
         <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink routerLink="reserve" routerLinkActive="active">
+          <a clrVerticalNavLink routerLink="about" routerLinkActive="active">
             <clr-icon shape="folder" clrVerticalNavIcon></clr-icon>
             캠핑 가이드
           </a>
@@ -58,8 +58,8 @@
         나의 페이지
       </a>
       <clr-vertical-nav-group routerLinkActive="active">
-        <clr-icon shape="building" size="16" clrVerticalNavIcon></clr-icon>
-        <span>이용안내</span>
+        <clr-icon shape="help-info" size="16" clrVerticalNavIcon></clr-icon>
+        <span>고객센터</span>
         <clr-vertical-nav-group-children>
           <a clrVerticalNavLink routerLink="company" routerLinkActive="active">
             <clr-icon shape="building" clrVerticalNavIcon></clr-icon>
@@ -69,11 +69,16 @@
             <clr-icon shape="phone-handset" clrVerticalNavIcon></clr-icon>
             FAQ
           </a>
+          <a clrVerticalNavLink routerLink="oneonone" routerLinkActive="active">
+            <clr-icon shape="bubble-exclamation" clrVerticalNavIcon></clr-icon>
+            1대1 문의
+          </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
     </clr-vertical-nav>
     <main class="content-area">
-      <router-outlet></router-outlet>
+      <router-outlet>
+      </router-outlet>
     </main>
   </div>
 </clr-main-container>

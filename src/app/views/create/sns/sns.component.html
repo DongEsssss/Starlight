@@ -1,0 +1,49 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
+  <div class="modal-title">
+    <clr-icon shape="form"></clr-icon>
+    <span class="modal-text">카페글 올리기</span>
+  </div>
+  <div class="modal-body body-format">
+    <inline-alert class="modal-title" (confirmEvt)="confirmCancel($event)"></inline-alert>
+    <form #modalFrom="ngForm" class="clr-form clr-form-horizontal">
+      <div class="clr-form-control input-form" *ngFor="let item of newForm">
+        <label class="required clr-control-label"
+          [ngClass]="item.require?'form-required':''">{{item.text?.toUpperCase()}}</label>
+        <div class="clr-control-container" [class.clr-error]='item.require && getValidationState(item.name!)'>
+          <div class="clr-input-wrapper">
+            <input [type]="item.type" class="clr-input" #usernameInput="ngModel" [name]="item.name!"
+              [ngModel]="getFormModel(item.name!)" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+              (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+              [readOnly]="item.readonly == true" [required]="item.require">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <clr-control-error *ngIf='item.require &&  getValidationState(item.name!)'>
+              Input Your {{item.text}}
+              <ng-template [ngIf]="item?.placeholder !== undefined">
+                ( ex : {{item.placeholder}})
+              </ng-template>
+            </clr-control-error>
+          </div>
+        </div>
+      </div>
+      <label class="textarealabel">내용</label>
+      <div class="clr-form-control" *ngFor="let item of textForm">
+        <br>
+        <textarea #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+          [placeholder]="item.placeholder" [id]="item.name!" size="30" (input)='handleValidation(item.name! , false) '
+          (blur)='handleValidation(item.name!, true)' [readOnly]="item.readonly == true"
+          [required]="item.require"></textarea>
+      </div>
+      <div class="clr-form-control" *ngFor="let item of imgForm">
+        <label class="textarealabel">첨부파일 : </label>
+        <input class="fileinput" #usernameInput="ngModel" [name]="item.name!" [ngModel]="getFormModel(item.name!)"
+          [type]="item.type" [placeholder]="item.placeholder" [id]="item.name!" size="30"
+          (input)='handleValidation(item.name! , false) ' (blur)='handleValidation(item.name!, true)'
+          [readOnly]="item.readonly == true" [required]="item.require" (change)="onFileChange($event)" />
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="create()">보내기</button>
+      <button class="btn btn-warning-outline" (click)="close()">취소</button>
+    </div>
+  </div>
+</clr-modal>

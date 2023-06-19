@@ -1,7 +1,10 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false">
-  <h3 class="modal-title">결제수단 변경</h3>
-  <div class="modal-body" style="height :330px">
-    <h4 for="">카드 안에 정보를 정확하게 기입해주시길 바랍니다.</h4><br>
+  <div class="modal-title">
+    <clr-icon shape="credit-card"></clr-icon>
+    <span class="modal-text">결제수단 변경</span>
+  </div>
+  <div class="modal-body" style="height :370px">
+    <span class="btext">카드 안에 정보를 정확하게 기입해주시길 바랍니다.</span>
     <div id="front" class="card" [class.flipped]="flipped">
       <select class="selectcard" name="" id="">
         <option value="KB">KB</option>
@@ -23,8 +26,8 @@
     </div>
 
   </div>
-  <div class="modal-footer" style="position:relative;">
-    <button type="button" class="btn btn-primary" (click)="close()">변경</button>
-    <button type="button" class="btn btn-primary" (click)="opened = false">닫기</button>
+  <div class="modal-footer">
+    <button class="btn btn-primaryoutline" (click)="close1()">변경</button>
+    <button class="btn btn-warning-outline" (click)="close()">닫기</button>
   </div>
 </clr-modal>

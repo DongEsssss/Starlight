@@ -10,3 +10,12 @@
 .login-wrapper .login {
   min-height: 70vh;
 }
+.signskip {
+  margin-top: 20px;
+  background-color: aquamarine;
+}
+
+.title span {
+  color: white;
+  font-weight: bolder;
+}

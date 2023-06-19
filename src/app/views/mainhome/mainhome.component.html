@@ -1,10 +1,14 @@
+<app-events #getevent></app-events>
+<app-events2 #getevent2></app-events2>
+<app-noticeboard #getnotice [id]="id" [item]="item"></app-noticeboard>
 <div class="container">
   <div class="clr-row">
     <div class="clr-col-12">
       <div class="intro">
+        <div class="icon"></div>
         <h1>{{name}}</h1>
       </div>
-      <div style="width: 95%; height: 100%; text-align:center;margin:auto; justify-content: center; padding:0;">
+      <div style="width: 100%; height: 100%; text-align:center;margin:auto; justify-content: center; padding:0;">
         <ng-image-slider #nav [images]="imageObject" [infinite]="false" [autoSlide]="1"
           [imageSize]="{width: '100%', height: 500}" slideImage="1"></ng-image-slider>
       </div>
@@ -24,36 +28,47 @@
         </div>
       </nav>
     </div>
-    <div class="clr-col-3 event-tabs">
+    <div class="clr-col-6 event-tabs">
       <div>
         <h3 class="title">스캠 이벤트 & 공지</h3>
         <clr-tabs>
           <clr-tab>
-            <button clrTabLink id="link1">이벤트</button>
-            <clr-tab-content id="content1">
-              <div class="link" *ngFor="let event of event">
-                <a href="#">{{event.title}} &nbsp; {{event.content}}</a>
-              </div>
+            <button clrTabLink>공지</button>
+            <clr-tab-content>
+              <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
+                [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection" (clrDgRefresh)="getnotices()">
+                <clr-dg-column *ngFor="let header of nocolumnDefs">{{header.headerName}}</clr-dg-column>
+                <clr-dg-row *clrDgItems="let notice of notices  index as i" [clrDgItem]="item"
+                  (click)="detailnotices(notice.id)">
+                  <clr-dg-cell>{{notice.title}}</clr-dg-cell>
+                  <clr-dg-cell>{{notice.content}}</clr-dg-cell>
+                  <clr-dg-cell>{{notice.writer}}</clr-dg-cell>
+                  <clr-dg-cell>{{notice.create}}</clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-placeholder>공지사항이 텅~ 비었습니다. 잠시만 기다려주세용~</clr-dg-placeholder>
+              </clr-datagrid>
             </clr-tab-content>
           </clr-tab>
           <clr-tab>
-            <button clrTabLink>공지</button>
+            <button clrTabLink>이벤트</button>
             <clr-tab-content>
-              <div class="link" *ngFor="let notice of notices">
-                <a href="#">{{notice.title}} &nbsp; {{notice.content}}</a>
-              </div>
+              <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading"
+                [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+                <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+                <clr-dg-row *clrDgItems="let event of items index as i" [clrDgItem]="item" (click)="detail(item.id)">
+                  <clr-dg-cell>{{event.title}}</clr-dg-cell>
+                  <clr-dg-cell>{{event.content}}</clr-dg-cell>
+                  <clr-dg-cell>{{event.writer}}</clr-dg-cell>
+                  <clr-dg-cell>{{event.create}}</clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-placeholder>이벤트가 텅~ 비었습니다. 잠시만 기다려주세용~</clr-dg-placeholder>
+              </clr-datagrid>
             </clr-tab-content>
           </clr-tab>
         </clr-tabs>
       </div>
     </div>
-    <div class="clr-col-4 event-tabs">
-      <div>
-        <h3 class="title">스캠 SNS에서 불타는 게시물</h3>
-        <app-hot-sns />
-      </div>
-    </div>
-    <div class="clr-col-5 Camp-tabs">
+    <div class="clr-col-6 Camp-tabs">
       <div>
         <h3 class="title">스캠이 추천하는 캠핑 명소</h3>
         <clr-tabs>

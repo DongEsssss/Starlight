@@ -1,0 +1,22 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true" [clrModalClosable]="true" *ngIf="inquiry[0]">
+  <div class="modal-title">
+    <div class="icon"></div>
+    <span class="modal-text">문의하신 내용</span>
+  </div>
+  <div class="modal-body">
+    <hr>
+    <h4>제목 : {{inquiry[0].intitle}}</h4>
+    <div class="clr-row form">
+      <h5 class="clr-col-6">이메일 : {{inquiry[0].snsemail}}</h5>
+      <h5 class="clr-col-6">작성자 : {{inquiry[0].inwriter}}</h5>
+      <div class="content">
+        <label class="labels">문의 내용</label>
+        <pre>{{inquiry[0].incontent}}</pre>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning-outline" (click)="delete(item.id)">삭제</button>
+    <button class="btn btn-outline" (click)="close()">닫기</button>
+  </div>
+</clr-modal>

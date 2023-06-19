@@ -1,0 +1,22 @@
+input {
+  width: 300px;
+}
+form {
+  margin-top: -25px;
+}
+select {
+  width: 300px;
+}
+.textarealabel label {
+  position: relative;
+  top: 20px;
+}
+textarea {
+  margin-top: -20px;
+  width: 550px;
+  height: 300px;
+}
+.fileinput {
+  margin-top: -3px;
+  margin-left: 10px;
+}

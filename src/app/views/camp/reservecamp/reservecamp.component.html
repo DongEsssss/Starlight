@@ -1,0 +1,30 @@
+<app-campdetailreserve #reservedetail [item]="item" [id]="id"></app-campdetailreserve>
+<div class="container">
+  <div class="container_title">
+    <clr-icon shape="tasks"></clr-icon>
+    <span class="title_text"> 캠핑장 예약 조회 </span>
+  </div>
+  <div class="search-tool">
+    <label for="search"> 검색 </label>
+    <input class="search_input" name="search" [(ngModel)]="searchText" type="text" placeholder="캠핑장 이름으로 검색하시오"
+      id="carrier-input">
+  </div>
+  <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getreserve()" [clrDgLoading]="cDataLoading"
+    [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+    <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+    <clr-dg-row *clrDgItems="let item of campList | filter : searchText;  index as i" [clrDgItem]="item"
+      (click)="detailreserve(item.id)">
+      <clr-dg-cell>{{item.reservename}}</clr-dg-cell>
+      <clr-dg-cell>{{item.campname}}</clr-dg-cell>
+      <clr-dg-cell>{{item.people}} 명</clr-dg-cell>
+      <clr-dg-cell>{{item.start}} ~ {{item.end}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]="20">
+        <clr-dg-page-size [clrPageSizeOptions]="[20,30,50,100]"></clr-dg-page-size>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} 예약
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>

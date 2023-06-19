@@ -1,0 +1,22 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="true" *ngIf="noticeList[0]">
+  <div class="modal-title">
+    <clr-icon shape="note"></clr-icon>
+    <span class="modal-text">{{item.title}} &nbsp; {{item.content}}</span>
+  </div>
+  <div class="modal-body">
+    <div class="content">
+      <h4>{{item.eventtitle}}</h4>
+      <div class="img">
+        <img src="{{item.File}}" alt="">
+      </div>
+      <span>{{item.eventtext}}</span>
+      <div class="footer">
+        <h5>작성자 : {{item.writer}}</h5>
+        <h5>작성일 : {{item.create}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="close()">닫기</button>
+  </div>
+</clr-modal>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EndComponent } from './end.component';
+import { ReservecampComponent } from './reservecamp.component';
 
-describe('EndComponent', () => {
-  let component: EndComponent;
-  let fixture: ComponentFixture<EndComponent>;
+describe('ReservecampComponent', () => {
+  let component: ReservecampComponent;
+  let fixture: ComponentFixture<ReservecampComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EndComponent ]
+      declarations: [ ReservecampComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EndComponent);
+    fixture = TestBed.createComponent(ReservecampComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

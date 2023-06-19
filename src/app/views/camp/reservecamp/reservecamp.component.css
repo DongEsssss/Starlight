@@ -1,0 +1,10 @@
+label {
+  font-size: 25px;
+  margin-right: 10px;
+  color: black;
+  font-weight: bolder;
+}
+
+clr-datagrid {
+  height: 750px;
+}

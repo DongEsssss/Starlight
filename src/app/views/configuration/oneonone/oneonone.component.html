@@ -1,0 +1,43 @@
+<app-no-enrollment #addmodal></app-no-enrollment>
+<app-cancel #deletemodal [id]="id" [item]="item"></app-cancel>
+<div class="container">
+  <div class="content-box">
+    <div class="container_title">
+      <div class="title">
+        <clr-icon shape="bubble-exclamation"></clr-icon>
+        <span class="title_text">문의하기</span>
+      </div>
+    </div>
+    <div class="search-tool">
+      <label for="search"> 검색 </label>
+      <input class="toolbar-input" name="search" type="text" placeholder="검색" id="carrier-input"
+        [(ngModel)]="searchText" (keyup.enter)="onRefresh()">
+      <div class="toolbar-group">
+        <button (click)="createNotice()" class="toolbar-btn1"></button>
+      </div>
+    </div>
+    <div class="clr-row">
+      <div class="clr-col-12 content-item">
+        <clr-datagrid class="customgrid sengee" #cDataGrid [(clrDgSingleSelected)]="cSelection"
+          [clrDgRowSelection]="true" [clrDgLoading]="cDataLoading" (clrDgRefresh)="getinquiry()">
+          <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+          <clr-dg-placeholder>문의를 보내신 적이 없습니다</clr-dg-placeholder>
+          <clr-dg-row *clrDgItems="let item of inquiry | filter : searchText;  index as i" [clrDgItem]="item"
+            (click)="detailnotice(item.id)">
+            <clr-dg-cell>{{i+1}}</clr-dg-cell>
+            <clr-dg-cell>{{item.intitle}}</clr-dg-cell>
+            <clr-dg-cell>{{item.inwriter}}</clr-dg-cell>
+            <clr-dg-cell>{{item.increatedate}}</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="20">
+              <clr-dg-page-size [clrPageSizeOptions]="[20,30,50,100]"></clr-dg-page-size>
+              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+              of {{pagination.totalItems}} 문의
+            </clr-dg-pagination>
+          </clr-dg-footer>
+        </clr-datagrid>
+      </div>
+    </div>
+  </div>
+</div>

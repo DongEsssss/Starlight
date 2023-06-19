@@ -1,0 +1,51 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="true" [clrModalSize]="'lg'" *ngIf="reserveList[0]">
+  <div class="modal-title">
+    <div class="icon"></div>
+    <span class="modal-text">{{reserveList[0].campname}} 예약 정보</span>
+  </div>
+  <div class="modal-body">
+    <h4>예약 정보</h4>
+    <div class="clr-row">
+      <label class="clr-col-5" for="">캠핑장 이름 : {{reserveList[0].campname}}</label>
+      <label class="clr-col-7" for="">인원 : {{reserveList[0].people}} 명</label>
+      <label class="clr-col-12" for="">캠핑 기간 : 시작일 : {{reserveList[0].start}} ~ 종료일 : {{reserveList[0].end}}</label>
+      <label class="clr-col-12"> 캠프 요구 선택 사항</label>
+      <div class="info">
+        <table>
+          <tr>
+            <td>장작 {{reserveList[0].tree}}</td>
+            <td>쓰레기 봉투 {{reserveList[0].trash}}</td>
+            <td>식기구 대여 {{reserveList[0].appliance}}</td>
+            <td>전기 콘센트 대여 {{reserveList[0].concent}}</td>
+            <td>캠핑 도구 대여 {{reserveList[0].tool}}</td>
+          </tr>
+          <tr>
+            <td>랜턴 대여 {{reserveList[0].lamp}}</td>
+            <td>프로젝트 빔 대여 {{reserveList[0].vim}}</td>
+            <td>놀이기구 대여 {{reserveList[0].play}}</td>
+            <td>텐트 대여 {{reserveList[0].tent}}</td>
+            <td></td>
+        </table>
+      </div>
+      <label class="clr-col-12"> 요청사항</label>
+      <pre class="clr-col-12">
+{{reserveList[0].request}}
+      </pre>
+      <form class="clr-form">
+        <div class="clr-form-control">
+          <label for="vertical-textarea-basic" class="clr-control-label">예약을 취소하시는 이유</label>
+          <div class="clr-control-container">
+            <div class="clr-textarea-wrapper">
+              <textarea id="vertical-textarea-basic" placeholder="Enter value here" class="clr-textarea"></textarea>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="delete(item.id)">예약 취소</button>
+    <button class="btn btn-primary" (click)="close()">닫기</button>
+  </div>
+</clr-modal>

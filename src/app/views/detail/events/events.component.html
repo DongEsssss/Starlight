@@ -1,0 +1,34 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false" [clrModalClosable]="true">
+  <div class="modal-title" *ngFor="let item of item">
+    <div class="title">
+      <clr-icon shape="event"></clr-icon>
+      <span class="title_text">{{item.content}}</span>
+    </div>
+    <div class="clr-row">
+      <div class="clr-col-12">
+        <img src="{{item.File}}" alt="">
+      </div>
+      <div class="clr-col-12">
+        <div class="event-info">
+          <h4>{{item.title}}</h4>
+          <h4>{{item.content}}</h4>
+        </div>
+        <p class="big">
+          {{item.subtitle}}
+        </p>
+        <p class="text">
+          자세한 이야기 : {{item.text}}
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div class="card-footer">
+      <span>
+        {{item.create | date : 'yyyy/MM/dd h:mm:ss a'}}
+      </span>
+      <span>
+        작성자 : {{item.writer}}
+      </span>
+    </div>
+  </div>
+</clr-modal>

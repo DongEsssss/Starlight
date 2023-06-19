@@ -1,0 +1,23 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false" [clrModalClosable]="true" *ngIf="cafeList[0]"
+  [clrModalSize]="'lg'">
+  <div class="modal-title">
+    <div class="icon"></div>
+    <span class="modal-text">{{cafeList[0].snstitle}}</span>
+  </div>
+  <div class="modal-body">
+    <hr>
+    <h4>제목 : {{cafeList[0].snstitle}}</h4>
+    <div class="clr-row form">
+      <img src="{{cafeList[0].File}}" alt="">
+      <h5 class="clr-col-6">작성자 : {{cafeList[0].snswriter}}</h5>
+      <div class="content">
+        <label class="labels">작성내용</label>
+        <pre>{{cafeList[0].snscontent}}</pre>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning-outline" (click)="delete(item.id)">삭제</button>
+    <button class="btn btn-outline" (click)="close()">닫기</button>
+  </div>
+</clr-modal>

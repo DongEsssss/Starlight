@@ -1,15 +1,27 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { DialogService } from '../services/dialog';
 import { EventService } from '../services/event/event.service';
-import { RestService } from '../services/rest/rest.service';
+
 import { SessionService } from '../services/session/session.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { InlineAlertComponent } from './inline-alert/inline-alert.component';
 import { DefaultComponent } from './default.component';
 import { HttpClient } from '@angular/common/http';
-import { CARD_VIEW_LOCALSTORAGE_KEY, FALSE_STR, TRUE_STR } from '../utils/shared.utils';
+import {
+  CARD_VIEW_LOCALSTORAGE_KEY,
+  FALSE_STR,
+  TRUE_STR,
+} from '../utils/shared.utils';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RestService } from '../services/rest/rest.service';
 
 @Component({
   template: '',
@@ -25,9 +37,8 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     public http: HttpClient,
     public router: Router,
     private cdr: ChangeDetectorRef
-  ) { }
-  ngOnInit(): void {
-  }
+  ) {}
+  ngOnInit(): void {}
 
   parentComponent?: DefaultComponent;
   opened: boolean = false;
@@ -37,10 +48,10 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   isEditable = false;
   datatype: any;
   id: any;
-  item : any;
+  item: any;
 
   @ViewChild('modalFrom', { static: true })
-  modalForm !: NgForm;
+  modalForm!: NgForm;
 
   @ViewChild(InlineAlertComponent)
   inlineAlert!: InlineAlertComponent;
@@ -49,19 +60,17 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     this.opened = true;
   }
 
-
   ngOnCommonInit(): void {
     this.isInit = true;
   }
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {}
 
   close(): void {
     this.opened = false;
   }
 
-  onCloseModal() {
-  }
+  onCloseModal() {}
 
   onRefresh() {
     location.reload();
@@ -77,7 +86,7 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   getValidationState(key: string): boolean {
     return !this.validationStateMap[key];
   }
-  onModalResponse(code: number, data?: any) { }
+  onModalResponse(code: number, data?: any) {}
 
   resetFormModel() {
     this.modalForm.reset();
@@ -130,7 +139,7 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
     if (this.modalForm == undefined) return false;
     var v = true;
     return v;
-}
+  }
 
   //policy
   isCardView!: boolean;
@@ -178,9 +187,7 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
       return this.listHover;
     }
   }
-  return() {
-
-  }
+  return() {}
   //Fetch Data
   loading = true;
   selected = [];
@@ -191,5 +198,10 @@ export class DefaultFormComponent<T> implements OnInit, OnDestroy {
   }
   onrefresh() {
     location.reload();
+  }
+  getPageSize(page: number, size: number, total: number): string {
+    return `${(page - 1) * size + 1}  -  ${
+      (page - 1) * size + size
+    } of Total ${total}`;
   }
 }

@@ -49,8 +49,11 @@ export class CardComponent extends DefaultModalComponent<Card> implements OnInit
   getIssuerIcon() {
     return `https://cdn.flnf.hu/assets/${this.validationRes.card.type}.svg`
   }
-  override close(): void {
+
+  close1(){
     alert("결제수단이 변경되었습니다.");
     this.opened = false;
+    window.location.reload();
   }
+
 }

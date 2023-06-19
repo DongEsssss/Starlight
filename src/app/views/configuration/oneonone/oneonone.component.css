@@ -1,0 +1,25 @@
+.search-tool {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 25px;
+}
+
+clr-datagrid {
+  margin-top: 5px;
+  height: 700px;
+}
+.toolbar-group {
+  display: flex;
+}
+
+label {
+  font-size: 25px;
+  margin-right: 10px;
+  color: black;
+  font-weight: bolder;
+}
+
+.toolbar-btn1 {
+  right: 0px;
+}

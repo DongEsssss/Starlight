@@ -1,0 +1,67 @@
+clr-modal {
+  height: 500px;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: black;
+  background: url("src/static/images/tent.svg") no-repeat 50% 50%;
+  background-size: contain;
+}
+
+textarea {
+  width: 520px;
+  height: 150px;
+}
+
+.value {
+  padding-left: 12px;
+}
+
+.clr-form {
+  position: relative;
+  top: -15px;
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+
+h3 {
+  padding: 0px 0px;
+  margin: 10px 0px;
+  font-weight: bolder;
+}
+
+.modal-body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.clr-control-label {
+  margin-top: 10px;
+  color: black;
+  font-size: 15px;
+}
+.clr-col-5 {
+  padding: 0px 0px;
+}
+
+textarea {
+  width: 800px;
+  resize: none;
+  overflow-x: hidden;
+}
+td {
+  height: 48px;
+  width: 160px;
+  font-size: 1.1em;
+  text-align: center;
+  background-color: #eee;
+  border: 0.5px solid #777;
+}
+.info,
+.etcinfo {
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 800px;
+  height: 100px;
+}

@@ -1,6 +1,8 @@
+<app-events #getevent></app-events>
+<app-events2 #getevent2></app-events2>
 <div class="container">
   <div class="container_title">
-    <div class="title_icon"></div>
+    <clr-icon shape="event"></clr-icon>
     <span class="title_text"> 스캠 이벤트 </span>
   </div>
   <div class="tool">
@@ -10,18 +12,65 @@
     <div class="cardgrid">
       <span class="list-btn" (click)="showCard(false)" (mouseenter)="mouseEnter('list')"
         (mouseleave)="mouseLeave('list')">
-        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="play"></clr-icon>
+        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="view-cards"></clr-icon>
       </span>
       <span class="card-btn" (click)="showCard(true)" (mouseenter)="mouseEnter('card')"
         (mouseleave)="mouseLeave('card')">
-        <clr-icon [ngClass]="{'is-highlight': isCardView || isHovering('card')}" shape="pause"></clr-icon>
+        <clr-icon [ngClass]="{ 'is-highlight': !isCardView || isHovering('list')}" shape="view-list"></clr-icon>
       </span>
     </div>
   </div>
-</div>
-<div *ngIf="!isCardView">
-  <app-proceeding />
-</div>
-<div *ngIf="isCardView">
-  <app-end />
+  <div *ngIf="!isCardView">
+    <div class="container1">
+      <div class="card" *ngFor="let item of items |  filter : searchText  index as i">
+        <div class="clr-row">
+          <div class="clr-col-4">
+            <img src="{{item.File}}" alt="">
+          </div>
+          <div class="clr-col-8">
+            <div class="event-info">
+              <h5>{{item.title}}</h5>
+              <h4>{{item.content}}</h4>
+            </div>
+            <span>
+              {{item.subtitle}}
+            </span>
+            <br>
+            <div class="clr-col-12">
+              <button class="btn btn-outline detail" (click)="detail(item.id)">상세보기></button>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="card-footer">
+          <span>
+            {{item.create | date : 'yyyy/MM/dd h:mm:ss a'}}
+          </span>
+          <span>
+            작성자 : {{item.writer}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isCardView">
+    <clr-datagrid class="customgrid sengee" #cDataGrid [clrDgLoading]="cDataLoading" [clrDgRowSelection]="true"
+      [(clrDgSingleSelected)]="cSelection">
+      <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+      <clr-dg-row *clrDgItems="let item of items | filter : searchText  index as i" [clrDgItem]="item"
+        (click)="detail(item.id)">
+        <clr-dg-cell style="min-width: 100px;">{{item.title}}</clr-dg-cell>
+        <clr-dg-cell>{{item.content}}</clr-dg-cell>
+        <clr-dg-cell>{{item.writer}}</clr-dg-cell>
+        <clr-dg-cell>{{item.create| date : 'yyyy/MM/dd h:mm:ss a'}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-placeholder>이벤트가 텅~ 비었습니다. 잠시만 기다려주세용~</clr-dg-placeholder>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} 이벤트
+          <clr-dg-page-size [clrPageSizeOptions]="[2,5,10]">Total page</clr-dg-page-size>
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  </div>
 </div>

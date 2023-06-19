@@ -1,0 +1,187 @@
+<app-reserve #reservemodal [id]="id" [item]="item"></app-reserve>
+<div class="container">
+  <div class="container_title">
+    <clr-icon shape="search"></clr-icon>
+    <span class="title_text"> 캠핑장 검색 </span>
+  </div>
+  <div class="tool">
+    <div class="search-tool">
+      <select name="area">
+        <option value="null">-전체보기</option>
+        <option *ngFor="let item of area" value="{{item.area}}">{{item.area}}</option>
+      </select>
+      <select name="theme">
+        <option value="null">-전체보기</option>
+        <option *ngFor="let item of theme" value="{{item.theme}}">{{item.theme}}</option>
+      </select>
+      <input class="search_input" [(ngModel)]="searchText" name="search" type="text" placeholder="캠핑장 이름으로 검색하시오"
+        id="carrier-input">
+    </div>
+  </div>
+  <clr-datagrid class="customgrid sengee" #cDataGrid (clrDgRefresh)="getcamp()" [clrDgLoading]="cDataLoading"
+    [clrDgRowSelection]="true" [(clrDgSingleSelected)]="cSelection">
+    <clr-dg-column *ngFor="let header of columnDefs">{{header.headerName}}</clr-dg-column>
+    <clr-dg-row *clrDgItems="let item of campList | filter : searchText;  index as i" [clrDgItem]="item">
+      <clr-dg-cell><img class="asd" src="{{item.image}}" alt=""></clr-dg-cell>
+      <clr-dg-cell>{{item.campname}}</clr-dg-cell>
+      <clr-dg-cell>{{item.position}} {{item.detailposition}}</clr-dg-cell>
+      <clr-dg-cell>{{item.theme}}</clr-dg-cell>
+      <clr-dg-cell>
+        <div class="price">{{item.value}}원 <br>
+          <p>※가격이 변동될 수 있습니다. <br> 지금 가격은 기본 요금입니다.</p>
+        </div>
+      </clr-dg-cell>
+      <clr-dg-cell>
+        <div class="bttn" style="width: 150px">
+          <button class="btn" (click)="opens(item.id)">상세보기</button>
+          <button class="btn" (click)="reserve(item.id)">예약하기</button>
+        </div>
+      </clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]=" 10">
+        <clr-dg-page-size [clrPageSizeOptions]="[2,5,10,20]"></clr-dg-page-size>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>
+<clr-wizard #wizard class="wizard" [(clrWizardOpen)]="_open" *ngIf="campList[0]" [id]="id">
+  <clr-wizard-title>{{campList[0].campname}} 예약</clr-wizard-title>
+  <clr-wizard-button [type]="'previous'">뒤로가기</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">다음</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'">닫기</clr-wizard-button>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>캠핑장 소개</ng-template>
+    <ng-template clrPageNavTitle>캠핑장 소개글</ng-template>
+    <img class=" wizardcarimg" src="{{campList[0].image}}" alt="">
+    <h4>캠핑장 이름 : {{campList[0].campname}}</h4>
+    <h5>테마 : {{campList[0].theme}}</h5>
+    <pre class="wizardtext">
+<b>사장님이 여러분께 전하는 말씀</b>
+{{campList[0].text}}
+    </pre>
+    <ng-template clrPageButtons>
+      <clr-wizard-button [type]="'cancel'">닫기</clr-wizard-button>
+      <clr-wizard-button [type]="'next'">다음</clr-wizard-button>
+    </ng-template>
+  </clr-wizard-page>
+
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>캠핑장 안내</ng-template>
+    <ng-template clrPageNavTitle>캠핑장 주차장</ng-template>
+    <img class="wizardcarimg" src="{{campList[0].car}}" alt="">
+    <h4>{{campList[0].campname}} 총 버스 5대, 자동차 13대자리</h4>
+    <ng-template clrPageButtons>
+      <clr-wizard-button [type]="'previous'">뒤로가기</clr-wizard-button>
+      <clr-wizard-button [type]="'next'">다음</clr-wizard-button>
+    </ng-template>
+  </clr-wizard-page>
+
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>캠핑장 안내</ng-template>
+    <ng-template clrPageNavTitle>캠핑장 안내</ng-template>
+    <div style="width: 780px; height: 100%; text-align:center;margin:auto; justify-content: center; padding:0;">
+      <ng-image-slider #nav [images]="imageObject" [infinite]="false" [autoSlide]="1"
+        [imageSize]="{width: '780px', height: 400}" slideImage="1"></ng-image-slider>
+    </div>
+    <div class="subtitle">
+      <clr-icon shape="info"></clr-icon>
+      <h3>캠핑장 시설 정보</h3>
+    </div>
+    <div class="info">
+      <table>
+        <tr>
+          <td>장작</td>
+          <td>쓰레기 봉투</td>
+          <td>식기구 대여</td>
+          <td>전기 콘센트 대여</td>
+          <td>캠핑 도구 대여</td>
+        </tr>
+        <tr>
+          <td>랜턴 대여</td>
+          <td>프로젝트 빔 대여</td>
+          <td>놀이기구 대여</td>
+          <td>텐트 대여</td>
+          <td></td>
+      </table>
+    </div>
+    <div class="subtitle">
+      <clr-icon shape="info"></clr-icon>
+      <h3>기타 주요시설</h3>
+    </div>
+    <div class=" company_intro">
+      <hr>
+      <table class="table table-vertical companytable table-noborders">
+        <tbody>
+          <tr>
+            <th>주요시설</th>
+            <td>일반야영장(16면)자동차야영장사이트(35면)</td>
+          </tr>
+          <tr>
+            <th>기타 정보</th>
+            <td>
+              개인 트레일러 입장가능반려동물 동반 불가능
+              <br>
+              <br>
+              (※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
+            </td>
+          </tr>
+          <tr>
+            <th>바닥형태 (단위:면)</th>
+            <td>파쇄석 (16)테크 (6)</td>
+          </tr>
+          <tr>
+            <th>화로대</th>
+            <td>개별</td>
+          </tr>
+          <tr>
+            <th>안전시설현황</th>
+            <td>소화기 (26)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="span"> * 스타라이트 캠핑에 등록된 정보는 현장상황과 다소 다를 수 있으니 반려동물 동반 여부, 부가 시설물, 추가차량 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에
+      미리 확인하시기
+      바랍니다.</span>
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>캠핑장 사장님의 말씀</ng-template>
+    <ng-template clrPageNavTitle>사장님의 한마디</ng-template>
+    <h3 class="asd123">사장님의 말씀</h3>
+    <pre class="wizardtext1">
+<b>사장님이 여러분께 전하는 말씀</b>
+{{campList[0].text}}
+
+우리 동군 캠핑장에서는 여러분의 낭만과 추억이라는 것을 만들어드리기 위해 늘 최선을 다하고 있습니다.
+캠핑장을 이용하시기 전에 주위 먹거리나 주위 관광지 등 모든 궁금한 점이 있을 때는 010-1234-1234로
+연락해주시면 근면성실하게 답변해 드리도록 하겠습니다.
+
+우리 캠핑장에서는 여러분의 안전도 책임지고 있으니 여러분 동군 캠핑장으로 놀러오세요!
+최선을 다하는 동군 캠핑장이 되도록 하겠습니다!
+
+많은 이용 부탁드립니다. 감사합니다!
+    </pre>
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>캠핑장 후기</ng-template>
+    <ng-template clrPageNavTitle>후기</ng-template>
+    <div class="post">
+      <ul class="messages" #scrollMe [scrollTop]="scrollTop">
+        <li class="m" *ngFor="let m of messages">
+          {{m}}
+        </li>
+      </ul>
+    </div>
+    <div class="postasd">
+      <input class="addmessage" type="text" [(ngModel)]="chatMessage">
+      <button class="postplus" (click)="addMessage()">Add Message</button>
+    </div>
+  </clr-wizard-page>
+</clr-wizard>
