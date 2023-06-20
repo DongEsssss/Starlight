@@ -8,11 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent {
-  username: string = 'admin';
-  password: number = 1234;
+  username: string = '';
+  password: string = '';
   constructor(private router: Router) {}
-  signin(username: any, password: any) {
-    if (username == 'admin' && password == 1234) {
+  signin() {
+    const validUsername = 'admin';
+    const validPassword = '1234';
+
+    if (this.username === validUsername && this.password === validPassword) {
       this.router.navigateByUrl('starlightcamping/home/mainhome');
     } else {
       window.location.reload();
