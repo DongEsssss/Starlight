@@ -177,3 +177,6 @@ table {
   border-radius: 4px;
   height: 35px;
 }
+clr-datagrid {
+  height: 750px;
+}
